@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let role of roles; index as i">
+      <tr *ngFor="let role of roles | async">
         <th>
           {{ role.roleID }}
         </th>
