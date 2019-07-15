@@ -20,7 +20,7 @@ app.get('/getroles', function(req, res) {
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
         roles = rows;
-        coursefn();
+        rolesfn();
     });
 }
 
