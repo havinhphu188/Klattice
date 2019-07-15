@@ -3,9 +3,9 @@ CREATE DATABASE klattice;
 USE klattice;
 
 CREATE TABLE Role (
-	roleID INT unsigned,
+	roleID INT unsigned auto_increment,
     roleName varchar(60),
-    PRIMARY KEY (`roleName`)
+    PRIMARY KEY (`roleID`)
 );
 
 ALTER TABLE Role
