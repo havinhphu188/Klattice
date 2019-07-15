@@ -18,7 +18,7 @@ app.get('/getroles', function(req, res) {
 });
 
 function updateRoles(rolesfn){
-    db.getCourses(function(rows){
+    db.getRoles(function(rows){
         roles = rows;
         coursefn();
     });
