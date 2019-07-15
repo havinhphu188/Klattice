@@ -15,29 +15,4 @@ export class AppComponent {
   constructor(dataService: DataService) {
     this.data = dataService;
   }
-
-  
-  
-  
-  //title = 'klattice';
-  //roles = ROLES;
 }
-
-// const ROLES: Role[] = [
-//   {
-//     roleID: 1,
-//     roleName: 'Software Engineer'
-//   },
-//   {
-//     roleID: 2,
-//     roleName: 'Marketing'
-//   },
-//   {
-//     roleID: 3,
-//     roleName: 'CEO'
-//   },
-//   {
-//     roleID: 4,
-//     roleName: 'Water boy'
-//   }
-// ];
