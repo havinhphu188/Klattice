@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Role } from './classes/role';
-import { HttpClient } from '@angular/common/http';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +10,10 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
 
   title = 'klattice';
+  data: DataService;
 
-  roles = this.http.get<Role[]>('/api/getroles');
-
-  constructor(private http: HttpClient) {
-    
-    console.log(this.roles);
+  constructor(dataService: DataService) {
+    this.data = dataService;
   }
 
   
