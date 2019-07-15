@@ -6,6 +6,7 @@ import { Role } from './classes/role';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'klattice';
   roles = ROLES;
