@@ -18,23 +18,23 @@ exports.getRoles = function (callback) {
     );
 }
 
-exports.getUser = function (userName, userPassword, output)
+exports.getUser = function (userName, userPassword,ansflag)
 {   
     //"SELECT username, password FROM User WHERE user_name = " + userName + " AND password = "+userPassword + ";",
     //change the fields later to be up to date with SQL
     db.query(
-        'SELECT * FROM role;',
+        "SELECT user_name, password FROM User WHERE user_name = " + "'" + userName + "'" + " AND password = "+"'" +userPassword + "'" +";",
         function (err, rows)
         {
-            ans = 2;
+            var result = -1;
             if (err) throw err;
 
             //-1 = failed, 0 = employee, 1 = admin
-            if(rows !=  null && userName == 'admin') ans = 1; 
-            else if(rows !=  null && userName == 'employee') ans = 0; 
-            else ans = -1;
-
-            output(ans);
+            if(rows !=  null && userName == 'admin') result = 1; 
+            else if(rows !=  null && userName == 'employee') result = 0; 
+            else result = -1;
+            ansflag = result;
         }
-    );
+    ); 
+    return ansflag;
 }

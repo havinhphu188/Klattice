@@ -13,23 +13,28 @@ app.get('/getroles', function(req, res) {
     });
 });
 
-app.get('/getuserdetails', function(req, res)
+app.get('/userdetails', function(req, res)
 {
-    testUserName = 'admin';
-    password =  'adminPass';
-    authenticate(testUserName,password);
+  //  testUserName = 'admin';
+    //password =  'adminPass';
 });
 
-app.post('/getuserdetails', function(req,res)
+app.post('/userdetails', function(req,res)
 {
+    ans = authenticate(testUserName,password);
+    
+    if(ans)
+    {
 
+    }
 });
 
 function dummyGet(testUserName,password)
 {
-    ans = authenticate(testUserName,password);
+    var ansFlag = -1;
+    ans = authenticate(testUserName,password,ansFlag);
 
-    if(ans == false) console.log("login failed");
+    if(ans == -1) console.log("login failed");
     else console.log("succeeded");
 }
 
@@ -44,25 +49,19 @@ function updateRoles(rolesfn){
 function authenticate(userName, password)
 {
     password = saltedHash(password);
-    result = db.getUser(userName, password, ouputQueryRes);
-}
+    ans = db.getUser(userName, password);
 
-//outputs the result
-function ouputQueryRes(res)
-{
-    if(res == -1) console.log('failed');
-    else if(res == 0) console.log('hi employee');
-    else if(res == 1) console.log('hi admin');
+    return ans;
 }
 
 //applies salt and hash
 function saltedHash(password)
 {
-    alg = 'md5'
+    alg = 'sha1'
     salt = "S@E1F53135E559C253assdk100101"; //random salt (taken from wikipedia)
     password += salt;
     password = hash(alg).update(password).digest('hex');
-
+    console.log(password);
     return password; 
 }
 
@@ -70,3 +69,4 @@ dummyGet('admin', 'adminPass');
 
 roles = [];
 
+//UPDATE user SET password = "3fac8fe22359e7357fda5b7aaa79a96f074d4f34" WHERE user_name = "admin";
