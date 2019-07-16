@@ -18,10 +18,9 @@ exports.getRoles = function (callback) {
     );
 }
 
+ //-1 = failed, 0 = employee, 1 = admin
 exports.getUser = function (userName, userPassword,ansflag)
 {   
-    //"SELECT username, password FROM User WHERE user_name = " + userName + " AND password = "+userPassword + ";",
-    //change the fields later to be up to date with SQL
     db.query(
         "SELECT user_name, password FROM User WHERE user_name = " + "'" + userName + "'" + " AND password = "+"'" +userPassword + "'" +";",
         function (err, rows)
@@ -29,7 +28,6 @@ exports.getUser = function (userName, userPassword,ansflag)
             var result = -1;
             if (err) throw err;
 
-            //-1 = failed, 0 = employee, 1 = admin
             if(rows !=  null && userName == 'admin') result = 1; 
             else if(rows !=  null && userName == 'employee') result = 0; 
             else result = -1;

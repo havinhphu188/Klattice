@@ -21,22 +21,33 @@ app.get('/userdetails', function(req, res)
 
 app.post('/userdetails', function(req,res)
 {
-    ans = authenticate(testUserName,password);
-    
-    if(ans)
-    {
+    var uName = req.body.username; 
+    var uPass = req.body.password; 
 
+    ans = authenticate(uName, uPass); 
+    
+    switch(ans)
+    {
+        case 1:
+            res.send('<script>alert("Hello admin");</script>');
+            break;
+        case 0:
+            res.send('<script>alert("Hello employee");</script>');
+            break;
+        case -1:
+            res.send('<script>alert("Failed");</script>');
+            break;
     }
 });
 
-function dummyGet(testUserName,password)
+/*function dummyGet(testUserName,password)
 {
     var ansFlag = -1;
     ans = authenticate(testUserName,password,ansFlag);
 
     if(ans == -1) console.log("login failed");
     else console.log("succeeded");
-}
+}*/
 
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
@@ -65,8 +76,6 @@ function saltedHash(password)
     return password; 
 }
 
-dummyGet('admin', 'adminPass');
+//dummyGet('admin', 'adminPass');
 
 roles = [];
-
-//UPDATE user SET password = "3fac8fe22359e7357fda5b7aaa79a96f074d4f34" WHERE user_name = "admin";
