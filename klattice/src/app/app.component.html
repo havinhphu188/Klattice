@@ -6,38 +6,33 @@
 </div>
 
 <div class="container">
-  <table class="table table-borderless table-hover">
-    <thead class="roleTableHead">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let role of data.roles | async"
-        (click)="
-          openModal(
-            content,
-            role.role_id,
-            role.role_name,
-            role.role_summary,
-            role.role_sum_link
-          )
-        "
-      >
-        <th>
-          {{ role.role_id }}
-        </th>
-        <td>{{ role.role_name }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-    <ngb-panel title="{{role.role_name}}" *ngFor="let role of data.roles | async">
+  <ngb-accordion #acc="ngbAccordion" activeIds="">
+    <ngb-panel
+      title="{{ capability.capability_name }}"
+      *ngFor="let capability of data.capabilities | async"
+    >
       <ng-template ngbPanelContent>
-        {{ role.role_name }}
+        <table class="table table-borderless table-hover">
+          <tbody>
+            <tr *ngFor="let role of data.roles | async">
+              <td
+                class="roleCap"
+                *ngIf="role.capability_id === capability.capability_id"
+                (click)="
+                  openModal(
+                    content,
+                    role.role_id,
+                    role.role_name,
+                    role.role_summary,
+                    role.role_sum_link
+                  )
+                "
+              >
+                {{ role.role_name }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
@@ -62,7 +57,7 @@
         <h5 class="jobSpec">Job Specification</h5>
         <p>{{ roleSummary }}</p>
         <br />
-        <a [href]="roleLink">Sharepoint Link</a>
+        <a *ngIf="roleLink" [href]="roleLink">Sharepoint Link</a>
       </div>
     </form>
   </div>

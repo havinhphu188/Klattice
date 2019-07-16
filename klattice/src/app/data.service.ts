@@ -7,7 +7,7 @@ import { Capability } from './classes/capability';
   providedIn: 'root'
 })
 export class DataService {
-
+  
   constructor(private http: HttpClient) { }
 
   roles = this.http.get<Role[]>('/api/getroles');
