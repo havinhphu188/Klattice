@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
+  <h1 class="mainTitle">
     Welcome to {{ title }}!
   </h1>
 </div>
@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let role of data.roles | async">
+      <tr *ngFor="let role of data.roles | async" (click)='openModal()'>
         <th>
           {{ role.role_id }}
         </th>
@@ -22,6 +22,8 @@
       </tr>
     </tbody>
   </table>
+
+  <app-role-modal></app-role-modal>
 </div>
 
 <router-outlet></router-outlet>
