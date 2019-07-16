@@ -12,7 +12,7 @@ CREATE TABLE band (
 	band_id INT unsigned auto_increment,
 	band_name varchar(30) not null,
     level enum("9", "8", "7", "6", "5", "4", "3", "2", "1"),
-    competency varchar(6000) unique,
+    competency varchar(6000),
     PRIMARY KEY(`band_id`)
 );
 
@@ -191,7 +191,7 @@ VALUES ("Head of Business Unit", "Owns and leads a business area (e.g. a BU) or 
 ("Marketing Associate", "Established deliverer, works well in a team.", null, 6, 7),
 ("Marketing Assistant", "Graduate entry level, here to learn, but primarily to contribute to projects.", null, 6, 8),
 
-("Lead Software Engineer",  "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.", null, 7, 5),
+("Lead Software Engineer",  "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.", 'https://kainossoftwareltd.sharepoint.com/:b:/r/people/Shared%20Documents/Job%20Descriptions/Software%20Engineering/Job%20Specification%20-%20Lead%20Software%20Engineer%20-%20Consultant.pdf?csf=1&e=whdr0b', 7, 5),
 ("Software Engineer", "Delivers with limited supervision, trusted to make tactical decisions.", null, 7, 6),
 ("Software Engineer", "Established deliverer, works well in a team.", null, 7, 7),
 ("Software Engineer", "Graduate entry level, here to learn, but primarily to contribute to projects.", null, 7, 8),
