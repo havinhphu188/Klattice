@@ -9,8 +9,7 @@
   <ngb-accordion class="capabilityTable" #acc="ngbAccordion" activeIds="">
     <ngb-panel
       title="{{ capability.capability_name }}"
-      *ngFor="let capability of data.capabilities | async"
-    >
+      *ngFor="let capability of data.capabilities | async">
       <ng-template ngbPanelContent>
         <table class="table table-borderless table-hover">
           <tbody>
