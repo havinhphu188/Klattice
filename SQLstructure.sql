@@ -14,6 +14,12 @@ ALTER TABLE role
 ADD CONSTRAINT role_name_length
 CHECK (length(role_name) >= 4);
 
+CREATE TABLE capability (
+	capability_id INT unsigned auto_increment,
+    capability_name varchar(60),
+    PRIMARY KEY(`capability_id`)
+);
+
 INSERT INTO role (role_name, role_summary, role_sum_link)
 VALUES ("Head of Business Unit", "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.", null),
 ("Sales Director", null,  null),
@@ -81,3 +87,8 @@ VALUES ("Head of Business Unit", "Owns and leads a business area (e.g. a BU) or 
 ("Ops Engineer", "Delivers with limited supervision, trusted to make tactical decisions.", null),
 ("Ops Engineer", "Established deliverer, works well in a team.", null),
 ("Ops Engineer", "Graduate entry level, here to learn, but primarily to contribute to projects.", null);
+
+INSERT INTO capability (capability_name)
+VALUES ("Business Development"),
+		("Account Management"),
+        ("Sales");
