@@ -17,3 +17,14 @@ exports.getRoles = function (callback) {
         }
     );
 }
+
+exports.getCapability = function(callback) {
+    db.query(
+        "SELECT capability_id, capability_name FROM capability;",
+        function (err, rows) {
+            if(err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}
