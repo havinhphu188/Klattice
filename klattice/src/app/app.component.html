@@ -11,7 +11,7 @@
     <ngb-panel
       
       title="{{ capability.capability_name }}"
-      *ngFor="let capability of data.capabilities | async"
+      *ngFor="let capability of data.capabilities | async | sortBy: 'capability_name':'asc'"
     >
       <ng-template ngbPanelContent>
         <table class="table table-borderless table-hover">
@@ -33,7 +33,7 @@
                 <div class="roleName">
                   <span>{{ role.role_name }}</span>
                 </div>
-                <div *ngFor="let band of data.bands | async">
+                <div *ngFor="let band of data.bands | async" style="float:right;width:20%">
                   <span class="jobBand" *ngIf="band.band_id === role.band_id">
                     {{ band.band_name }}
                   </span>
