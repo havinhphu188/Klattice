@@ -31,7 +31,7 @@ exports.getCapability = function(callback) {
 
 exports.getBands = function(callback) {
     db.query(
-        "SELECT band_id, band_name, level, competency FROM band",
+        "SELECT band_id, band_name, level FROM band",
         function (err, rows) {
             if(err, rows) {
                 callback(rows);

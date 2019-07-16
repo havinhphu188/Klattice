@@ -11,6 +11,7 @@ CREATE TABLE capability (
 CREATE TABLE band (
 	band_id INT unsigned auto_increment,
 	band_name varchar(30) not null,
+    level enum("9", "8", "7", "6", "5", "4", "3", "2", "1"),
     PRIMARY KEY(`band_id`)
 );
 
@@ -46,16 +47,16 @@ VALUES ("Business Development"),
         ("Architect"),
         ("Ops");
 
-INSERT INTO band(band_name)
-VALUES ("Executive"),
-		("Leadership Community"),
-        ("Principal"),
-        ("Manager"),
-        ("Consultant"),
-        ("SeniorAssociate"),
-        ("Associate"),
-        ("Trainee"),
-        ("Apprentice");
+INSERT INTO band(band_name, level)
+VALUES ("Executive", "9"),
+		("Leadership Community", "8"),
+        ("Principal", "7"),
+        ("Manager", "6"),
+        ("Consultant", "5"),
+        ("SeniorAssociate", "4"),
+        ("Associate", "3"),
+        ("Trainee", "2"),
+        ("Apprentice", "1");
 
 INSERT INTO role (role_name, role_summary, role_sum_link, capability_id, band_id)
 VALUES ("Head of Business Unit", "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.", null, 1, 1),
