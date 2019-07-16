@@ -14,8 +14,4 @@ export class RoleModalComponent {
 
   constructor() {}
 
-  // open(content) {
-  //   this.modalService.open(content, {size: 'lg', ariaLabelledBy: 'modal-basic-title'})
-  // }
-
 }
