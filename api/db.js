@@ -9,7 +9,7 @@ const db = mysql.createConnection({
 
 exports.getRoles = function (callback) {
     db.query(
-        "SELECT role_id, role_name, role_summary, role_sum_link FROM role;",
+        "SELECT role_id, role_name, role_summary, role_sum_link, capability_id FROM role;",
         function (err, rows) {
             if (err, rows) {
                 callback(rows);
