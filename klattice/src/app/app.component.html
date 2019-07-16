@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
+  <h1 class="mainTitle">
+    {{ title }}
   </h1>
 </div>
 
@@ -9,19 +9,37 @@
   <table class="table table-borderless table-hover">
     <thead class="roleTableHead">
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">Name</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let role of data.roles | async">
-        <th>
-          {{ role.role_id }}
-        </th>
+      <tr *ngFor="let role of data.roles | async" (click)='openModal(content, role.role_id, role.role_name, role.role_summary, role.role_sum_link)'>
         <td>{{ role.role_name }}</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{roleName}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <h5 class="jobSpec">Job Specification</h5>
+        <p>{{roleSummary}}</p>
+        <br>
+        <a href=roleLink>Sharepoint Link</a>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
 
 <router-outlet></router-outlet>
