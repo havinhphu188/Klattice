@@ -13,4 +13,5 @@ export class DataService {
   roles = this.http.get<Role[]>('/api/getroles');
   capabilities = this.http.get<Capability[]>('api/getcapability');
   bands = this.http.get<Band[]>('api/getbands');
+  families = this.http.get<family[]>('api/getfamilies');
 }
