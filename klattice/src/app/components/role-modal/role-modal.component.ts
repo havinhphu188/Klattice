@@ -12,10 +12,10 @@ export class RoleModalComponent {
   title = "Test title";
   jobTitle = "Software Engineer";
 
-  constructor(private modalService: NgbModal) {}
+  constructor() {}
 
-  open(content) {
-    this.modalService.open(content, {size: 'lg', ariaLabelledBy: 'modal-basic-title'})
-  }
+  // open(content) {
+  //   this.modalService.open(content, {size: 'lg', ariaLabelledBy: 'modal-basic-title'})
+  // }
 
 }

@@ -10,4 +10,10 @@
 
 .mainTitle {
     padding: 1rem;
+    color: #ffffff;
+    background-color: #003471;
+}
+
+.jobSpec {
+    font-size: 20px;
 }
