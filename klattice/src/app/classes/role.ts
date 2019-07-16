@@ -4,4 +4,5 @@ export class Role {
     role_summary: string;
     role_sum_link: string;
     capability_id: number;
+    band_id: number;
 }
