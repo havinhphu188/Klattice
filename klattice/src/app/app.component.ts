@@ -9,7 +9,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class AppComponent {
- 
   title = 'Career Lattice';
   roleID = -1;
   roleName = '';
