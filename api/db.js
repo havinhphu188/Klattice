@@ -17,3 +17,11 @@ exports.getRoles = function (callback) {
         }
     );
 }
+
+exports.getUser = function (callback, userName, userPassword)
+{   
+    db.query(
+        "SELECT username, password FROM User"
+
+    );
+}
