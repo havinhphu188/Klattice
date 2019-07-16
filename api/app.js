@@ -3,6 +3,12 @@ const app = express()
 const db = require('./db')
 const hash = require('crypto').createHash;
 
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded());
+ 
+//Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
 app.listen(7999, function() {
     console.log('Express started');
 });
@@ -17,27 +23,33 @@ app.get('/userdetails', function(req, res)
 {
   //  testUserName = 'admin';
     //password =  'adminPass';
+    res.send('');
 });
 
 app.post('/userdetails', function(req,res)
 {
-    var uName = req.body.username; 
-    var uPass = req.body.password; 
+    var str = JSON.stringify(req.body);
+    console.log(str);
+    var substr = str.split(str.substring(23,str.length), '"');
+    console.log(substr);
+    //console.log(req.body.username);
+    // var uName = req.body.username; 
+    // var uPass = req.body.password; 
 
-    ans = authenticate(uName, uPass); 
+    // ans = authenticate(uName, uPass); 
     
-    switch(ans)
-    {
-        case 1:
-            res.send('<script>alert("Hello admin");</script>');
-            break;
-        case 0:
-            res.send('<script>alert("Hello employee");</script>');
-            break;
-        case -1:
-            res.send('<script>alert("Failed");</script>');
-            break;
-    }
+    // switch(ans)
+    // {
+    //     case 1:
+    //         res.send('<script>alert("Hello admin");</script>');
+    //         break;
+    //     case 0:
+    //         res.send('<script>alert("Hello employee");</script>');
+    //         break;
+    //     case -1:
+    //         res.send('<script>alert("Failed");</script>');
+    //         break;
+    // }
 });
 
 /*function dummyGet(testUserName,password)
