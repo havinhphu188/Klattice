@@ -18,6 +18,12 @@ app.get('/getcapability', function(req, res){
     });
 });
 
+app.get('/getbands', function(req, res){
+    updateBands(function(){
+        res.send(bands)
+    });
+});
+
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
         roles = rows;
@@ -32,5 +38,13 @@ function updateCapability(capabilityfn){
     });
 }
 
+function updateBands(bandsfn){
+    db.getBands(function(roews){
+        bands = rows;
+        bandsfn();
+    });
+}
+
 roles = [];
 capability = [];
+bands = [];
