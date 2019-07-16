@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Role } from './roles/role';
+import { Role } from './classes/role';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
