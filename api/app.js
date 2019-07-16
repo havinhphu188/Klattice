@@ -39,7 +39,7 @@ function updateCapability(capabilityfn){
 }
 
 function updateBands(bandsfn){
-    db.getBands(function(roews){
+    db.getBands(function(rows){
         bands = rows;
         bandsfn();
     });
