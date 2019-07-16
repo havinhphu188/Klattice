@@ -15,8 +15,23 @@ app.get('/getroles', function(req, res) {
 
 app.get('/getuserdetails', function(req, res)
 {
+    testUserName = 'admin';
+    password =  'adminPass';
+    authenticate(testUserName,password);
+});
 
-})
+app.post('/getuserdetails', function(req,res)
+{
+
+});
+
+function dummyGet(testUserName,password)
+{
+    ans = authenticate(testUserName,password);
+
+    if(ans == false) console.log("login failed");
+    else console.log("succeeded");
+}
 
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
@@ -25,18 +40,29 @@ function updateRoles(rolesfn){
     });
 }
 
+//salts, hashes, then checks DB returns true or false
+function authenticate(userName, password)
+{
+    password = saltedHash(password);
+    result = null;
+    //result = db.getUser(userName, password);
+
+    if(result == null) return false;
+    else return true;
+}
+
+//applies salt and hash
 function saltedHash(password)
 {
     alg = 'md5'
-    salt = "S@E1F53135E559C253assdk100101";
-    console.log(password);
+    salt = "S@E1F53135E559C253assdk100101"; //random salt (taken from wikipedia)
     password += salt;
-    console.log(password);
     password = hash(alg).update(password).digest('hex');
-    console.log(password);
+
+    return password; 
 }
 
-saltedHash("weesteeky");
+dummyGet('admin', 'adminPass');
 
 roles = [];
 

@@ -18,11 +18,11 @@ exports.getRoles = function (callback) {
     );
 }
 
-exports.getUser = function (callback, userName, userPassword)
+exports.getUser = function (userName, userPassword)
 {   
     //change the fields later to be up to date with SQL
     db.query(
-        "SELECT username, password FROM User WHERE user_name",
+        "SELECT username, password FROM User WHERE user_name = " + userName + " AND password = "+userPassword + ";",
         function (err, rows)
         {
             if(err,rows)
