@@ -12,6 +12,24 @@ app.get('/getroles', function(req, res) {
     });
 });
 
+app.get('/getbandcompetency', function(req, res) {
+    updateBandCompetency(function(){
+        res.send(bandCompetency);
+    });
+});
+
+app.get('/getcompetency', function(req, res) {
+    updateCompetency(function(){
+        res.send(competencies);
+    });
+});
+
+app.get('/gettitle', function(req, res) {
+    updateTitle(function(){
+        res.send(titles);
+    });
+});
+
 app.get('/getcapability', function(req, res){
     updateCapability(function(){
         res.send(capability)
@@ -31,6 +49,26 @@ function updateRoles(rolesfn){
     });
 }
 
+function updateBandCompetency(bandCompetencyfn){
+    db.getBandCompetency(function(rows){
+        bandCompetency = rows;
+        bandCompetencyfn();
+    });
+}
+
+function updateCompetency(Competencyfn){
+    db.getCompetency(function(rows){
+        competencies = rows;
+        Competencyfn();
+    });
+}
+
+function updateTitle(Titlefn){
+    db.getTitle(function(rows){
+        titles = rows;
+        Titlefn();
+    });
+}
 function updateCapability(capabilityfn){
     db.getCapability(function(rows){
         capability = rows;
@@ -46,5 +84,8 @@ function updateBands(bandsfn){
 }
 
 roles = [];
+competencies = [];
+bandCompetency = [];
+titles = [];
 capability = [];
 bands = [];

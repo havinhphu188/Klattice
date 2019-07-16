@@ -7,7 +7,7 @@ VALUES ("Commercial Awareness"),
         ("Developing Yourself and Others"),
         ("Planning and Organising"),
         ("Job Specific Knowledge");
-
+        
 -- competency
 INSERT INTO competency (title_id, description)
 VALUES (1, "You put forward sound business cases to gain support for new and more effective methods of working"),
@@ -36,7 +36,28 @@ VALUES (1, "You put forward sound business cases to gain support for new and mor
         (3, "You understand how changes might impact differently on different stakeholders and address arising issues"),
         (3, "You take ownership and accountability for problems and the generation of solutions"),
         (3, "You communicates and manage the need for change delivering the corporate message"),
-        (3, "You create a culture where new ideas are encouraged and evaluated; obstacles removed and people and resources are used in the most effective way in order to achieve Company goals")
+        (3, "You create a culture where new ideas are encouraged and evaluated; obstacles removed and people and resources are used in the most effective way in order to achieve Company goals"),
+        (3, "You capitalise on opportunities to improve processes, systems or efficiency supporting the company's decision on corporate tools"),
+        
+        (4, "You manage expectations so customers always feels valued and have a positive experience of Kainos"),
+        (4, "You champion customer service improvement initiatives"),
+        (4, "You create a culture of professionalism in dealing with customers at all levels"),
+        
+        (5, "You tailor development approaches to suit the needs of each team member"),
+        (5, "You identify potential developmental opportunities for individuals within your team, making them happen whilst managing the impact within your team"),
+        (5, "You evaluate the effectiveness of training in the development of your team"),
+        (5, "You understand the talent development process and effectively use to take accountability for the development of staff"),
+        (5, "You create a supportive coaching culture and share your knowledge and skills to groups of individuals"),
+        
+        (6, "You organise people and resources to successfully achieve both short and medium term objectives"),
+        (6, "You confidently juggle complex projects of different size and priority"),
+        (6, "You empower individuals and pass decision making down to the lowest appropriate level"),
+        
+        (7, "You provide opportunities for others to learn functional and technical skills and concepts"),
+        (7, "You apply advanced functional or technical knowledge to process innovation and complex problem solving"),
+        (7, "You continually seeks to improve or redesign processes, tools, or technologies to enhance business efficiency and relevance"),
+        (7, "You are sought by others for functional or technical expertise and knowledge and for troubleshooting of complex issues"),
+        (7, "You demonstrates an excellent level of accomplishment in job performance")
 ;
 -- band
 INSERT INTO band(band_name, level)
@@ -51,8 +72,11 @@ VALUES ("Executive", "9"),
         ("Apprentice", "1");
 
 -- band_competency
-
-
+INSERT INTO band_competency (competency_id, band_id)
+VALUES (1, 4), (2, 4), (3, 4),(4, 4),(5, 4),(6, 4),(7, 4),(8, 4),(9, 4),(10, 4),(11, 4),(12, 4),(13, 4),(14, 4),(15, 4),
+	(16, 4),(17, 4),(18, 4),(19, 4),(20, 4),(21, 4),(22, 4),(23, 4),(24, 4),(25,4),(26,4),(27,4),(28,4),(29,4),(30,4),
+	(31,4),(32,4),(35,4),(36,4),(37,4),(38,4),(39,4),(40,4),(41,4),(42,4)
+;
 
 
 -- capability
