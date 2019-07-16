@@ -5,7 +5,7 @@ USE klattice;
 CREATE TABLE role (
 	role_id INT unsigned auto_increment,
     role_name varchar(60),
-    PRIMARY KEY (`roleID`)
+    PRIMARY KEY (`role_id`)
 );
 
 ALTER TABLE Role
