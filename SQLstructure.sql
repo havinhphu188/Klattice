@@ -58,6 +58,7 @@ VALUES ("Executive", "9"),
         ("Trainee", "2"),
         ("Apprentice", "1");
 
+
 INSERT INTO role (role_name, role_summary, role_sum_link, capability_id, band_id)
 VALUES ("Head of Business Unit", "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.", null, 1, 1),
 ("Sales Director", null,  null, 1, 2),
