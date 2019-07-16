@@ -12,6 +12,12 @@ app.get('/getroles', function(req, res) {
     });
 });
 
+app.get('/getcapability', function(req, res){
+    updateCapability(function(){
+        res.send(capability)
+    });
+});
+
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
         roles = rows;
@@ -19,4 +25,12 @@ function updateRoles(rolesfn){
     });
 }
 
+function updateCapability(capabilityfn){
+    db.getCapability(function(rows){
+        capability = rows;
+        capabilityfn();
+    });
+}
+
 roles = [];
+capability = [];
