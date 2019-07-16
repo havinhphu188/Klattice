@@ -9,15 +9,11 @@
   <table class="table table-borderless table-hover">
     <thead class="roleTableHead">
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">Name</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let role of data.roles | async" (click)='openModal(content, role.role_id, role.role_name, role.role_summary, role.role_sum_link)'>
-        <th>
-          {{ role.role_id }}
-        </th>
         <td>{{ role.role_name }}</td>
       </tr>
     </tbody>
@@ -37,7 +33,7 @@
         <h5 class="jobSpec">Job Specification</h5>
         <p>{{roleSummary}}</p>
         <br>
-        <a [href]=roleLink>Sharepoint Link</a>
+        <a href=roleLink>Sharepoint Link</a>
       </div>
     </form>
   </div>
