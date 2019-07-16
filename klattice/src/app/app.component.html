@@ -34,7 +34,7 @@
     </tbody>
   </table>
 
-  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-accordion #acc="ngbAccordion" ">
     <ngb-panel title="{{role.role_name}}" *ngFor="let role of data.roles | async">
       <ng-template ngbPanelContent>
         {{ role.role_name }}
