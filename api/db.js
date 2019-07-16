@@ -72,3 +72,14 @@ exports.getBands = function(callback) {
         }
     );
 }
+
+exports.getBandTitles = function(callback) {
+    db.query(
+        "SELECT band_id, title_id FROM band_titles",
+        function (err, rows) {
+            if(err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}

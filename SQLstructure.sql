@@ -4,14 +4,14 @@ USE klattice;
 
 CREATE TABLE title (
 	title_id int unsigned auto_increment,
-    title_name varchar(40),
+    title_name varchar(40) unique,
     PRIMARY KEY(`title_id`)
 );
 
 CREATE TABLE competency (
 	competency_id int unsigned auto_increment,
     title_id int unsigned,
-    description varchar(250),
+    description varchar(250) unique,
     PRIMARY KEY(`competency_id`),
     FOREIGN KEY (`title_id`)
 		REFERENCES title(`title_id`)
@@ -57,3 +57,9 @@ CREATE TABLE role (
 ALTER TABLE role
 ADD CONSTRAINT role_name_length
 CHECK (length(role_name) >= 4);
+
+CREATE VIEW band_titles
+AS
+SELECT distinct band.band_id, title.title_id FROM band JOIN band_competency ON band.band_id=band_competency.band_id 
+									JOIN competency ON band_competency.competency_id=competency.competency_id
+                                    JOIN title ON competency.title_id= title.title_id;

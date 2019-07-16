@@ -42,6 +42,12 @@ app.get('/getbands', function(req, res){
     });
 });
 
+app.get('/getBandTitles', function(req, res){
+    updateBandTitles(function(){
+        res.send(bandTitles)
+    });
+});
+
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
         roles = rows;
@@ -80,6 +86,13 @@ function updateBands(bandsfn){
     db.getBands(function(rows){
         bands = rows;
         bandsfn();
+    });
+}
+
+function updateBandTitles(bandTitlesfn){
+    db.getBandTitles(function(rows){
+        bandTitles = rows;
+        bandTitlesfn();
     });
 }
 
