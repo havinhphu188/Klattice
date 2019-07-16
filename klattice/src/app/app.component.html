@@ -75,3 +75,7 @@
 </ng-template>
 
 <router-outlet></router-outlet>
+
+<div *ngFor="let band of data.bands | async">
+  <p [innerHtml]="band.competency"></p>
+</div>

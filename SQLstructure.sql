@@ -12,6 +12,7 @@ CREATE TABLE band (
 	band_id INT unsigned auto_increment,
 	band_name varchar(30) not null,
     level enum("9", "8", "7", "6", "5", "4", "3", "2", "1"),
+    competency varchar(6000),
     PRIMARY KEY(`band_id`)
 );
 
@@ -47,16 +48,26 @@ VALUES ("Business Development"),
         ("Architect"),
         ("Ops");
 
-INSERT INTO band(band_name, level)
-VALUES ("Executive", "9"),
-		("Leadership Community", "8"),
-        ("Principal", "7"),
-        ("Manager", "6"),
-        ("Consultant", "5"),
-        ("SeniorAssociate", "4"),
-        ("Associate", "3"),
-        ("Trainee", "2"),
-        ("Apprentice", "1");
+INSERT INTO band(band_name, level, competency)
+VALUES ("Executive", "9",'<div class="modal-body">
+              <h4 class="job-description-subheading" id="job-training-subheading" style="display: none;">Training</h4>
+              <span class="job-training" style="display: none;"></span>
+
+              <h4 class="job-description-subheading" id="job-competency-subheading">Competency Framework</h4>
+              <span class="ideal-candidate"><ul><li><b>Commercial Awareness</b></li><ul><li>Anticipates changes in the Kainos marketplace when budgeting for the future</li></ul><li><b>Communicating &amp; Teamwork</b></li><ul><li>Creates successful alignment between diverse teams across the organisation</li><li>Innovation and Continuous Improvement</li></ul><li><b>Customer Focus</b></li><ul><li>Includes all Customer Focus indicators from lower Job Levels</li></ul><li><b>Developing Yourself and Others</b></li><ul><li>Integrates people development in their business plans</li><li>Matches long term business needs with the career development and job fulfilment of staff</li><li>Develops the whole business through learning and development</li></ul><li><b>Planning and Organising</b></li><ul><li>Sets a clear sense of direction, forward thinking and responsibly shapes the future</li></ul></ul></span>
+              <h4 class="job-description-subheading" id="job-responsibilities-subheading" style="display: none;">Responsibilities</h4>
+              <span class="job-responsibilities" style="display: none;"></span>
+              <br>
+              <span class="other-modal-content"></span>
+            </div>'),
+		("Leadership Community", "8", ""),
+        ("Principal", "7", ""),
+        ("Manager", "6", ""),
+        ("Consultant", "5", ""),
+        ("SeniorAssociate", "4", ""),
+        ("Associate", "3", ""),
+        ("Trainee", "2", ""),
+        ("Apprentice", "1", "");
 
 INSERT INTO role (role_name, role_summary, role_sum_link, capability_id, band_id)
 VALUES ("Head of Business Unit", "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.", null, 1, 1),
