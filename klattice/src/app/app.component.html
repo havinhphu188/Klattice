@@ -14,7 +14,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let role of data.roles | async" (click)='openModal(content, role.role_id, role.role_name, role.role_summary, role.role_sum_link)'>
+      <tr
+        *ngFor="let role of data.roles | async"
+        (click)="
+          openModal(
+            content,
+            role.role_id,
+            role.role_name,
+            role.role_summary,
+            role.role_sum_link
+          )
+        "
+      >
         <th>
           {{ role.role_id }}
         </th>
@@ -22,12 +33,26 @@
       </tr>
     </tbody>
   </table>
+
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="{{role.role_name}}" *ngFor="let role of data.roles | async">
+      <ng-template ngbPanelContent>
+        {{ role.role_name }}
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
 </div>
 
+<!-- JOB SPEC MODAL -->
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{roleName}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <h4 class="modal-title" id="modal-basic-title">{{ roleName }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -35,14 +60,20 @@
     <form>
       <div class="form-group">
         <h5 class="jobSpec">Job Specification</h5>
-        <p>{{roleSummary}}</p>
-        <br>
-        <a [href]=roleLink>Sharepoint Link</a>
+        <p>{{ roleSummary }}</p>
+        <br />
+        <a [href]="roleLink">Sharepoint Link</a>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
   </div>
 </ng-template>
 
