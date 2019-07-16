@@ -44,11 +44,15 @@ function updateRoles(rolesfn){
 function authenticate(userName, password)
 {
     password = saltedHash(password);
-    result = null;
-    //result = db.getUser(userName, password);
+    result = db.getUser(userName, password, ouputQueryRes);
+}
 
-    if(result == null) return false;
-    else return true;
+//outputs the result
+function ouputQueryRes(res)
+{
+    if(res == -1) console.log('failed');
+    else if(res == 0) console.log('hi employee');
+    else if(res == 1) console.log('hi admin');
 }
 
 //applies salt and hash
