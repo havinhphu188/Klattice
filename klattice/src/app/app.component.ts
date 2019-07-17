@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Band } from './classes/band';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class AppComponent {
- 
   title = 'Career Lattice';
   roleID = -1;
   roleName = '';
