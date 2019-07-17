@@ -2,7 +2,8 @@
 Please explain briefly the changes you made here.
 
 ## Checklist
-- [ ] All unit tests passing
+- [ ] All manual security tests passing (Described here: https://github.com/Broom94/Klattice/wiki/Manual-Security-Testing)
+- [ ] All unit tests passing 
 - [ ] All UI tests passing
 - [ ] Code coverage suitable
 - [ ] WAVE toolbar run on new or updated screens
