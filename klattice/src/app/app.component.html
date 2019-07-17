@@ -12,7 +12,7 @@
   <ngb-accordion class="capabilityTable" #acc="ngbAccordion" activeIds="">
     <ngb-panel
       title="{{ capability.capability_name }}"
-      *ngFor="let capability of data.capabilities | async"
+      *ngFor="let capability of data.capabilities | async | sortBy: 'capability_name':'asc'"
       class="roleRow"
     >
       <ng-template ngbPanelContent>
