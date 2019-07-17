@@ -1,35 +1,98 @@
+* {
+  font-family: "Montserrat", sans-serif, "Arial";
+  font-weight: 400;
+}
+
 .container {
-    width: 80%;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+  width: 80%;
+  margin-top: 5rem;
+  margin-bottom: 1.5rem;
+}
+
+.jobRow {
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .roleTableHead {
-    color: #ffffff;
-    background-color: #003471;
+  color: #ffffff;
+  background-color: #003471;
+}
+
+.roleName {
+    font-size: 16px;
 }
 
 .mainTitle {
-    padding: 1rem;
-    color: #ffffff;
-    background-color: #003471;
+  padding: 1rem;
+  color: #ffffff;
+  background-color: #003471;
 }
 
 .jobSpec {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .roleCap {
-    cursor: pointer;
+  cursor: pointer;
+  padding: 0;
 }
 
 .capabilityTable {
-    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .jobBand {
+  color: #777;
+  font-style: italic;
+  font-size: 15px;
+  float: right;
+  text-align: right;
+  z-index: 12;
+}
+#logo {
+  max-width: 7%;
+  max-height: 7%;
+}
+#CLtitle {
+  text-align: center;
+  position: absolute;
+  color: #ffffff;
+  font-size: 22px;
+  width: 100%;
+  padding-right: 5%;
+}
+
+.mainHeader {
+  z-index: 10;
+  background-color: #003471;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+  border: 0;
+}
+
+.loginBtn {
+    z-index: 11;
+    text-decoration: none;
+}
+
+.compBtn {
+    z-index: 11;
+    text-decoration: none;
     color: #777;
-    font-style: italic;
-    float: right;
-    text-align: right;
+}
+
+.compBtn:hover {
+    color: #003471;
+}
+
+.roleNameBtn {
+    text-decoration: none;
+    color: #222;
+}
+
+.roleNameBtn:hover {
+    color: #003471;
 }
