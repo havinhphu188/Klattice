@@ -26,54 +26,26 @@ app.get('/userdetails', function(req, res)
     res.send('');
 });
 
-app.post('/userdetails', function(req,res)
+app.post('/userdetails', async function(req,res)
 {
-    //var str = JSON.stringify(req.body);
-
-    //var obj = JSON.parse(req.body);
-
-    //var yourval = jQuery.parseJSON(JSON.stringify(req.body));
-
     var username = req.body.params.username;
     var password = req.body.params.password;
 
-    console.log(req.body.params.username);
-
-    console.log("username: " + username);
-    console.log("password: " + password);
-    //obj.userName 
-
-    //console.log(str);
-    //var substr = str.split(str.substring(23,str.length), '"');
-    //console.log(substr);
-    //console.log(req.body.username);
-    // var uName = req.body.username; 
-    // var uPass = req.body.password; 
-
-    // ans = authenticate(uName, uPass); 
-    
-    // switch(ans)
-    // {
-    //     case 1:
-    //         res.send('<script>alert("Hello admin");</script>');
-    //         break;
-    //     case 0:
-    //         res.send('<script>alert("Hello employee");</script>');
-    //         break;
-    //     case -1:
-    //         res.send('<script>alert("Failed");</script>');
-    //         break;
-    // }
+    ans = await authenticate(username, password); 
+    //console.log(ans);
+    switch(ans)
+    {
+        case 1:
+            res.send({status: 'a'});
+            break;
+        case 0:
+            res.send({status: 'e'});
+            break;
+        case -1:
+            res.send({status: 'f'});
+            break;
+    }
 });
-
-/*function dummyGet(testUserName,password)
-{
-    var ansFlag = -1;
-    ans = authenticate(testUserName,password,ansFlag);
-
-    if(ans == -1) console.log("login failed");
-    else console.log("succeeded");
-}*/
 
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
@@ -83,11 +55,12 @@ function updateRoles(rolesfn){
 }
 
 //salts, hashes, then checks DB returns true or false
-function authenticate(userName, password)
+async function authenticate(userName, password)
 {
+    var ans = -1
     password = saltedHash(password);
-    ans = db.getUser(userName, password);
-
+    ans = await db.getUser(userName, password);
+    console.log('ans', ans)
     return ans;
 }
 
@@ -98,7 +71,6 @@ function saltedHash(password)
     salt = "S@E1F53135E559C253assdk100101"; //random salt (taken from wikipedia)
     password += salt;
     password = hash(alg).update(password).digest('hex');
-    console.log(password);
     return password; 
 }
 

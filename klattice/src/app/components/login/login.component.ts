@@ -54,8 +54,23 @@ export class LoginComponent {
     }
     this.http.post('/api/userdetails', {params:params}, this.headers)
     .subscribe(response=>{
-      console.log('repsonse ', response);
-      // resolve(response);
+      var rsp = JSON.stringify(response);
+      rsp = rsp.substring(11,12);
+      
+      if(rsp == 'a')
+      {
+        alert('whats happening admin  kid');
+      }
+      else if(rsp == 'e')
+      {
+        alert("whats happening employee kid");
+      }
+      else if(rsp == 'f')
+      {
+        alert("Failed");
+        window.location.reload();
+      }
+      
     })
   }
 

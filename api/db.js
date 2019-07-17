@@ -18,21 +18,35 @@ exports.getRoles = function (callback) {
     );
 }
 
+
+function sleepFor( sleepDuration ){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+}
+
+var promiseData = -1;
+
  //-1 = failed, 0 = employee, 1 = admin
-exports.getUser = function (userName, userPassword,ansflag)
+exports.getUser = function (userName, userPassword)
 {   
+    return new Promise(function(resolve, reject) {
+    var queryName = "SELECT user_name, password FROM User WHERE user_name = " + "'" + userName + "'" + " AND password = "+"'" +userPassword + "'" +";";
+    console.log('query', queryName);
     db.query(
-        "SELECT user_name, password FROM User WHERE user_name = " + "'" + userName + "'" + " AND password = "+"'" +userPassword + "'" +";",
+        queryName,  
         function (err, rows)
         {
-            var result = -1;
+            result = -1;
             if (err) throw err;
-
-            if(rows !=  null && userName == 'admin') result = 1; 
-            else if(rows !=  null && userName == 'employee') result = 0; 
+            
+            if(rows.length > 0 && userName == 'admin') result = 1; 
+            else if(rows.length > 0 && userName == 'employee') result = 0; 
             else result = -1;
-            ansflag = result;
+
+            resolve(result);
         }
-    ); 
-    return ansflag;
+    );
+
+    });
+
 }
