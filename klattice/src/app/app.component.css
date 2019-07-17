@@ -9,9 +9,18 @@
   margin-bottom: 1.5rem;
 }
 
+.jobRow {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
 .roleTableHead {
   color: #ffffff;
   background-color: #003471;
+}
+
+.roleName {
+    font-size: 16px;
 }
 
 .mainTitle {
@@ -26,6 +35,7 @@
 
 .roleCap {
   cursor: pointer;
+  padding: 0;
 }
 
 .capabilityTable {
@@ -35,8 +45,10 @@
 .jobBand {
   color: #777;
   font-style: italic;
+  font-size: 15px;
   float: right;
   text-align: right;
+  z-index: 12;
 }
 #logo {
   max-width: 7%;
@@ -58,8 +70,29 @@
   top: 0;
   width: 100%;
   box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+  border: 0;
 }
 
 .loginBtn {
     z-index: 11;
+    text-decoration: none;
+}
+
+.compBtn {
+    z-index: 11;
+    text-decoration: none;
+    color: #777;
+}
+
+.compBtn:hover {
+    color: #003471;
+}
+
+.roleNameBtn {
+    text-decoration: none;
+    color: #222;
+}
+
+.roleNameBtn:hover {
+    color: #003471;
 }
