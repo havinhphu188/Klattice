@@ -1,48 +1,61 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
 .container {
-    width: 80%;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+  width: 80%;
+  margin-top: 5rem;
+  margin-bottom: 1.5rem;
 }
 
 .roleTableHead {
-    color: #ffffff;
-    background-color: #003471;
+  color: #ffffff;
+  background-color: #003471;
 }
 
 .mainTitle {
-    padding: 1rem;
-    color: #ffffff;
-    background-color: #003471;
+  padding: 1rem;
+  color: #ffffff;
+  background-color: #003471;
 }
 
 .jobSpec {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .roleCap {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .capabilityTable {
-    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .jobBand {
-    color: #777;
-    font-style: italic;
-    float: right;
-    text-align: right;
+  color: #777;
+  font-style: italic;
+  float: right;
+  text-align: right;
 }
-#logo{
-  max-width: 10%;
-  max-height: 10%;
+#logo {
+  max-width: 7%;
+  max-height: 7%;
 }
-#CLtitle{
+#CLtitle {
   text-align: center;
   position: absolute;
-    color: black;
+  color: #ffffff;
+  font-size: 22px;
+  width: 100%;
+  padding-right: 5%;
+}
+
+.mainHeader {
+    z-index: 10;
+    background-color: #003471;
+    position: fixed;
+    top: 0;
     width: 100%;
-    padding-right: 5%;
-
-
+    box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
 }
