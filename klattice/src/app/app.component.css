@@ -22,3 +22,14 @@
 .roleCap {
     cursor: pointer;
 }
+
+.capabilityTable {
+    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.jobBand {
+    color: #777;
+    font-style: italic;
+    float: right;
+    text-align: right;
+}

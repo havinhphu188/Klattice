@@ -6,11 +6,10 @@
 </div>
 
 <div class="container">
-  <ngb-accordion #acc="ngbAccordion" activeIds="">
+  <ngb-accordion class="capabilityTable" #acc="ngbAccordion" activeIds="">
     <ngb-panel
       title="{{ capability.capability_name }}"
-      *ngFor="let capability of data.capabilities | async"
-    >
+      *ngFor="let capability of data.capabilities | async">
       <ng-template ngbPanelContent>
         <table class="table table-borderless table-hover">
           <tbody>
@@ -25,9 +24,15 @@
                     role.role_name,
                     role.role_summary,
                     role.role_sum_link
-                  )"
-              >
-                {{ role.role_name }}
+                  )">
+                <div class="roleName">
+                  <span>{{ role.role_name }}</span>
+                </div>
+                <div *ngFor="let band of data.bands | async">
+                  <span class="jobBand" *ngIf="band.band_id === role.band_id">
+                    {{band.band_name}}
+                  </span>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -56,7 +61,7 @@
         <h5 class="jobSpec">Job Specification</h5>
         <p>{{ roleSummary }}</p>
         <hr />
-        <a *ngIf="roleLink" [href]="roleLink">Sharepoint Link</a>
+        <a *ngIf="roleLink" href="roleLink">Sharepoint Link</a>
       </div>
     </form>
   </div>
