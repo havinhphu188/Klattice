@@ -28,10 +28,24 @@ app.get('/userdetails', function(req, res)
 
 app.post('/userdetails', function(req,res)
 {
-    var str = JSON.stringify(req.body);
-    console.log(str);
-    var substr = str.split(str.substring(23,str.length), '"');
-    console.log(substr);
+    //var str = JSON.stringify(req.body);
+
+    //var obj = JSON.parse(req.body);
+
+    //var yourval = jQuery.parseJSON(JSON.stringify(req.body));
+
+    var username = req.body.params.username;
+    var password = req.body.params.password;
+
+    console.log(req.body.params.username);
+
+    console.log("username: " + username);
+    console.log("password: " + password);
+    //obj.userName 
+
+    //console.log(str);
+    //var substr = str.split(str.substring(23,str.length), '"');
+    //console.log(substr);
     //console.log(req.body.username);
     // var uName = req.body.username; 
     // var uPass = req.body.password; 
