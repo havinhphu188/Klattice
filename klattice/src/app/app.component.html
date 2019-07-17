@@ -13,11 +13,12 @@
     <ngb-panel
       title="{{ capability.capability_name }}"
       *ngFor="let capability of data.capabilities | async"
+      class="roleRow"
     >
       <ng-template ngbPanelContent>
         <table class="table table-borderless table-hover">
           <tbody>
-            <tr *ngFor="let role of data.roles | async" class="roleRow">
+            <tr *ngFor="let role of data.roles | async">
               <td
                 class="roleCap"
                 *ngIf="role.capability_id === capability.capability_id"

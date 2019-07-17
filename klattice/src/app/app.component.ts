@@ -33,7 +33,6 @@ export class AppComponent {
   }
 
   openCompModal(competencyModal, band_id) {
-    console.log('working');
     this.bandID = band_id;
     this.modalService.open(competencyModal, {size: 'lg', ariaLabelledBy: 'modal-basic-title'});
   }
