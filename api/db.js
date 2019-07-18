@@ -23,7 +23,7 @@ exports.getUser = function (userName, userPassword)
 {   
     console.log(userPassword)
     return new Promise(function(resolve, reject) {
-    var queryName = "SELECT user_name, user_password, user_type FROM User WHERE user_name = " + "'" + userName + "'" + " AND user_password = "+"'" +userPassword + "'" +";";
+    var queryName = "SELECT user_name, user_password, user_type FROM user WHERE user_name = " + "'" + userName + "'" + " AND user_password = "+"'" +userPassword + "'" +";";
     db.query(
         queryName,  
         function (err, rows)
