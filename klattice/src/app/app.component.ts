@@ -16,6 +16,8 @@ export class AppComponent {
   roleSummary = '';
   roleLink = '';
 
+  bandID = -1;
+
   data: DataService;
 
   constructor(dataService: DataService, private modalService: NgbModal) {
@@ -28,6 +30,11 @@ export class AppComponent {
     this.roleSummary = summary;
     this.roleLink = link;
     this.modalService.open(content, {size: 'lg', ariaLabelledBy: 'modal-basic-title'});
+  }
+
+  openCompModal(competencyModal, band_id) {
+    this.bandID = band_id;
+    this.modalService.open(competencyModal, {size: 'lg', ariaLabelledBy: 'modal-basic-title'});
   }
 
 }

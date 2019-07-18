@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoleModalComponent } from './components/role-modal/role-modal.component';
+import { SortByPipe } from './sort-by.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoleModalComponent
+    RoleModalComponent,
+    SortByPipe
   ],
   imports: [
     BrowserModule,
