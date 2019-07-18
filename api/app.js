@@ -3,6 +3,8 @@ const app = express()
 const db = require('./db')
 const hash = require('crypto').createHash;
 
+var loginStatus = 'f'; //f = not signed ins
+
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
  
@@ -36,12 +38,15 @@ app.post('/userdetails', async function(req,res)
     switch(ans)
     {
         case 1:
+            loginStatus = 'a';
             res.send({status: 'a'});
             break;
         case 0:
+            loginStatus = 'e';
             res.send({status: 'e'});
             break;
         case -1:
+            loginStatus  = 'f';
             res.send({status: 'f'});
             break;
     }
