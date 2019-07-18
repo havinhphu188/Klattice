@@ -41,7 +41,7 @@ CREATE Table User
 (
     user_name VARCHAR(100),
     user_password VARCHAR(100),
-    user_role VARCHAR(100)
+    user_type VARCHAR(100)
 );
 
 INSERT INTO User (user_name,user_password,user_role) VALUES('admin','3fac8fe22359e7357fda5b7aaa79a96f074d4f34', 'admin');
