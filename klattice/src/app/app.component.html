@@ -1,4 +1,423 @@
-<div class="mainHeader">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/4.0/examples/dashboard/"
+    />
+
+    <!-- Custom styles for this template -->
+  </head>
+
+  <body>
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <h3
+                  class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                >
+                  <span>All</span>
+                  <a class="d-flex align-items-center text-muted" href="#">
+                    <span data-feather="plus-circle"></span>
+                  </a>
+                </h3>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file"></span>
+                  Sales & Marketing
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Technical
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Consulting
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Experience Design
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Management
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Technical</h1>
+            <div class="btn-toolbar mb-2 mb-md-0"></div>
+          </div>
+          <ngb-accordion
+            class="capabilityTable"
+            #acc="ngbAccordion"
+            activeIds=""
+          >
+            <ngb-panel
+              title="{{ capability.capability_name }}"
+              *ngFor="let capability of data.capabilities | async"
+            >
+              <ng-template ngbPanelContent>
+                <table class="table table-borderless table-hover">
+                  <tbody>
+                    <tr *ngFor="let role of data.roles | async" class="roleRow">
+                      <td
+                        class="roleCap"
+                        *ngIf="role.capability_id === capability.capability_id"
+                      >
+                        <div class="row jobRow">
+                          <div class="col-9">
+                            <div
+                              class="roleName"
+                              (click)="
+                                openModal(
+                                  content,
+                                  role.role_id,
+                                  role.role_name,
+                                  role.role_summary,
+                                  role.role_sum_link
+                                )
+                              "
+                            >
+                              <button
+                                class="btn btn-link my-2 my-sm-0 roleNameBtn"
+                                type="button"
+                              >
+                                {{ role.role_name }}
+                              </button>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div *ngFor="let band of data.bands | async">
+                              <span
+                                class="jobBand"
+                                *ngIf="band.band_id === role.band_id"
+                                (click)="
+                                  openCompModal(competencyModal, band.band_id)
+                                "
+                              >
+                                <button
+                                  class="btn btn-link my-2 my-sm-0 compBtn"
+                                  type="button"
+                                >
+                                  {{ band.band_name }}
+                                </button>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+
+          <!-- JOB SPEC MODAL -->
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">{{ roleName }}</h4>
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <h5 class="jobSpec">Job Specification</h5>
+                  <p>{{ roleSummary }}</p>
+                  <br />
+                  <a *ngIf="roleLink" [href]="roleLink">Sharepoint Link</a>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                (click)="modal.close('Save click')"
+              >
+                Close
+              </button>
+            </div>
+          </ng-template>
+
+          <!-- COMPETENCY MODAL -->
+          <ng-template #competencyModal let-modal>
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div *ngFor="let band of data.bands | async">
+                    <p
+                      *ngIf="band.band_id === bandID"
+                      [innerHtml]="band.competency"
+                    ></p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                (click)="modal.close('Save click')"
+              >
+                Close
+              </button>
+            </div>
+          </ng-template>
+
+          <router-outlet></router-outlet>
+        </main>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>'
+        );
+    </script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace();
+    </script>
+
+    <!-- <div class="mainHeader">
+  <nav class="navbar">
+    <img src="../assets/Kainos-logo.png" id="logo" />
+    <h1 id="CLtitle">{{ title }}</h1>
+    <button class="btn btn-outline-light my-2 my-sm-0 loginBtn" type="button">
+      Log in
+    </button>
+  </nav>
+</div>
+
+<div class="container">
+  <ngb-accordion class="capabilityTable" #acc="ngbAccordion" activeIds="">
+    <ngb-panel
+      title="{{ capability.capability_name }}"
+      *ngFor="let capability of data.capabilities | async"
+    >
+      <ng-template ngbPanelContent>
+        <table class="table table-borderless table-hover">
+          <tbody>
+            <tr *ngFor="let role of data.roles | async" class="roleRow">
+              <td
+                class="roleCap"
+                *ngIf="role.capability_id === capability.capability_id"
+              >
+                <div class="row jobRow">
+                  <div class="col-9">
+                    <div
+                      class="roleName"
+                      (click)="
+                        openModal(
+                          content,
+                          role.role_id,
+                          role.role_name,
+                          role.role_summary,
+                          role.role_sum_link
+                        )
+                      "
+                    >
+                      <button
+                        class="btn btn-link my-2 my-sm-0 roleNameBtn"
+                        type="button"
+                      >
+                        {{ role.role_name }}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div *ngFor="let band of data.bands | async">
+                      <span
+                        class="jobBand"
+                        *ngIf="band.band_id === role.band_id"
+                        (click)="openCompModal(competencyModal, band.band_id)"
+                      >
+                        <button
+                          class="btn btn-link my-2 my-sm-0 compBtn"
+                          type="button"
+                        >
+                          {{ band.band_name }}
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>
+
+<!-- JOB SPEC MODAL -->
+    <!-- <ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ roleName }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <h5 class="jobSpec">Job Specification</h5>
+        <p>{{ roleSummary }}</p>
+        <br />
+        <a *ngIf="roleLink" href="roleLink">Sharepoint Link</a>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template> -->
+
+    <!-- COMPETENCY MODAL -->
+    <!-- <ng-template #competencyModal let-modal>
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div *ngFor="let band of data.bands | async">
+          <p *ngIf="band.band_id === bandID" [innerHtml]="band.competency"></p>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<router-outlet></router-outlet> -->
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="mainHeader">
   <nav class="navbar">
     <img src="../assets/Kainos-logo.png" id="logo" />
     <h1 id="CLtitle">{{ title }}</h1>
@@ -69,10 +488,10 @@
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
-</div>
+</div> -->
 
 <!-- JOB SPEC MODAL -->
-<ng-template #content let-modal>
+<!-- <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">{{ roleName }}</h4>
     <button
@@ -102,10 +521,10 @@
       Close
     </button>
   </div>
-</ng-template>
+</ng-template> -->
 
 <!-- COMPETENCY MODAL -->
-<ng-template #competencyModal let-modal>
+<!-- <ng-template #competencyModal let-modal>
   <div class="modal-header">
     <button
       type="button"
@@ -136,4 +555,4 @@
   </div>
 </ng-template>
 
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
