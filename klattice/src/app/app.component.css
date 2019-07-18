@@ -1,6 +1,29 @@
 * {
-  font-family: "Montserrat", sans-serif, "Arial";
-  font-weight: 400;
+  font-family: "Open Sans", sans-serif, "Arial";
+  /* font-weight: 400; */
+}
+
+.mainContent {
+  margin: 52px 0px 20px 0px;
+  background-color: #fDfDfD;
+}
+
+.sidebar {
+  margin-top: 48px;
+  position: fixed;
+  z-index: 13;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px 1px hsla(0, 0%, 0%, 0.1);
+  border: 0;
+}
+
+.sidebarItems {
+  color: #333;
+}
+
+.sidebarItems:hover {
+  color: #003471;
 }
 
 .container {
@@ -27,6 +50,11 @@
   padding: 1rem;
   color: #ffffff;
   background-color: #003471;
+}
+
+.familyTitle {
+  color: #333;
+  font-size: 30px;
 }
 
 .roleRow {
@@ -77,11 +105,6 @@
   border: 0;
 }
 
-.loginBtn {
-    z-index: 11;
-    text-decoration: none;
-}
-
 .compBtn:hover {
     color: #003471;
 }
@@ -93,6 +116,15 @@
 
 .roleNameBtn:hover {
     color: #003471;
+}
+
+::ng-deep .card {
+  border: 0;
+  box-shadow: 0 0 3px hsla(0, 0%, 0%, 0.2);
+}
+
+::ng-deep .card-header {
+  background-color: #ffffff;
 }
 
 ::ng-deep .card .btn {
