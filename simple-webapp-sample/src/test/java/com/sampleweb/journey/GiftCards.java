@@ -1,6 +1,7 @@
 package com.sampleweb.journey;
 
 import com.sampleweb.BaseTest;
+import org.openqa.selenium.remote.DriverCommand;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,13 +25,33 @@ public class GiftCards extends BaseTest {
 //        assertThat(numberOfItemsFourRatingAndAbove, is(totalNumberOfItems));
 //    }
 
-    @Test (groups = regression)
-    public void areAllCategroiesDisplayed_True(){
+    @Test(groups = regression)
+    public void areAllCategroiesDisplayed_True() {
         String xpathCountAllFields = "//div[@class=\"card\"]";
         int numberOfItemsDisplayed = driver.findElementsByXPath(xpathCountAllFields).size();
-        int totalNumberOfItems =11;
+        int totalNumberOfItems = 11;
         assertThat(numberOfItemsDisplayed, is(totalNumberOfItems));
     }
+
+    @Test(groups = regression)
+    public void canClickOnAllButtons() {
+        for (int i = 0; i < 11; i++) {
+            String xpathCountAllFields = "//button[@aria-controls=\"ngb-panel-" + i + "\"]";
+            driver.findElementByXPath(xpathCountAllFields).click();
+            String xpathCountAllDivFields = "//div[@class=\"roleName\"]";
+            int totalDivDisplayed = driver.findElementsByXPath(xpathCountAllDivFields).size();
+            int zero = 0;
+            boolean isgreater = false;
+            driver.findElementByXPath(xpathCountAllFields).click();
+            if (totalDivDisplayed > 0) {
+                isgreater = true;
+
+
+                assertThat(isgreater, is(true));
+            }
+
+        }
+
 
 //    @Test (groups = regression)
 //    public void isPrimeCheckboxDisplayed_True(){
@@ -72,4 +93,5 @@ public class GiftCards extends BaseTest {
 //        driver.findElementByXPath(xpathPrimeCheckBoxSelectableItem).click();
 //    }
 
+    }
 }
