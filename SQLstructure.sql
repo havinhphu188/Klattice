@@ -3,7 +3,7 @@ CREATE DATABASE klattice;
 USE klattice;
 
 CREATE TABLE family (
-	family_id INT unsigned auto_increment,
+	family_id INT unsigned auto_increment not null,
     family_name varchar(40),
     PRIMARY KEY(`family_id`)
 );
@@ -11,7 +11,7 @@ CREATE TABLE family (
 CREATE TABLE capability (
 	capability_id INT unsigned auto_increment,
     capability_name varchar(60),
-    family_id INT unsigned not null,
+    family_id INT unsigned,
     PRIMARY KEY(`capability_id`),
 	FOREIGN KEY (`family_id`)
 		REFERENCES family(`family_id`)
@@ -53,8 +53,8 @@ CREATE Table user
     user_type VARCHAR(100)
 );
 
-INSERT INTO user (user_name,user_password,user_role) VALUES('admin','3fac8fe22359e7357fda5b7aaa79a96f074d4f34', 'admin');
-INSERT INTO user (user_name,user_password,user_role) VALUES('employee','b78693b210b0ce9dd9beb7799458673e2701841b','employee');
+INSERT INTO user (user_name,user_password,user_type) VALUES('admin','3fac8fe22359e7357fda5b7aaa79a96f074d4f34', 'admin');
+INSERT INTO user (user_name,user_password,user_type) VALUES('employee','b78693b210b0ce9dd9beb7799458673e2701841b','employee');
 
 INSERT INTO capability (capability_name)
 VALUES ("Business Development"),

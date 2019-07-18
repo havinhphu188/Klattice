@@ -38,7 +38,7 @@ export class LoginComponent {
 
   let formData: FormData = new FormData(); 
 
-   alert('Your username is : '+ username);
+   alert('Your username is : '+ password);
    let params = {"username": username, "password":password};
    
    this.headers = {
