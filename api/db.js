@@ -42,7 +42,7 @@ exports.getUser = function (userName, userPassword)
 
 exports.getCapability = function(callback) {
     db.query(
-        "SELECT capability_id, capability_name FROM capability;",
+        "SELECT capability_id, capability_name, family_id FROM capability;",
         function (err, rows) {
             if(err, rows) {
                 callback(rows);
@@ -53,7 +53,18 @@ exports.getCapability = function(callback) {
 
 exports.getBands = function(callback) {
     db.query(
-        "SELECT band_id, band_name, level, competency FROM band",
+        "SELECT band_id, band_name, level, competency FROM band;",
+        function (err, rows) {
+            if(err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}
+
+exports.getFamilies = function(callback) {
+    db.query(
+        "SELECT family_id, family_name FROM family;",
         function (err, rows) {
             if(err, rows) {
                 callback(rows);

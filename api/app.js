@@ -64,6 +64,12 @@ app.get('/getbands', function(req, res){
     });
 });
 
+app.get('/getfamilies', function(req, res){
+    updateFamilies(function(){
+        res.send(families)
+    });
+});
+
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
         roles = rows;
@@ -106,6 +112,14 @@ function updateBands(bandsfn){
     });
 }
 
+function updateFamilies(familiesfn){
+    db.getFamilies(function(rows){
+        families = rows;
+        familiesfn();
+    });
+}
+
 roles = [];
 capability = [];
-bands = []; 
+bands = [];
+families = [];
