@@ -40,7 +40,7 @@ exports.getBands = function(callback) {
     );
 }
 
-exports.getBands = function(callback) {
+exports.getFamilies = function(callback) {
     db.query(
         "SELECT family_id, family_name FROM family;",
         function (err, rows) {

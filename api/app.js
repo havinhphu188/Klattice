@@ -52,7 +52,7 @@ function updateBands(bandsfn){
 }
 
 function updateFamilies(familiesfn){
-    db.getBands(function(rows){
+    db.getFamilies(function(rows){
         families = rows;
         familiesfn();
     });
