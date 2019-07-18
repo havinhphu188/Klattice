@@ -45,7 +45,7 @@
         class="capabilityTable"
         #acc="ngbAccordion"
         activeIds=""
-        *ngFor="let capability of data.capabilities | async"
+        *ngFor="let capability of data.capabilities | async | sortBy:'capability_name':'asc'"
       >
         <ngb-panel
           title="{{ capability.capability_name }}"

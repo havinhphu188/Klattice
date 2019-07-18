@@ -12,9 +12,6 @@
               <a class="sidebarHeader" href="#" routerLink="/"
                 ><span>All</span></a
               >
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
             </h3>
           </li>
           <li class="nav-item" *ngFor="let family of data.families | async">
@@ -45,7 +42,7 @@
         class="capabilityTable"
         #acc="ngbAccordion"
         activeIds=""
-        *ngFor="let capability of data.capabilities | async"
+        *ngFor="let capability of data.capabilities | async | sortBy:'capability_name':'asc'"
       >
         <ngb-panel
           title="{{ capability.capability_name }}"
