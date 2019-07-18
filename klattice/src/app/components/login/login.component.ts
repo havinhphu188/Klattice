@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators} from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
-import * as bcrypt from 'bcryptjs';
 
 //import { saltedHash} from '../../../../../api/SHA.js';
 //const bcrypt = require('bcrypt');
