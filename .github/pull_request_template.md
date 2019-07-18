@@ -12,4 +12,5 @@ Please explain briefly the changes you made here.
 - [ ] Approval from Tech lead
 - [ ] Approval from team member
 - [ ] Commit messages are meaningful
+- [ ] Target is green https://travis-ci.com/Broom94/Klattice/jobs/216924893 
 - [ ] Add `DO NOT MERGE` if you want to postpone merge (in labels)
