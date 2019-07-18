@@ -1,6 +1,8 @@
 export class Role {
-    roleID: number;
-    roleName: string;
-    roleSummary: string;
-    roleSumLink: string;
+    role_id: number;
+    role_name: string;
+    role_summary: string;
+    role_sum_link: string;
+    capability_id: number;
+    band_id: number;
 }
