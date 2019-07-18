@@ -140,24 +140,9 @@
 <router-outlet></router-outlet>
 
 <!---
-  login stuff 
+  login stuff
 -->
-<table >
-  <thead class="roleTableHead">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let role of data.roles | async">
-      <th>
-        {{ role.roleID }}
-      </th>
-      <td>{{ role.roleName }}</td>
-    </tr>
-  </tbody>
-</table>
+
 <app-login></app-login>
 </div>
 <!--end of login stuff -->
