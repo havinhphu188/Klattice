@@ -27,7 +27,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "../api/SHA.js"
+              
             ]
           },
           "configurations": {
