@@ -21,7 +21,7 @@ pipeline {
     stages{
         stage('Checkout') {
             steps {
-              git branch: 'master', credentialsId: '', url: 'https://github.com/operep/simple-webapp-sample.git'
+              git branch: "${params.BRANCH}", credentialsId: '', url: 'https://github.com/operep/simple-webapp-sample.git'
             }
         }
         stage('Setting up') {
@@ -29,7 +29,7 @@ pipeline {
               sh 'rm src/test/resources/test.properties && touch src/test/resources/test.properties'
               sh 'echo "test.local=false" > src/test/resources/test.properties'
               sh 'echo "test.gridUrl=http://$GRID_URL:4444/wd/hub" >> src/test/resources/test.properties'
-              sh 'echo "test.mainUrl=https://www.zooplus.co.uk" >> src/test/resources/test.properties'
+              sh 'echo "test.mainUrl=https://www.amazon.co.uk" >> src/test/resources/test.properties'
               sh 'cat src/test/resources/test.properties'
             }
         }
@@ -49,9 +49,12 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        asDeployUser({
-                          sh "scp -r /var/lib/jenkins/workspace/sample-webapp-pipeline/target/*.war ec2-user@${params.TOMCAT_DEV}:/var/lib/tomcat7/webapps"
-                        })
+                        if (${params.BRANCH} == "master"){
+                            asDeployUser({
+                                sh "scp -v -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/sample-webapp-pipeline/target/*.war ec2-user@${params.TOMCAT_DEV}:/var/lib/tomcat7/webapps"
+                            })
+                        }
+                        echo 'Not deploying to stage as this is not master branch...'
                     }
                 }
             }

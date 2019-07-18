@@ -1,9 +1,12 @@
 package com.sampleweb;
 
 import com.sampleweb.listeners.TestListener;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -106,5 +109,10 @@ public abstract class BaseTest {
 
             }
         }
+    }
+
+    protected WebElement waitForElementToBeClickable(WebElement element) {
+        return new WebDriverWait(driver, 5)
+                .until(ExpectedConditions.elementToBeClickable(element));
     }
 }
