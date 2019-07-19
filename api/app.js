@@ -71,6 +71,30 @@ function updateRoles(rolesfn){
     });
 }
 
+app.get('/getbandcompetency', function(req, res) {
+    updateBandCompetency(function(){
+        res.send(bandCompetency);
+    });
+});
+
+app.get('/getcompetency', function(req, res) {
+    updateCompetency(function(){
+        res.send(competencies);
+    });
+});
+
+app.get('/gettitle', function(req, res) {
+    updateTitle(function(){
+        res.send(titles);
+    });
+});
+
+app.get('/getBandTitles', function(req, res){
+    updateBandTitles(function(){
+        res.send(bandTitles)
+    });
+});
+
 //salts, hashes, then checks DB returns true or false
 async function authenticate(userName, password)
 {
@@ -112,7 +136,39 @@ function updateFamilies(familiesfn){
     });
 }
 
+function updateBandCompetency(bandCompetencyfn){
+    db.getBandCompetency(function(rows){
+        bandCompetency = rows;
+        bandCompetencyfn();
+    });
+}
+
+function updateCompetency(Competencyfn){
+    db.getCompetency(function(rows){
+        competencies = rows;
+        Competencyfn();
+    });
+}
+
+function updateTitle(Titlefn){
+    db.getTitle(function(rows){
+        titles = rows;
+        Titlefn();
+    });
+}
+
+function updateBandTitles(bandTitlesfn){
+    db.getBandTitles(function(rows){
+        bandTitles = rows;
+        bandTitlesfn();
+    });
+}
+
 roles = [];
 capability = [];
 bands = [];
 families = [];
+competencies = [];
+bandCompetency = [];
+titles = [];
+bandTitles = [];

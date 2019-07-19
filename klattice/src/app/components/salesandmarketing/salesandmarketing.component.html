@@ -142,6 +142,7 @@
       <!-- COMPETENCY MODAL -->
       <ng-template #competencyModal let-modal>
         <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">{{ bandName }}</h4>
           <button
             type="button"
             class="close"
@@ -154,12 +155,30 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <div *ngFor="let band of data.bands | async">
-                <p
-                  *ngIf="band.band_id === bandID"
-                  [innerHtml]="band.competency"
-                ></p>
-              </div>
+              <h4>Competency Framework</h4>
+              <ul>
+                <div *ngFor="let bandTitle of data.bandTitles | async">
+                  <div *ngIf="bandID === bandTitle.band_id">
+                    <div *ngFor="let title of data.titles | async">
+      
+                      <div *ngIf="title.title_id == bandTitle.title_id">
+                        <li>{{title.title_name}}</li>
+                        <ul>
+                          <div *ngFor="let bandCompetency of data.bandCompetencies | async">
+                            <div *ngIf="bandCompetency.band_id === bandID">
+                              <div *ngFor="let competency of data.competencies | async">
+                                <li *ngIf="competency.competency_id === bandCompetency.competency_id && title.title_id === competency.title_id">
+                                  {{competency.description}}
+                                </li>
+                              </div>
+                            </div>
+                          </div>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ul>
             </div>
           </form>
         </div>

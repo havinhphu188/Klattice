@@ -53,7 +53,40 @@ exports.getCapability = function(callback) {
 
 exports.getBands = function(callback) {
     db.query(
-        "SELECT band_id, band_name, level, competency FROM band;",
+        "SELECT band_id, band_name, level FROM band;",
+        function (err, rows) {
+            if(err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}
+
+exports.getBandTitles = function(callback) {
+    db.query(
+        "SELECT band_id, title_id FROM band_titles",
+        function (err, rows) {
+            if(err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}
+
+exports.getBandCompetency = function(callback) {
+    db.query(
+        "SELECT competency_id, band_id FROM band_competency;",
+        function (err, rows) {
+            if(err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}
+
+exports.getCompetency = function(callback) {
+    db.query(
+        "SELECT competency_id, title_id, description FROM competency;",
         function (err, rows) {
             if(err, rows) {
                 callback(rows);
@@ -65,6 +98,17 @@ exports.getBands = function(callback) {
 exports.getFamilies = function(callback) {
     db.query(
         "SELECT family_id, family_name FROM family;",
+        function (err, rows) {
+            if(err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}
+
+exports.getTitle = function(callback) {
+    db.query(
+        "SELECT title_id, title_name FROM title;",
         function (err, rows) {
             if(err, rows) {
                 callback(rows);
