@@ -7,7 +7,11 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent  {
+export class HomeComponent {
+
+  constructor(dataService: DataService, private modalService: NgbModal) {
+    this.data = dataService;
+  }
 
   title = 'Career Lattice';
   roleID = -1;
@@ -18,10 +22,6 @@ export class HomeComponent  {
   bandID = -1;
 
   data: DataService;
-
-  constructor(dataService: DataService, private modalService: NgbModal) {
-    this.data = dataService;
-  }
 
   openModal(content, id, name, summary, link) {
     this.roleID = id;

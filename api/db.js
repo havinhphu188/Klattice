@@ -18,6 +18,28 @@ exports.getRoles = function (callback) {
     );
 }
 
+ //-1 = failed, 0 = employee, 1 = admin
+exports.getUser = function (userName, userPassword)
+{   
+    console.log(userPassword)
+    return new Promise(function(resolve, reject) {
+    var queryName = "SELECT user_name, user_password, user_type FROM user WHERE user_name = " + "'" + userName + "'" + " AND user_password = "+"'" +userPassword + "'" +";";
+    db.query(
+        queryName,  
+        function (err, rows)
+        {
+            result = -1;
+            if (err) throw err;
+            if(rows.length > 0 && rows[0].user_type == 'admin') result = 1; 
+            else if(rows.length > 0 && rows[0].user_type == 'employee') result = 0; 
+            else result = -1;
+
+            resolve(result);
+        }
+    );
+    });
+}
+
 exports.getCapability = function(callback) {
     db.query(
         "SELECT capability_id, capability_name, family_id FROM capability;",

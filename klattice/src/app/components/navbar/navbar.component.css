@@ -31,7 +31,16 @@
   border: 0;
 }
 
-.loginBtn {
+.usernameDisplay {
+  float: right;
+}
+
+.profileInfo {
   z-index: 20;
   text-decoration: none;
+}
+
+.userInfo {
+  padding-right: 1rem;
+  font-size: 15px;
 }
