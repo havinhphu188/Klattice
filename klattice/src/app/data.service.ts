@@ -15,7 +15,6 @@ import { Family } from './classes/family';
 })
 export class DataService {
   constructor(private http: HttpClient) { }
-
   roles = this.http.get<Role[]>('/api/getroles').toPromise();
   capabilities = this.http.get<Capability[]>('api/getcapability').toPromise();
   bands = this.http.get<Band[]>('api/getbands').toPromise();
