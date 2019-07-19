@@ -25,7 +25,6 @@ CREATE TABLE band (
     PRIMARY KEY(`band_id`)
 );
 
-CREATE TABLE role (
 	role_id INT unsigned auto_increment,
     role_name varchar(100) not null,
     role_summary varchar(400),
