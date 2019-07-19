@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -7,7 +7,13 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent  {
+export class HomeComponent implements OnInit {
+
+  @Input() username: string;
+
+  ngOnInit() {
+    console.log(this.username);
+  }
 
   title = 'Career Lattice';
   roleID = -1;

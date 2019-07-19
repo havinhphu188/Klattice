@@ -25,6 +25,7 @@ CREATE TABLE band (
     PRIMARY KEY(`band_id`)
 );
 
+CREATE TABLE role (
 	role_id INT unsigned auto_increment,
     role_name varchar(100) not null,
     role_summary varchar(400),
@@ -54,14 +55,6 @@ CREATE Table user
 
 INSERT INTO user (user_name,user_password,user_type) VALUES('admin','3fac8fe22359e7357fda5b7aaa79a96f074d4f34', 'admin');
 INSERT INTO user (user_name,user_password,user_type) VALUES('employee','b78693b210b0ce9dd9beb7799458673e2701841b','employee');
-
-INSERT INTO capability (capability_name)
-VALUES ("Business Development"),
-		("Account Management"),
-        ("Sales"),
-        ("Inside Sales Development"),
-        ("Pre Sales & Bid Management"),
-        ("Marketing");
 
 INSERT INTO family (family_name)
 VALUES ("Sales & Marketing"),

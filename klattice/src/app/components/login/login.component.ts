@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators} from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,8 @@ export class LoginComponent {
   headers:any;
   
   constructor(private fb: FormBuilder,
-              private http:HttpClient) {
+              private http:HttpClient,
+              private router: Router) {
    this.createForm();
    
  }
@@ -37,8 +38,7 @@ export class LoginComponent {
  onClickSubmit(username, password) {
 
   let formData: FormData = new FormData(); 
-
-   alert('Your username is : '+ password);
+  
    let params = {"username": username, "password":password};
    
    this.headers = {
@@ -52,10 +52,12 @@ export class LoginComponent {
       if(rsp == 'a')
       {
         alert('Admin signed in');
+        this.router.navigate(['/home']);
       }
       else if(rsp == 'e')
       {
         alert("Employee signed in");
+        this.router.navigate(['/home']);
       }
       else if(rsp == 'f')
       {
