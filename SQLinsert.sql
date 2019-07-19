@@ -1,3 +1,8 @@
+-- users
+INSERT INTO user (user_name,user_password,user_type) VALUES('admin','3fac8fe22359e7357fda5b7aaa79a96f074d4f34', 'admin');
+INSERT INTO user (user_name,user_password,user_type) VALUES('employee','b78693b210b0ce9dd9beb7799458673e2701841b','employee');
+
+
 -- title
 INSERT INTO title (title_name)
 VALUES ("Commercial Awareness"),
@@ -7,7 +12,7 @@ VALUES ("Commercial Awareness"),
         ("Developing Yourself and Others"),
         ("Planning and Organising"),
         ("Job Specific Knowledge");
-
+        
 -- competency
 INSERT INTO competency (title_id, description)
 VALUES (1, "You put forward sound business cases to gain support for new and more effective methods of working"),
@@ -36,7 +41,64 @@ VALUES (1, "You put forward sound business cases to gain support for new and mor
         (3, "You understand how changes might impact differently on different stakeholders and address arising issues"),
         (3, "You take ownership and accountability for problems and the generation of solutions"),
         (3, "You communicates and manage the need for change delivering the corporate message"),
-        (3, "You create a culture where new ideas are encouraged and evaluated; obstacles removed and people and resources are used in the most effective way in order to achieve Company goals")
+        (3, "You create a culture where new ideas are encouraged and evaluated; obstacles removed and people and resources are used in the most effective way in order to achieve Company goals"),
+        (3, "You capitalise on opportunities to improve processes, systems or efficiency supporting the company's decision on corporate tools"),
+        
+        (4, "You manage expectations so customers always feels valued and have a positive experience of Kainos"),
+        (4, "You champion customer service improvement initiatives"),
+        (4, "You create a culture of professionalism in dealing with customers at all levels"),
+        
+        (5, "You tailor development approaches to suit the needs of each team member"),
+        (5, "You identify potential developmental opportunities for individuals within your team, making them happen whilst managing the impact within your team"),
+        (5, "You evaluate the effectiveness of training in the development of your team"),
+        (5, "You understand the talent development process and effectively use to take accountability for the development of staff"),
+        (5, "You create a supportive coaching culture and share your knowledge and skills to groups of individuals"),
+        
+        (6, "You organise people and resources to successfully achieve both short and medium term objectives"),
+        (6, "You confidently juggle complex projects of different size and priority"),
+        (6, "You empower individuals and pass decision making down to the lowest appropriate level"),
+        
+        (7, "You provide opportunities for others to learn functional and technical skills and concepts"),
+        (7, "You apply advanced functional or technical knowledge to process innovation and complex problem solving"),
+        (7, "You continually seeks to improve or redesign processes, tools, or technologies to enhance business efficiency and relevance"),
+        (7, "You are sought by others for functional or technical expertise and knowledge and for troubleshooting of complex issues"),
+        (7, "You demonstrates an excellent level of accomplishment in job performance"),
+
+                (1, "Anticipates changes in the Kainos marketplace when budgeting for the future"),
+        (2, "Creates successful alignment between diverse teams across the organisation"),
+        (2, "Innovation and Continuous Improvement"),
+        (4, "Includes all Customer Focus indicators from lower Job Levels"),
+        (5, "Integrates people development in their business plans"),
+        (5, "Matches long term business needs with the career development and job fulfilment of staff"),
+        (5, "Develops the whole business through learning and development"),
+        (6, "Sets a clear sense of direction, forward thinking and responsibly shapes the future"),
+        
+        (1, "You take a balanced view of wider impact on the organisation when making significant changes"),
+        (1, "You strive to add measurable and significant value to the longer term growth of Kainos and take calculated risks in order to do so."),
+        (1, "You influence and negotiate creating commercial strategies that maximise return, reduce cost and drive improvement in quality"),
+        (2, "You achieve widely accepted 'buy in' by explaining benefits at both individual and department level"),
+        (2, "You build collaborative partnerships across the company"),
+        (2, "You build cohesive formal and informal teams and networks across the organisation which deliver significant added value"),
+        (2, "You lead the implementation of changes with a positive approach delivering and respecting the need for the company message"),
+		(2, "You build capability, processes and structures to speed the development of skills and the future leaders so the business can scale sustainably."),
+        (3, "You create strategies that introduce improvements across your business unit and the Kainos group"),
+        (4, "You anticipate customer's future needs, identifies their key strategic issues and positively challenges unfounded assumptions"),
+        (4, "You create mutually supportive and loyal relationships with all major customers"),
+        (4, "You see the wider picture, understand the levels of service that are valued by customers and ensures that these are the priority at all times"),
+        (4, "You understand and apply sector-wide standards"),
+        (5, "You create an environment which encourages continuous learning and development and have led and contributed to the development of capability across the group"),
+        (5, "You actively sponsor and participate MAP training programmes to ensure that the skills required by the business are available to drive future growth"),
+        (5, "You take accountability for ensuring that there is a clear talent pipeline within your area of responsibility"),
+        (5, "You are an active role model ensuring that each of your direct reports are managed in accordance with the talent management process eg performance reviews/retention/succession/career development plans are in place."),
+        (5, "You ensure that the group management processes are actively adapted by all members of staff within your responsibility."),
+        (6, "You plan effectively for the medium and long term, reviewing strategies and revising to meet changing business needs"),
+        (6, "You actively make use of management information available in order to understand issues"),
+        (6, "You liaises effectively with colleagues outside of immediate team to coordinate activities and encourage your team to participate with others outside your team and BU where appropriate"),
+        (6, "You produce a consistent, 'no blame' culture, with a feeling of pride and achievement"),
+        (7, "You anticipate and understand future trends in functional or technical skills and process"),
+        (7, "You actively drive the necessary changes to role and learning requirements to ensure the Company is best placed to adapt to new challenges"),
+        (7, "You demonstrates an outstanding level of accomplishment in job performance")
+
 ;
 -- band
 INSERT INTO band(band_name, level)
@@ -51,24 +113,36 @@ VALUES ("Executive", "9"),
         ("Apprentice", "1");
 
 -- band_competency
+INSERT INTO band_competency (competency_id, band_id)
+VALUES (43, 1), (44, 1), (45, 1), (46, 1), (47, 1), (48, 1), (49, 1), (50, 1),
+	(51, 3), (52, 3), (53, 3), (54, 3), (55, 3), (56, 3), (57, 3), (58, 3), (59, 3), (60, 3), (61, 3), (62, 3), (63, 3),
+    (64, 3), (65, 3), (66, 3), (67, 3), (68, 3), (69, 3), (70, 3), (71, 3), (72, 3), (73, 3), (74, 3), (75, 3),
+	(1, 4), (2, 4), (3, 4),(4, 4),(5, 4),(6, 4),(7, 4),(8, 4),(9, 4),(10, 4),(11, 4),(12, 4),(13, 4),(14, 4),(15, 4),
+	(16, 4),(17, 4),(18, 4),(19, 4),(20, 4),(21, 4),(22, 4),(23, 4),(24, 4),(25,4),(26,4),(27,4),(28,4),(29,4),(30,4),
+	(31,4),(32,4),(35,4),(36,4),(37,4),(38,4),(39,4),(40,4),(41,4),(42,4)
+;
 
-
-
+INSERT INTO family (family_name)
+VALUES ("Sales & Marketing"),
+		("Technical"),
+        ("Consulting"),
+        ("Experience Design"),
+        ("Management"),
+        ("Central Services Teams");
 
 -- capability
-INSERT INTO capability (capability_name)
-VALUES ("Business Development"),
-		("Account Management"),
-        ("Sales"),
-        ("Inside Sales Development"),
-        ("Pre Sales & Bid Management"),
-        ("Marketing"),
-        
-        ("Software Engineering"),
-        ("Data Engineering"),
-        ("Cyber Security"),
-        ("Architect"),
-        ("Ops");
+INSERT INTO capability (capability_name, family_id)
+VALUES ("Business Development", 1),
+		("Account Management", 1),
+        ("Sales", 1),
+        ("Inside Sales Development", 1),
+        ("Pre Sales & Bid Management", 1),
+        ("Marketing", 1),        
+        ("Software Engineering", 2),
+        ("Data Engineering", 2),
+        ("Cyber Security", 2),
+        ("Architect", 2),
+        ("Ops", 2);
 
 -- role
 INSERT INTO role (role_name, role_summary, role_sum_link, capability_id, band_id)

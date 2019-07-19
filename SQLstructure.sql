@@ -73,3 +73,9 @@ CREATE Table user
     user_password VARCHAR(100),
     user_type VARCHAR(100)
 );
+
+CREATE VIEW band_title
+AS
+SELECT distinct band.band_id, title.title_id FROM band JOIN band_competency ON band.band_id=band_competency.band_id 
+									JOIN competency ON band_competency.competency_id=competency.competency_id
+                                    JOIN title ON competency.title_id= title.title_id;

@@ -89,7 +89,7 @@ app.get('/gettitle', function(req, res) {
     });
 });
 
-app.get('/getBandTitles', function(req, res){
+app.get('/getbandtitles', function(req, res){
     updateBandTitles(function(){
         res.send(bandTitles)
     });
@@ -165,10 +165,10 @@ function updateBandTitles(bandTitlesfn){
 }
 
 roles = [];
-capability = [];
-bands = [];
-families = [];
 competencies = [];
 bandCompetency = [];
 titles = [];
+capability = [];
+bands = [];
+families = [];
 bandTitles = [];
