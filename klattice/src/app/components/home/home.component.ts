@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DataService } from '../../data.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -7,12 +7,10 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  @Input() username: string;
-
-  ngOnInit() {
-    console.log(this.username);
+  constructor(dataService: DataService, private modalService: NgbModal) {
+    this.data = dataService;
   }
 
   title = 'Career Lattice';
@@ -24,10 +22,6 @@ export class HomeComponent implements OnInit {
   bandID = -1;
 
   data: DataService;
-
-  constructor(dataService: DataService, private modalService: NgbModal) {
-    this.data = dataService;
-  }
 
   openModal(content, id, name, summary, link) {
     this.roleID = id;

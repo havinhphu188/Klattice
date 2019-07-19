@@ -31,7 +31,6 @@ app.post('/userdetails', async function(req,res)
     var password = req.body.params.password;
 
     ans = await authenticate(username, password); 
-    //console.log(ans);
     switch(ans)
     {
         case 1:
@@ -80,7 +79,6 @@ async function authenticate(userName, password)
     var ans = -1
     password = saltedHash(password);
     ans = await db.getUser(userName, password);
-    console.log('ans', ans)
     return ans;
 }
 

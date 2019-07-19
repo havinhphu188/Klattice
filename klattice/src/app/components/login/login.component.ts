@@ -38,7 +38,7 @@ export class LoginComponent {
  onClickSubmit(username, password) {
 
   let formData: FormData = new FormData(); 
-  
+
    let params = {"username": username, "password":password};
    
    this.headers = {
@@ -50,14 +50,14 @@ export class LoginComponent {
       rsp = rsp.substring(11,12);
       
       if(rsp == 'a')
-      {
-        alert('Admin signed in');
-        this.router.navigate(['/home']);
+      {     
+        alert('Hello admin');
+        this.router.navigate(['/home', username]);
       }
       else if(rsp == 'e')
       {
-        alert("Employee signed in");
-        this.router.navigate(['/home']);
+        alert('Hello employee');
+        this.router.navigate(['/home', username]);
       }
       else if(rsp == 'f')
       {

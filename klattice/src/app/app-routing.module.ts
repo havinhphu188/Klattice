@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: '4', component: ExperiencedesignComponent },
   { path: '5', component: ManagementComponent },
   { path: '6', component: CentralserviceteamsComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home/:username', component: HomeComponent},
+  { path: 'home', component: HomeComponent}
 ];
 
 @NgModule({
