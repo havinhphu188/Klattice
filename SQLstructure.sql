@@ -10,14 +10,14 @@ CREATE TABLE family (
 
 CREATE TABLE title (
 	title_id int unsigned auto_increment,
-    title_name varchar(40),
+    title_name varchar(40) unique,
     PRIMARY KEY(`title_id`)
 );
 
 CREATE TABLE competency (
 	competency_id int unsigned auto_increment,
     title_id int unsigned,
-    description varchar(250),
+    description varchar(250) unique,
     PRIMARY KEY(`competency_id`),
     FOREIGN KEY (`title_id`)
 		REFERENCES title(`title_id`)
