@@ -20,8 +20,6 @@ app.get('/getroles', function(req, res) {
 
 app.get('/userdetails', function(req, res)
 {
-  //  testUserName = 'admin';
-    //password =  'adminPass';
     res.send('');
 });
 
