@@ -18,14 +18,12 @@ exports.getRoles = function (callback) {
     );
 }
 
- //-1 = failed, 0 = employee, 1 = admin
-exports.getUser = function (userName, userPassword)
-{   
+exports.getUser = function (userName, userPassword){   
     console.log(userPassword)
     return new Promise(function(resolve, reject) {
-    var queryName = "SELECT user_name, user_password, user_type FROM user WHERE user_name = " + "'" + userName + "'" + " AND user_password = "+"'" +userPassword + "'" +";";
+    var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";
     db.query(
-        queryName,  
+        queryValidateUserExists, [userName, userPassword], 
         function (err, rows)
         {
             result = -1;
@@ -33,7 +31,6 @@ exports.getUser = function (userName, userPassword)
             if(rows.length > 0 && rows[0].user_type == 'admin') result = 1; 
             else if(rows.length > 0 && rows[0].user_type == 'employee') result = 0; 
             else result = -1;
-
             resolve(result);
         }
     );
