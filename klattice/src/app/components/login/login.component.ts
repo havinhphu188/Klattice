@@ -44,24 +44,21 @@ export class LoginComponent {
    this.headers = {
     "Content-Type": "application/json"
     }
-    this.http.post('/api/userdetails', {params:params}, this.headers)
+    this.http.post('/api/user-details', {params:params}, this.headers)
     .subscribe(response=>{
       var rsp = JSON.stringify(response);
       rsp = rsp.substring(11,12);
       
       if(rsp == 'a')
       {     
-        alert('Hello admin');
         this.router.navigate(['/home', username]);
       }
       else if(rsp == 'e')
       {
-        alert('Hello employee');
         this.router.navigate(['/home', username]);
       }
       else if(rsp == 'f')
       {
-        alert("Failed");
         window.location.reload();
       }
       this.signInStatus = rsp;
