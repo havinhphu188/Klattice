@@ -20,6 +20,10 @@ import { ExperiencedesignComponent } from './components/experiencedesign/experie
 import { ManagementComponent } from './components/management/management.component';
 import { CentralserviceteamsComponent } from './components/centralserviceteams/centralserviceteams.component';
 
+import { FilterBandTitleByIdPipe } from './filter-band-title-by-id.pipe';
+import { FilterTitleByIdPipe } from './filter-title-by-id.pipe';
+import { FilterBandCompetencyByIdPipe } from './filter-band-competency-by-id.pipe';
+import { FilterCompetencyForDisplayPipe } from './filter-competency-for-display.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { CentralserviceteamsComponent } from './components/centralserviceteams/c
     ConsultingComponent,
     ExperiencedesignComponent,
     ManagementComponent,
-    CentralserviceteamsComponent
+    CentralserviceteamsComponent,
+    FilterBandTitleByIdPipe,
+    FilterTitleByIdPipe,
+    FilterBandCompetencyByIdPipe,
+    FilterCompetencyForDisplayPipe
   ],
   imports: [
     BrowserModule,
