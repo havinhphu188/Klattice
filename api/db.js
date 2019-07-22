@@ -36,6 +36,18 @@ exports.getUser = function(userName, userPassword) {
   });
 };
 
+exports.addRole = function (roleObject){
+    return new Promise(function(resolve, reject){
+        var queryAddRole = "INSERT INTO role (role_name, role_summary, role_sum_link, capability_id, band_id) VALUE ?";
+        db.query(queryAddRole, roleObject, function (err, result, fields) {
+            // if any error while executing above query, throw error
+            if (err) throw err;
+            // if there is no error, you have the result
+            resolve(result);
+        });
+    });
+}
+
 exports.getCapability = function(callback) {
   db.query(
     "SELECT capability_id, capability_name, family_id FROM capability;",
