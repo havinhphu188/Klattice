@@ -21,6 +21,10 @@ import { ManagementComponent } from './components/management/management.componen
 import { CentralserviceteamsComponent } from './components/centralserviceteams/centralserviceteams.component';
 import { AdminRoleComponent } from './components/admin-role/admin-role.component';
 
+import { FilterBandTitleByIdPipe } from './filter-band-title-by-id.pipe';
+import { FilterTitleByIdPipe } from './filter-title-by-id.pipe';
+import { FilterBandCompetencyByIdPipe } from './filter-band-competency-by-id.pipe';
+import { FilterCompetencyForDisplayPipe } from './filter-competency-for-display.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { AdminRoleComponent } from './components/admin-role/admin-role.component
     ExperiencedesignComponent,
     ManagementComponent,
     CentralserviceteamsComponent,
-    AdminRoleComponent
+    AdminRoleComponent,
+    FilterBandTitleByIdPipe,
+    FilterTitleByIdPipe,
+    FilterBandCompetencyByIdPipe,
+    FilterCompetencyForDisplayPipe
   ],
   imports: [
     BrowserModule,
