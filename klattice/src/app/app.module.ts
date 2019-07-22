@@ -26,6 +26,7 @@ import { FilterTitleByIdPipe } from './filter-title-by-id.pipe';
 import { FilterBandCompetencyByIdPipe } from './filter-band-competency-by-id.pipe';
 import { FilterCompetencyForDisplayPipe } from './filter-competency-for-display.pipe';
 import { FilterCapabilityByFamilyidPipe } from './filter-capability-by-familyid.pipe';
+import { FilterAdminRolePipe } from './filter-admin-role.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { FilterCapabilityByFamilyidPipe } from './filter-capability-by-familyid.
     FilterTitleByIdPipe,
     FilterBandCompetencyByIdPipe,
     FilterCompetencyForDisplayPipe,
-    FilterCapabilityByFamilyidPipe
+    FilterCapabilityByFamilyidPipe,
+    FilterAdminRolePipe
   ],
   imports: [
     BrowserModule,
