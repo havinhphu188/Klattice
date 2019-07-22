@@ -1,6 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { DataService } from '../../data.service';
 import { Role } from 'src/app/classes/role';
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'AdminRoleComponent',
@@ -11,6 +12,8 @@ export class AdminRoleComponent implements OnInit {
 
   @Input() role: Role;
   submitted = false;
+
+  family_id: null;
 
   constructor(dataService: DataService) {
     this.data = dataService;
@@ -31,4 +34,14 @@ export class AdminRoleComponent implements OnInit {
   ngOnInit() {
     this.newRole = new Role();
   }
+
+  addRole(addForm): void {
+    if (addForm.valid) {
+      this.submitted = true;
+      this.data.addRole(this.newRole);
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+
 }
