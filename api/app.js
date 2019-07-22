@@ -2,10 +2,7 @@ const express = require('express')
 const app = express()
 const db = require('./db')
 const hash = require('crypto').createHash;
-
-var loginStatus = 'f'; //f = not signed ins
  
-//Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
 app.listen(7999, function() {
@@ -20,8 +17,6 @@ app.get('/getroles', function(req, res) {
 
 app.get('/userdetails', function(req, res)
 {
-  //  testUserName = 'admin';
-    //password =  'adminPass';
     res.send('');
 });
 
@@ -29,7 +24,7 @@ app.post('/userdetails', async function(req,res)
 {
     var username = req.body.params.username;
     var password = req.body.params.password;
-
+    
     ans = await authenticate(username, password); 
     switch(ans)
     {
@@ -73,25 +68,12 @@ function updateRoles(rolesfn){
     });
 }
 
-//salts, hashes, then checks DB returns true or false
 async function authenticate(userName, password)
 {
     var ans = -1
-    password = saltedHash(password);
     ans = await db.getUser(userName, password);
     return ans;
 }
-
-//applies salt and hash
-function saltedHash(password)
-{
-    alg = 'sha1'
-    salt = "S@E1F53135E559C253assdk100101"; //random salt (taken from wikipedia)
-    password += salt;
-    password = hash(alg).update(password).digest('hex');
-    return password; 
-}
-
 
 function updateCapability(capabilityfn){
     db.getCapability(function(rows){

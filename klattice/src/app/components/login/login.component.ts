@@ -3,6 +3,8 @@ import { FormGroup,  FormBuilder,  Validators} from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import * as sHash from '../../../assets/saltedHashing.js';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,14 +39,16 @@ export class LoginComponent {
 
  onClickSubmit(username, password) {
 
-  let formData: FormData = new FormData(); 
-
+   let formData: FormData = new FormData(); 
+   password = sHash.saltedHash(password);
    let params = {"username": username, "password":password};
    
+
    this.headers = {
     "Content-Type": "application/json"
     }
-    this.http.post('/api/userdetails', {params:params}, this.headers)
+
+  this.http.post('/api/userdetails', {params:params}, this.headers)
     .subscribe(response=>{
       var rsp = JSON.stringify(response);
       rsp = rsp.substring(11,12);
@@ -66,6 +70,5 @@ export class LoginComponent {
       }
       this.signInStatus = rsp;
     })
-    
   }
 }

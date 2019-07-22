@@ -53,8 +53,8 @@ CREATE Table user
     user_type VARCHAR(100)
 );
 
-INSERT INTO user (user_name,user_password,user_type) VALUES('admin','3fac8fe22359e7357fda5b7aaa79a96f074d4f34', 'admin');
-INSERT INTO user (user_name,user_password,user_type) VALUES('employee','b78693b210b0ce9dd9beb7799458673e2701841b','employee');
+INSERT INTO user (user_name,user_password,user_type) VALUES('admin','9179d75362d5fbf1ca0ae78e907ee9c15dba8eecaac2b48ada516596', 'admin');
+INSERT INTO user (user_name,user_password,user_type) VALUES('employee','11b951f65858b2be3c065374fc928fcdfef05f6d0b8694d8acd2a746','employee');
 
 INSERT INTO family (family_name)
 VALUES ("Sales & Marketing"),
