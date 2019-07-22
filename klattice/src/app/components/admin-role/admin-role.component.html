@@ -1,0 +1,60 @@
+<h1>Role</h1>
+
+<button type="button" class="btn btn-primary" 
+(click)="openForm()">
+    Add Role</button>
+
+<div [hidden]="!formShow">
+    <form #addForm="ngForm" (ngSubmit)="addRole(addForm)">
+        <select [(ngModel)]="newRole.family_id" name="family_id">
+            <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
+        </select>
+        {{newRole.family_id}}
+        <select [(ngModel)]="newRole.capability_id" name="capability_id">
+                <option *ngFor="let capability of data.capabilities | async" value="capability.capability_id">{{capability.capability_name}}</option>
+        </select>
+        <textarea [(ngModel)]="newRole.role_summary" name="role_summary"></textarea>
+        <input type="button" value="Submit">
+        <input type="button" value="Cancel">
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <th>Family</th>
+        <th>Capability</th>
+        <th>Role</th>
+        <th>Band</th>
+    </thead>
+    <tr *ngFor="let role of data.roles | async">
+        <td>
+            <div *ngFor="let family of data.families | async">
+            <div *ngFor="let capability of data.capabilities | async">
+                <span *ngIf="role.capability_id === capability.capability_id && capability.family_id === family.family_id">
+                    {{family.family_name}}
+                </span>
+            </div>
+        </div>
+        </td>
+        <td>
+            <span *ngFor="let capability of data.capabilities | async">
+                <span *ngIf="role.capability_id === capability.capability_id">
+                {{capability.capability_name}}
+                </span>
+            </span>
+        </td>
+        <td>
+            {{role.role_name}}
+        </td>
+        <td>
+            <span *ngFor="let band of data.bands | async">
+                <span *ngIf="role.band_id === band.band_id">
+                        {{band.band_name}}
+                </span>
+            </span>
+        </td>
+
+    </tr>
+</table>
+
+

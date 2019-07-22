@@ -8,6 +8,7 @@ import { ExperiencedesignComponent } from './components/experiencedesign/experie
 import { ManagementComponent } from './components/management/management.component';
 import { CentralserviceteamsComponent } from './components/centralserviceteams/centralserviceteams.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdminRoleComponent } from './components/admin-role/admin-role.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: '5', component: ManagementComponent },
   { path: '6', component: CentralserviceteamsComponent },
   { path: 'home/:username', component: HomeComponent},
-  { path: 'home', component: HomeComponent}
+  { path: 'home', component: HomeComponent},
+  { path: 'adminRole', component: AdminRoleComponent}
 ];
 
 @NgModule({

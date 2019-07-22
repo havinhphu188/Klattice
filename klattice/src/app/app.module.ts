@@ -19,6 +19,7 @@ import { ConsultingComponent } from './components/consulting/consulting.componen
 import { ExperiencedesignComponent } from './components/experiencedesign/experiencedesign.component';
 import { ManagementComponent } from './components/management/management.component';
 import { CentralserviceteamsComponent } from './components/centralserviceteams/centralserviceteams.component';
+import { AdminRoleComponent } from './components/admin-role/admin-role.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CentralserviceteamsComponent } from './components/centralserviceteams/c
     ConsultingComponent,
     ExperiencedesignComponent,
     ManagementComponent,
-    CentralserviceteamsComponent
+    CentralserviceteamsComponent,
+    AdminRoleComponent
   ],
   imports: [
     BrowserModule,
