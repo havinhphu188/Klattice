@@ -2,10 +2,19 @@ DROP DATABASE IF EXISTS klattice;
 CREATE DATABASE klattice;
 USE klattice;
 
+CREATE TABLE family (
+	family_id INT unsigned auto_increment not null,
+    family_name varchar(40),
+    PRIMARY KEY(`family_id`)
+);
+
 CREATE TABLE capability (
 	capability_id INT unsigned auto_increment,
     capability_name varchar(60),
-    PRIMARY KEY(`capability_id`)
+    family_id INT unsigned,
+    PRIMARY KEY(`capability_id`),
+	FOREIGN KEY (`family_id`)
+		REFERENCES family(`family_id`)
 );
 
 CREATE TABLE band (
@@ -34,19 +43,36 @@ ALTER TABLE role
 ADD CONSTRAINT role_name_length
 CHECK (length(role_name) >= 4);
 
-INSERT INTO capability (capability_name)
-VALUES ("Business Development"),
-		("Account Management"),
-        ("Sales"),
-        ("Inside Sales Development"),
-        ("Pre Sales & Bid Management"),
-        ("Marketing"),
-        
-        ("Software Engineering"),
-        ("Data Engineering"),
-        ("Cyber Security"),
-        ("Architect"),
-        ("Ops");
+CREATE Table user 
+(
+    user_name VARCHAR(100),
+    user_password VARCHAR(100),
+    user_type VARCHAR(100)
+);
+
+INSERT INTO user (user_name,user_password,user_type) VALUES('admin','3fac8fe22359e7357fda5b7aaa79a96f074d4f34', 'admin');
+INSERT INTO user (user_name,user_password,user_type) VALUES('employee','b78693b210b0ce9dd9beb7799458673e2701841b','employee');
+
+INSERT INTO family (family_name)
+VALUES ("Sales & Marketing"),
+		("Technical"),
+        ("Consulting"),
+        ("Experience Design"),
+        ("Management"),
+        ("Central Services Teams");
+
+INSERT INTO capability (capability_name, family_id)
+VALUES ("Business Development", 1),
+		("Account Management", 1),
+        ("Sales", 1),
+        ("Inside Sales Development", 1),
+        ("Pre Sales & Bid Management", 1),
+        ("Marketing", 1),        
+        ("Software Engineering", 2),
+        ("Data Engineering", 2),
+        ("Cyber Security", 2),
+        ("Architect", 2),
+        ("Ops", 2);
 
 INSERT INTO band(band_name, level, competency)
 VALUES ("Executive", "9",'<div class="modal-body">
