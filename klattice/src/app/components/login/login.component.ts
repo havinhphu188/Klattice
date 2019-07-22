@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   title = 'Angular Login Form';
   angForm: FormGroup;
-  headers:any;
-  
+  headers: any;
+
   constructor(private fb: FormBuilder,
-              private http:HttpClient,
+              private http: HttpClient,
               private router: Router) {
    this.createForm();
-   
+
  }
  createForm() {
   this.angForm = this.fb.group({
@@ -26,24 +26,23 @@ export class LoginComponent {
      password: ['', Validators.required ]
   });
 
-  
 }
-  signInStatus = 'f';
-  getHeaders() {
-      return (this.headers = {
-      "Content-Type": "application/json"
-      });
-    }
+signInStatus = 'f';
+getHeaders() {
+  return (this.headers = {
+    'Content-Type': 'application/json'
+  });
+}
 
- onClickSubmit(username, password) {
+onClickSubmit(username, password) {
 
-  let formData: FormData = new FormData(); 
+let formData: FormData = new FormData();
 
-   let params = {"username": username, "password":password};
-   
-   this.headers = {
-    "Content-Type": "application/json"
-    }
+let params = {"username": username, "password": password};
+
+this.headers = {
+  "Content-Type": "application/json"
+}
     this.http.post('/api/userdetails', {params:params}, this.headers)
     .subscribe(response=>{
       var rsp = JSON.stringify(response);
