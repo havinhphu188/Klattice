@@ -24,6 +24,12 @@ app.get("/roles", function(req, res) {
   });
 });
 
+app.get('/role-families', function(req, res) {
+  updateRoleFamilies(function() {
+      res.send(roleFamiles);
+  })
+});
+
 app.get("/user-details", function(req, res) {
   res.send({
     isAdmin: session.isAdmin,
@@ -39,6 +45,10 @@ app.post('/user-details', async function(req,res){
     await authenticate(username, password, res); 
 });
 
+app.post('/add-role', async function(req, res){
+  ans = await addRoleToDB(req.body);
+ });
+
 app.get("/capability", function(req, res) {
   updateCapability(function() {
     res.send(capability);
@@ -49,6 +59,16 @@ app.get("/bands", function(req, res) {
   updateBands(function() {
     res.send(bands);
   });
+});
+
+app.post('/addRole', async function(req, res){
+    ans = await addRoleToDB(req.body);
+});
+
+app.get('/getcapability', function(req, res){
+    updateCapability(function(){
+        res.send(capability)
+    });
 });
 
 app.get("/responsibilities", function(req, res) {
@@ -99,6 +119,19 @@ app.post("/signout", function(req, res) {
   });
 });
 
+function updateRoleFamilies(rolefamaliesfn){
+    db.getRoleFamilies(function(rows){
+        roleFamiles = rows;
+        rolefamaliesfn();
+    });
+}
+
+async function addRoleToDB(roleObject){
+    var didRoleAdd = -1;
+    didRoleAdd = await db.addRole(roleObject);
+    return didRoleAdd;
+}
+
 async function authenticate(username, password, res){
     var authStatus = await db.getUser(username, password);
 
@@ -130,13 +163,13 @@ function updateCapability(capabilityfn){
         capabilityfn();
     });
   }  
+
 function updateRoles(rolesfn) {
   db.getRoles(function(rows) {
     roles = rows;
     rolesfn();
   });
 }
-
 
 function updateBands(bandsfn) {
   db.getBands(function(rows) {
@@ -188,6 +221,7 @@ function updateBandTitles(bandTitlesfn) {
 }
 
 roles = [];
+roleFamiles = [];
 competencies = [];
 bandCompetency = [];
 titles = [];
@@ -195,4 +229,4 @@ capability = [];
 bands = [];
 families = [];
 bandTitles = [];
-responsibilities = []
+responsibilities = [];

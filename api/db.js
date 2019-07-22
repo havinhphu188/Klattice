@@ -7,7 +7,18 @@ const db = mysql.createConnection({
   database: "klattice"
 });
 
-exports.getUser = function (username, userPassword){   
+exports.getRoleFamilies = function (callback) {
+    db.query(
+        "SELECT role_id, family_id FROM role_family;",
+        function (err, rows) {
+            if (err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}
+
+exports.getUser = function (userName, userPassword){   
     return new Promise(function(resolve, reject) {
     var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";
     db.query(
@@ -52,20 +63,21 @@ exports.getResponsibilities = function(callback) {
   );
 };
 
+exports.addRole = function (roleObject){
+    return new Promise(function(resolve, reject){
+        var queryAddRole = "INSERT INTO role (capability_id, role_name, role_summary, role_sum_link, band_id) VALUES (?,?,?,?,?)";
+        db.query(queryAddRole, [roleObject.capability_id, roleObject.role_name, roleObject.role_summary, roleObject.role_sum_link, roleObject.band_id], function (err, result, fields) {
+            // if any error while executing above query, throw error
+            if (err) throw err;
+            // if there is no error, you have the result
+            resolve(result);
+        });
+    });
+}
+
 exports.getCapability = function(callback) {
   db.query(
     "SELECT capability_id, capability_name, family_id FROM capability;",
-    function(err, rows) {
-      if ((err, rows)) {
-        callback(rows);
-      }
-    }
-  );
-};
-
-exports.getCompetency = function(callback) {
-  db.query(
-    "SELECT competency_id, title_id, description FROM competency;",
     function(err, rows) {
       if ((err, rows)) {
         callback(rows);
@@ -102,14 +114,6 @@ exports.getCompetency = function(callback) {
       }
     }
   );
-};
-
-exports.getTitle = function(callback) {
-  db.query("SELECT title_id, title_name FROM title;", function(err, rows) {
-    if ((err, rows)) {
-      callback(rows);
-    }
-  });
 };
 
 exports.getBandCompetency = function(callback) {
