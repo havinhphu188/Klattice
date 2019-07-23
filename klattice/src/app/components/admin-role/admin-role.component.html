@@ -1,0 +1,105 @@
+<div class="container">
+  <h2 class="float-left">Add/Edit/Delete Role's</h2>
+  <button type="button" id="addbtn" class="btn  float-right"
+(click)="openForm()">Add Role</button>
+
+<div [hidden]="!formShow">
+  <div class="panel panel-default">
+    <br>
+    <br>
+    <form class="form-inline form" (ngSubmit)="addRole(addForm)" #addForm="ngForm">
+        <select [(ngModel)]="family_id" name="family_id" (change)="clearCapability()" >
+            <option value="">Select Category</option>
+            <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
+        </select>
+        <select [(ngModel)]="newRole.capability_id" name="capability_id" required>
+            <option value="" ng-selected="family_id"></option>
+            <option *ngFor="let capability of data.capabilities | async | filterCapabilityByFamilyid: family_id" value="{{capability.capability_id}}">{{capability.capability_name}}</option>
+        </select>
+        <input type="text" [(ngModel)]="newRole.role_name" name="role_name" required>
+        <textarea [(ngModel)]="newRole.role_summary" name="role_summary" required></textarea>
+        <textarea [(ngModel)]="newRole.role_sum_link" name="role_sum_link" required appSharepoint></textarea>
+
+        <select [(ngModel)]="newRole.band_id" name="band_id" required>
+            <option value=""></option>
+            <option *ngFor="let band of data.bands | async" value="{{band.band_id}}">{{band.band_name}}</option>
+        </select>
+
+        <button type="submit" value="Submit">Submit</button>
+        <button type="button" value="Cancel" (click)="cancelForm()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<table class="table table-borderless">
+
+    <thead id="tableHeadRole">
+        <th>
+            <span>
+                Family
+            </span>
+            <select [(ngModel)]="filter_family_id" name="filter_family_id" (change)="clearFilterCapability()">
+                <option value="">All</option>
+                <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
+            </select>
+        </th>
+        <th>
+            <span>
+                Capability
+            </span>
+            <select [(ngModel)]="filter_capability_id" name="filter_capability_id">
+                <option value="">All</option>
+                <option *ngFor="let capability of data.capabilities | async | filterCapabilityByFamilyid: filter_family_id" value="{{capability.capability_id}}">{{capability.capability_name}}</option>
+            </select>
+
+        </th>
+        <th>
+            <span>
+                Role
+            </span>
+            <input [(ngModel)]="filter_role_name" placeholder="Filter">
+        </th>
+        <th>
+            <span>
+                Band
+            </span>
+            <select [(ngModel)]="filter_band_id" name="filter_band_id">
+                <option value="">All</option>
+                <option *ngFor="let band of data.bands | async" value="{{band.band_id}}">{{band.band_name}}</option>
+            </select>
+        </th>
+    </thead>
+    <tbody *ngFor="let roleFamily of data.roleFamilies | async | filterRoleFamily: filter_family_id">
+    <tr *ngFor="let role of data.roles | async | filterAdminRole: roleFamily.role_id: filter_capability_id: filter_band_id: filter_role_name">
+        <td>
+            <div *ngFor="let family of data.families | async">
+                <div *ngFor="let capability of data.capabilities | async">
+                    <span *ngIf="role.capability_id === capability.capability_id && capability.family_id === family.family_id">
+                        {{family.family_name}}
+                    </span>
+                </div>
+            </div>
+        </td>
+        <td>
+            <span *ngFor="let capability of data.capabilities | async">
+                <span *ngIf="role.capability_id === capability.capability_id">
+                {{capability.capability_name}}
+                </span>
+            </span>
+        </td>
+        <td>
+            {{role.role_name}}
+        </td>
+        <td>
+            <span *ngFor="let band of data.bands | async">
+                <span *ngIf="role.band_id === band.band_id">
+                        {{band.band_name}}
+                </span>
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+

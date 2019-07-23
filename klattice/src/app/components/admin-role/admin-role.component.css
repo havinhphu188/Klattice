@@ -1,0 +1,17 @@
+#tableHeadRole{
+  background-color: #4caf50;
+  color: white;
+}
+#addbtn{
+  background-color: #00326b;
+  color: white;
+}
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}

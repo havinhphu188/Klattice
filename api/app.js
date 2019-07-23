@@ -24,13 +24,18 @@ app.get("/roles", function(req, res) {
   });
 });
 
+app.get('/role-families', function(req, res) {
+  updateRoleFamilies(function() {
+      res.send(roleFamiles);
+  })
+});
+
 app.get("/user-details", function(req, res) {
   res.send({
     isAdmin: session.isAdmin,
     loggedIn: session.loggedIn,
     username: session.username
   });
-});
 
 app.post("/user-details", async function(req, res) {
   var username = req.body.params.username;
@@ -131,6 +136,13 @@ async function authenticate(userName, password) {
   return ans;
 }
 
+function updateRoleFamilies(rolefamaliesfn){
+    db.getRoleFamilies(function(rows){
+        roleFamiles = rows;
+        rolefamaliesfn();
+    });
+}
+
 //applies salt and hash
 function saltedHash(password) {
   alg = "sha1";
@@ -192,6 +204,7 @@ function updateBandTitles(bandTitlesfn) {
 }
 
 roles = [];
+roleFamiles = [];
 competencies = [];
 bandCompetency = [];
 titles = [];
