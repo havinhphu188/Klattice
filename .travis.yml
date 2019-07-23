@@ -21,7 +21,6 @@ install:
   - npm install angular
   - npm install express
   - npm install mysql
-  - npm install ng-common
 
 script:
   - cd klattice/
