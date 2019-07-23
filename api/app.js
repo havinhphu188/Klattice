@@ -27,6 +27,14 @@ app.post('/user-details', async function(req,res){
     
 });
 
+app.post('/add-role', async function(req, res){
+    ans = await addRoleToDB(req.body);
+});
+
+app.post('/delete-role', async function(req, res){
+    ans = await deleteRole(req.body);
+});
+
 app.get('/capability', function(req, res){
     updateCapability(function(){
         res.send(capability)
@@ -69,30 +77,36 @@ app.get('/band-titles', function(req, res){
     });
 });
 
-app.delete('/delete-role', function (req, res) {
-    console.log(req.body);
-    deleteRole(function(){
-        res.send(role)
-    })
- });
-
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
         roles = rows;
         rolesfn();
     });
 }
-function deleteRole(rolefn){
-    db.deleteRole(function(rows){
-        role = rows;
-        rolefn();
-    })
-}
-
 
 async function authenticate(userName, password, res){
     var ans = await db.getUser(userName, password);
     res.send({status: ans})
+}
+
+async function addRoleToDB(roleObject){
+    var didRoleAdd = -1;
+    didRoleAdd = await db.addRole(roleObject);
+    return didRoleAdd;
+}
+
+async function deleteRole(roleObject){
+    var didRoleDelete = -1;
+    didRoleDelete = await db.deleteRole(roleObject);
+    return didRoleDelete;
+}
+
+function saltedHash(password){
+    alg = 'sha1'
+    salt = "S@E1F53135E559C253assdk100101";
+    password += salt;
+    password = hash(alg).update(password).digest('hex');
+    return password; 
 }
 
 function updateCapability(capabilityfn){

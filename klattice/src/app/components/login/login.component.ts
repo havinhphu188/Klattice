@@ -14,13 +14,13 @@ import * as sHash from '../../../assets/saltedHashing.js';
 export class LoginComponent {
   title = 'Angular Login Form';
   angForm: FormGroup;
-  headers:any;
-  
+  headers: any;
+
   constructor(private fb: FormBuilder,
-              private http:HttpClient,
+              private http: HttpClient,
               private router: Router) {
    this.createForm();
-   
+
  }
  createForm() {
   this.angForm = this.fb.group({
@@ -28,8 +28,8 @@ export class LoginComponent {
      password: ['', Validators.required ]
   });
 
-  
 }
+
   getHeaders() {
       return (this.headers = {
       "Content-Type": "application/json"
@@ -46,10 +46,10 @@ export class LoginComponent {
     "Content-Type": "application/json"
     }
   this.http.post('/api/user-details', {params:params}, this.headers)
+
     .subscribe(response=>{
       var rsp = JSON.stringify(response);
       rsp = rsp.substring(11,12);
-      
       if(rsp == 'a')
       {     
         this.router.navigate(['/home', username]);

@@ -19,11 +19,15 @@ import { ConsultingComponent } from './components/consulting/consulting.componen
 import { ExperiencedesignComponent } from './components/experiencedesign/experiencedesign.component';
 import { ManagementComponent } from './components/management/management.component';
 import { CentralserviceteamsComponent } from './components/centralserviceteams/centralserviceteams.component';
+import { AdminRoleComponent } from './components/admin-role/admin-role.component';
 
 import { FilterBandTitleByIdPipe } from './filter-band-title-by-id.pipe';
 import { FilterTitleByIdPipe } from './filter-title-by-id.pipe';
 import { FilterBandCompetencyByIdPipe } from './filter-band-competency-by-id.pipe';
 import { FilterCompetencyForDisplayPipe } from './filter-competency-for-display.pipe';
+import { FilterCapabilityByFamilyidPipe } from './filter-capability-by-familyid.pipe';
+import { FilterAdminRolePipe } from './filter-admin-role.pipe';
+import { SharepointDirective } from './sharepoint.directive';
 
 @NgModule({
   declarations: [
@@ -39,10 +43,14 @@ import { FilterCompetencyForDisplayPipe } from './filter-competency-for-display.
     ExperiencedesignComponent,
     ManagementComponent,
     CentralserviceteamsComponent,
+    AdminRoleComponent,
     FilterBandTitleByIdPipe,
     FilterTitleByIdPipe,
     FilterBandCompetencyByIdPipe,
-    FilterCompetencyForDisplayPipe
+    FilterCompetencyForDisplayPipe,
+    FilterCapabilityByFamilyidPipe,
+    FilterAdminRolePipe,
+    SharepointDirective
   ],
   imports: [
     BrowserModule,

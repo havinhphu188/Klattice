@@ -18,14 +18,14 @@ exports.getRoles = function (callback) {
     );
 }
 
-exports.deleteRoles = function(callback){
+// exports.deleteRoles = function(callback){
 
-    db.query('DELETE FROM `role` WHERE `id`=?', [req.body.role_id], function (err, rows) {
-       if(err, rows){
-            callback(rows);
-        }
-      });
-}
+//     db.query('DELETE FROM `role` WHERE `id`=?', [req.body.role_id], function (err, rows) {
+//        if(err, rows){
+//             callback(rows);
+//         }
+//       });
+// }
 
 exports.getUser = function (userName, userPassword){   
     return new Promise(function(resolve, reject) {
@@ -42,6 +42,29 @@ exports.getUser = function (userName, userPassword){
             resolve(result);
         }
     );
+    });
+}
+
+exports.addRole = function (roleObject){
+    return new Promise(function(resolve, reject){
+        var queryAddRole = "INSERT INTO role (capability_id, role_name, role_summary, role_sum_link, band_id) VALUES (?,?,?,?,?)";
+        db.query(queryAddRole, [roleObject.capability_id, roleObject.role_name, roleObject.role_summary, roleObject.role_sum_link, roleObject.band_id], function (err, result, fields) {
+            // if any error while executing above query, throw error
+            if (err) throw err;
+            // if there is no error, you have the result
+            resolve(result);
+        });
+    });
+}
+
+exports.deleteRole = function (roleObject){
+    console.log(roleObject.params.roleID);
+    return new Promise(function(resolve, reject){
+        var queryDeleteRole = "DELETE FROM role WHERE role_id = ?";
+        db.query(queryDeleteRole, roleObject.params.roleID, function(err, result, fields){
+            if (err) throw err;
+            resolve(result);
+        });
     });
 }
 

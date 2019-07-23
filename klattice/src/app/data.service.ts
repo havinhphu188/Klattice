@@ -23,4 +23,12 @@ export class DataService {
   bandCompetencies = this.http.get<BandCompetency[]>('api/band-competency').toPromise();
   bandTitles = this.http.get<BandTitle[]>('api/band-titles').toPromise();
   families = this.http.get<Family[]>('api/families').toPromise();
+
+
+
+  addRole(newRole: Role): any {
+    this.http.post<Role>('api/add-role', newRole).subscribe(c => {console.log(c)});
+    this.roles = this.http.get<Role[]>('/api/roles').toPromise();
+  }
+
 }
