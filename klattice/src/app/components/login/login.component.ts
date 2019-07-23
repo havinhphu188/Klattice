@@ -61,7 +61,6 @@ export class LoginComponent {
       .subscribe(response => {
         var rsp = JSON.stringify(response);
         rsp = rsp.substring(11, 12);
-
         if (rsp == "a") {
           this.successfulLogin(true, username);
           window.location.reload();

@@ -36,7 +36,7 @@ app.post('/user-details', async function(req,res){
     var username = req.body.params.username;
     var password = req.body.params.password;
     
-    ans = await authenticate(username, password, res); 
+    await authenticate(username, password, res); 
 });
 
 app.get("/capability", function(req, res) {
@@ -95,7 +95,27 @@ app.post("/signout", function(req, res) {
 
 async function authenticate(userName, password, res){
     var ans = await db.getUser(userName, password);
-    res.send({status: ans})
+
+    switch(ans)
+    {
+      case 'a':
+        session.isAdmin = true;
+        session.loggedIn = true;
+        session.username = userName;
+        break;
+      case 'e':
+        session.isAdmin = false;
+        session.loggedIn = true;
+        session.username = userName;
+          break;
+    }
+
+    res.send({
+      status: ans,
+      isAdmin: session.isAdmin,
+      loggedIn: session.loggedIn,
+      username: session.username
+    })
 }
 
 function updateCapability(capabilityfn){
@@ -103,14 +123,14 @@ function updateCapability(capabilityfn){
         capability = rows;
         capabilityfn();
     });
-    
+  }  
 function updateRoles(rolesfn) {
   db.getRoles(function(rows) {
     roles = rows;
     rolesfn();
   });
 }
-}
+
 
 function updateBands(bandsfn) {
   db.getBands(function(rows) {
