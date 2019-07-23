@@ -23,19 +23,8 @@ app.post('/user-details', async function(req,res){
     var username = req.body.params.username;
     var password = req.body.params.password;
     
-    ans = await authenticate(username, password); 
-    switch(ans)
-    {
-        case 1:
-            res.send({status: 'a'});
-            break;
-        case 0:
-            res.send({status: 'e'});
-            break;
-        case -1:
-            res.send({status: 'f'});
-            break;
-    }
+    ans = await authenticate(username, password, res); 
+    
 });
 
 app.get('/capability', function(req, res){
@@ -87,10 +76,9 @@ function updateRoles(rolesfn){
     });
 }
 
-async function authenticate(userName, password){
-    var ans = -1
-    ans = await db.getUser(userName, password);
-    return ans;
+async function authenticate(userName, password, res){
+    var ans = await db.getUser(userName, password);
+    res.send({status: ans})
 }
 
 function updateCapability(capabilityfn){

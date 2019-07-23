@@ -25,11 +25,11 @@ exports.getUser = function (userName, userPassword){
         queryValidateUserExists, [userName, userPassword], 
         function (err, rows)
         {
-            result = -1;
+            result ='f';
             if (err) throw err;
-            if(rows.length > 0 && rows[0].user_type == 'admin') result = 1; 
-            else if(rows.length > 0 && rows[0].user_type == 'employee') result = 0; 
-            else result = -1;
+            if(rows.length > 0 && rows[0].user_type == 'admin') result = 'a'; 
+            else if(rows.length > 0 && rows[0].user_type == 'employee') result = 'e'; 
+            
             resolve(result);
         }
     );

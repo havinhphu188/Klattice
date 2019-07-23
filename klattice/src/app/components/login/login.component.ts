@@ -42,7 +42,6 @@ export class LoginComponent {
    password = sHash.saltedHash(password);
    let params = {"username": username, "password":password};
    
-
    this.headers = {
     "Content-Type": "application/json"
     }
