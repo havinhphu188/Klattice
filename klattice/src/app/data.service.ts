@@ -25,6 +25,7 @@ export class DataService {
   bandTitles = this.http.get<BandTitle[]>('api/band-titles').toPromise();
   families = this.http.get<Family[]>('api/families').toPromise();
   roleFamilies = this.http.get<RoleFamily[]>('api/role-families').toPromise();
+  loginDetails = this.http.get<JSON>('api/user-details');
 
 
   addRole(newRole: Role): any {
