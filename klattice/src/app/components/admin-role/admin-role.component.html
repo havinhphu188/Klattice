@@ -5,7 +5,7 @@
 
 <div [hidden]="!formShow">
     <form (ngSubmit)="addRole(addForm)" #addForm="ngForm">
-        <select [(ngModel)]="family_id" name="family_id" required (change)="clearCapability()">
+        <select [(ngModel)]="family_id" name="family_id" (change)="clearCapability()">
             <option value=""></option>
             <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
         </select>
