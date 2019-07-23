@@ -51,6 +51,11 @@ export class HomeComponent implements OnInit {
   TRAINEE_BAND_ID = 8;
   APPRENTICE_BAND_ID = 9;
 
+  PURPLE_KAINOS_BRAND_COLOUR = "#5C068C";
+  BLUE_KAINOS_BRAND_COLOUR = "#5C068C";
+  GREEN_KAINOS_BRAND_COLOUR = "#5C068C";
+  DEFAULT_COLOUR = "#777";
+
   data: DataService;
 
   ngOnInit() {
@@ -86,17 +91,17 @@ export class HomeComponent implements OnInit {
       case this.EXECUTIVE_BAND:
       case this.LEADERSHIP_COMMUNITY_BAND:
       case this.PRINCIPAL_BAND:
-        return "#5C068C";
+        return this.PURPLE_KAINOS_BRAND_COLOUR;
       case this.MANAGER_BAND:
       case this.CONSULTANT_BAND:
       case this.SENIOR_ASSOCIATE_BAND:
-        return "#00558C";
+        return this.BLUE_KAINOS_BRAND_COLOUR;
       case this.ASSOCIATE_BAND:
       case this.TRAINEE_BAND:
       case this.APPRENTICE_BAND:
-        return "#009639";
+        return this.GREEN_KAINOS_BRAND_COLOUR;
       default:
-        return "#777";
+        return this.DEFAULT_COLOUR;
     }
   }
 
@@ -105,17 +110,17 @@ export class HomeComponent implements OnInit {
       case this.EXECUTIVE_BAND_ID:
       case this.LEADERSHIP_COMMUNITY_BAND_ID:
       case this.PRINCIPAL_BAND_ID:
-        return "#5C068C";
+        return this.PURPLE_KAINOS_BRAND_COLOUR;
       case this.MANAGER_BAND_ID:
       case this.CONSULTANT_BAND_ID:
       case this.SENIOR_ASSOCIATE_BAND_ID:
-        return "#00558C";
+        return this.BLUE_KAINOS_BRAND_COLOUR;
       case this.ASSOCIATE_BAND_ID:
       case this.TRAINEE_BAND_ID:
       case this.APPRENTICE_BAND_ID:
-        return "#009639";
+        return this.GREEN_KAINOS_BRAND_COLOUR;
       default:
-        return "#777";
+        return this.DEFAULT_COLOUR;
     }
   }
 }
