@@ -18,6 +18,15 @@ exports.getRoles = function (callback) {
     );
 }
 
+exports.deleteRoles = function(callback){
+
+    db.query('DELETE FROM `role` WHERE `id`=?', [req.body.role_id], function (err, rows) {
+       if(err, rows){
+            callback(rows);
+        }
+      });
+}
+
 exports.getUser = function (userName, userPassword){   
     return new Promise(function(resolve, reject) {
     var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";

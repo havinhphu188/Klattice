@@ -69,12 +69,26 @@ app.get('/band-titles', function(req, res){
     });
 });
 
+app.delete('/delete-role', function (req, res) {
+    console.log(req.body);
+    deleteRole(function(){
+        res.send(role)
+    })
+ });
+
 function updateRoles(rolesfn){
     db.getRoles(function(rows){
         roles = rows;
         rolesfn();
     });
 }
+function deleteRole(rolefn){
+    db.deleteRole(function(rows){
+        role = rows;
+        rolefn();
+    })
+}
+
 
 async function authenticate(userName, password, res){
     var ans = await db.getUser(userName, password);
