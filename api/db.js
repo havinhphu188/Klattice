@@ -49,6 +49,16 @@ exports.addRole = function (roleObject){
     });
 }
 
+exports.deleteRole = function (roleObject){
+    return new Promise(function(resolve, reject){
+        var queryDeleteRole = "DELETE FROM role WHERE role_id = ?";
+        db.query(queryDeleteRole, roleObject.role_id, function(err, result, fields){
+            if (err) throw err;
+            resolve(result);
+        });
+    });
+}
+
 exports.getCapability = function(callback) {
     db.query(
         "SELECT capability_id, capability_name, family_id FROM capability;",

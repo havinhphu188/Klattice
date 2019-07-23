@@ -42,6 +42,10 @@ app.post('/add-role', async function(req, res){
     ans = await addRoleToDB(req.body);
 });
 
+app.post('/delete-role', async function(req, res){
+    ans = await deleteRole(req.body);
+});
+
 app.get('/capability', function(req, res){
     updateCapability(function(){
         res.send(capability)
@@ -102,6 +106,12 @@ async function addRoleToDB(roleObject){
     var didRoleAdd = -1;
     didRoleAdd = await db.addRole(roleObject);
     return didRoleAdd;
+}
+
+async function deleteRole(roleObject){
+    var didRoleDelete = -1;
+    didRoleDelete = await db.deleteRole(roleObject);
+    return didRoleDelete;
 }
 
 function saltedHash(password){
