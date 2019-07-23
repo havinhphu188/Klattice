@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.data.isLoggedIn;
   }
 
   openModal(content, id, name, summary, link) {

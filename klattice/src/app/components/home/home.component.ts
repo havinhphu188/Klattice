@@ -12,11 +12,6 @@ export class HomeComponent implements OnInit {
 
   constructor(dataService: DataService, private modalService: NgbModal, private router: Router) {
     this.data = dataService;
-
-    if(!this.isLoggedIn)
-    {
-      router.navigate(['/login']);
-    }
   }
 
   title = 'Career Lattice';
@@ -28,10 +23,8 @@ export class HomeComponent implements OnInit {
   bandID = -1;
 
   data: DataService;
-  isLoggedIn: boolean;
 
   ngOnInit()  {
-    this.isLoggedIn = this.data.isLoggedIn; 
   }
 
   openModal(content, id, name, summary, link) {

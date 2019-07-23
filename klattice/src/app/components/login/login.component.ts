@@ -30,7 +30,6 @@ export class LoginComponent {
 
   
 }
-  signInStatus = 'f';
   getHeaders() {
       return (this.headers = {
       "Content-Type": "application/json"
@@ -47,12 +46,7 @@ export class LoginComponent {
    this.headers = {
     "Content-Type": "application/json"
     }
-<<<<<<< HEAD
-
-  this.http.post('/api/userdetails', {params:params}, this.headers)
-=======
-    this.http.post('/api/user-details', {params:params}, this.headers)
->>>>>>> master
+  this.http.post('/api/user-details', {params:params}, this.headers)
     .subscribe(response=>{
       var rsp = JSON.stringify(response);
       rsp = rsp.substring(11,12);
@@ -63,19 +57,13 @@ export class LoginComponent {
       }
       else if(rsp == 'e')
       {
-<<<<<<< HEAD
-        alert('Hello employee');
-        this.router.navigate(['/', username]);
-=======
-        this.router.navigate(['/home', username]);
->>>>>>> master
+         this.router.navigate(['/home', username]);
       }
       else if(rsp == 'f')
       {
         window.location.reload();
       }
-      this.signInStatus = rsp;
-
+      
     })
   }
 }
