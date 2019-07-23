@@ -9,7 +9,7 @@ import { Band } from './classes/band';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Career Lattice';
   roleID = -1;
   roleName = '';
@@ -20,8 +20,14 @@ export class AppComponent {
 
   data: DataService;
 
+  isLoggedIn: boolean;
+
   constructor(dataService: DataService, private modalService: NgbModal) {
     this.data = dataService;
+  }
+
+  ngOnInit() {
+    this.isLoggedIn = this.data.isLoggedIn;
   }
 
   openModal(content, id, name, summary, link) {

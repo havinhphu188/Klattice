@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  constructor(dataService: DataService, private modalService: NgbModal) {
+  constructor(dataService: DataService, private modalService: NgbModal, private router: Router) {
     this.data = dataService;
+
+    if(!this.isLoggedIn)
+    {
+      router.navigate(['/login']);
+    }
   }
 
   title = 'Career Lattice';
@@ -22,6 +28,11 @@ export class HomeComponent {
   bandID = -1;
 
   data: DataService;
+  isLoggedIn: boolean;
+
+  ngOnInit()  {
+    this.isLoggedIn = this.data.isLoggedIn; 
+  }
 
   openModal(content, id, name, summary, link) {
     this.roleID = id;

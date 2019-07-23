@@ -61,7 +61,7 @@ export class LoginComponent {
       else if(rsp == 'e')
       {
         alert('Hello employee');
-        this.router.navigate(['/home', username]);
+        this.router.navigate(['/', username]);
       }
       else if(rsp == 'f')
       {
@@ -69,6 +69,7 @@ export class LoginComponent {
         window.location.reload();
       }
       this.signInStatus = rsp;
+
     })
   }
 }

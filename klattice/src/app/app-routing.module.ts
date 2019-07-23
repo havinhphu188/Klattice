@@ -10,7 +10,7 @@ import { CentralserviceteamsComponent } from './components/centralserviceteams/c
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: '1', component: SalesandmarketingComponent },
   { path: '2', component: TechnicalComponent },
   { path: '3', component: ConsultingComponent },
