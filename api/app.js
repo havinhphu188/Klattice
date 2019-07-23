@@ -36,6 +36,7 @@ app.get("/user-details", function(req, res) {
     loggedIn: session.loggedIn,
     username: session.username
   });
+});
 
 app.post("/user-details", async function(req, res) {
   var username = req.body.params.username;
