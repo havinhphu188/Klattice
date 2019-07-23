@@ -19,7 +19,7 @@ export class AdminRoleComponent implements OnInit {
   constructor(dataService: DataService) {
     this.data = dataService;
   }
-  
+
 
   filter_capability_id = null;
   formShow = false;

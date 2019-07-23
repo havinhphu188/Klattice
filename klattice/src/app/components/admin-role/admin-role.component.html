@@ -4,9 +4,12 @@
 (click)="openForm()">Add Role</button>
 
 <div [hidden]="!formShow">
-    <form (ngSubmit)="addRole(addForm)" #addForm="ngForm">
-        <select [(ngModel)]="family_id" name="family_id" (change)="clearCapability()">
-            <option value=""></option>
+  <div class="panel panel-default">
+    <br>
+    <br>
+    <form class="form-inline form" (ngSubmit)="addRole(addForm)" #addForm="ngForm" required>
+        <select required [(ngModel)]="family_id" name="family_id" (change)="clearCapability()" >
+            <option [ngValue]="null">Select Category</option>
             <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
         </select>
         <select [(ngModel)]="newRole.capability_id" name="capability_id" required>
@@ -25,6 +28,7 @@
         <button type="submit" value="Submit">Submit</button>
         <button type="button" value="Cancel" (click)="cancelForm()">Cancel</button>
     </form>
+  </div>
 </div>
 
 <table class="table table-borderless">
@@ -35,7 +39,7 @@
                 Family
             </span>
             <select [(ngModel)]="filter_family_id" name="filter_family_id" (change)="clearFilterCapability()">
-                <option value=""></option>
+                <option value="">All</option>
                 <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
             </select>
         </th>
@@ -44,7 +48,7 @@
                 Capability
             </span>
             <select [(ngModel)]="filter_capability_id" name="filter_capability_id">
-                <option value=""></option>
+                <option value="">All</option>
                 <option *ngFor="let capability of data.capabilities | async | filterCapabilityByFamilyid: filter_family_id" value="{{capability.capability_id}}">{{capability.capability_name}}</option>
             </select>
 
