@@ -4,12 +4,11 @@
 (click)="openForm()">Add Role</button>
 
 <div [hidden]="!formShow">
-  <div class="panel panel-default">
-    <br>
-    <br>
+  <div id="addForm" class="panel panel-default">
+
     <form class="form-inline form" (ngSubmit)="addRole(addForm)" #addForm="ngForm" required>
         <select required [(ngModel)]="family_id" name="family_id" (change)="clearCapability()" >
-            <option [ngValue]="null">Select Category</option>
+            <option value="" disabled selected>Select something...</option>
             <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
         </select>
         <select [(ngModel)]="newRole.capability_id" name="capability_id" required>
