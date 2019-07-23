@@ -24,4 +24,5 @@ install:
   - npm install ng-common
 
 script:
+  - cd klattice/
   - ng test --watch=false --browsers=ChromeHeadless
