@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { Band } from './classes/band';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +16,7 @@ export class AppComponent implements OnInit {
   roleLink = '';
 
   bandID = -1;
+  bandName = '';
 
   data: DataService;
 
@@ -38,8 +38,9 @@ export class AppComponent implements OnInit {
     this.modalService.open(content, {size: 'lg', ariaLabelledBy: 'modal-basic-title'});
   }
 
-  openCompModal(competencyModal, band_id) {
+  openCompModal(competencyModal, band_id, band_name) {
     this.bandID = band_id;
+    this.bandName = band_name;
     this.modalService.open(competencyModal, {size: 'lg', ariaLabelledBy: 'modal-basic-title'});
   }
 

@@ -9,19 +9,17 @@ app.listen(7999, function() {
     console.log('Express started');
 });
 
-app.get('/getroles', function(req, res) {
+app.get('/roles', function(req, res) {
     updateRoles(function(){
         res.send(roles);
     });
 });
 
-app.get('/userdetails', function(req, res)
-{
+app.get('/user-details', function(req, res){
     res.send('');
 });
 
-app.post('/userdetails', async function(req,res)
-{
+app.post('/user-details', async function(req,res){
     var username = req.body.params.username;
     var password = req.body.params.password;
     
@@ -29,35 +27,56 @@ app.post('/userdetails', async function(req,res)
     switch(ans)
     {
         case 1:
-            loginStatus = 'a';
             res.send({status: 'a'});
             break;
         case 0:
-            loginStatus = 'e';
             res.send({status: 'e'});
             break;
         case -1:
-            loginStatus  = 'f';
             res.send({status: 'f'});
             break;
     }
 });
 
-app.get('/getcapability', function(req, res){
+app.get('/capability', function(req, res){
     updateCapability(function(){
         res.send(capability)
     });
 });
 
-app.get('/getbands', function(req, res){
+app.get('/bands', function(req, res){
     updateBands(function(){
         res.send(bands)
     });
 });
 
-app.get('/getfamilies', function(req, res){
+app.get('/families', function(req, res){
     updateFamilies(function(){
         res.send(families)
+    });
+});
+
+app.get('/band-competency', function(req, res) {
+    updateBandCompetency(function(){
+        res.send(bandCompetency);
+    });
+});
+
+app.get('/competency', function(req, res) {
+    updateCompetency(function(){
+        res.send(competencies);
+    });
+});
+
+app.get('/title', function(req, res) {
+    updateTitle(function(){
+        res.send(titles);
+    });
+});
+
+app.get('/band-titles', function(req, res){
+    updateBandTitles(function(){
+        res.send(bandTitles)
     });
 });
 
@@ -68,8 +87,7 @@ function updateRoles(rolesfn){
     });
 }
 
-async function authenticate(userName, password)
-{
+async function authenticate(userName, password){
     var ans = -1
     ans = await db.getUser(userName, password);
     return ans;
@@ -96,7 +114,39 @@ function updateFamilies(familiesfn){
     });
 }
 
+function updateBandCompetency(bandCompetencyfn){
+    db.getBandCompetency(function(rows){
+        bandCompetency = rows;
+        bandCompetencyfn();
+    });
+}
+
+function updateCompetency(Competencyfn){
+    db.getCompetency(function(rows){
+        competencies = rows;
+        Competencyfn();
+    });
+}
+
+function updateTitle(Titlefn){
+    db.getTitle(function(rows){
+        titles = rows;
+        Titlefn();
+    });
+}
+
+function updateBandTitles(bandTitlesfn){
+    db.getBandTitles(function(rows){
+        bandTitles = rows;
+        bandTitlesfn();
+    });
+}
+
 roles = [];
+competencies = [];
+bandCompetency = [];
+titles = [];
 capability = [];
 bands = [];
 families = [];
+bandTitles = [];
