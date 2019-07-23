@@ -14,7 +14,6 @@ export class AdminRoleComponent implements OnInit {
   submitted = false;
 
   family_id: null;
-  summary_link_pattern = "^https://kainossoftwareltd.sharepoint.com/:b:/r/people/Shared%20Documents/Job%20Descriptions/";
 
   constructor(dataService: DataService) {
     this.data = dataService;
@@ -55,7 +54,10 @@ export class AdminRoleComponent implements OnInit {
   addRole(addForm): void {
     if (addForm.valid) {
       this.submitted = true;
+      console.log(this.newRole);
+      console.log(this.data.roles);
       this.data.addRole(this.newRole);
+      console.log(this.data.roles);
     } else {
       console.log('Form is invalid');
     }
