@@ -21,20 +21,6 @@ exports.getRoles = function(callback) {
   );
 };
 
-//-1 = failed, 0 = employee, 1 = admin
-exports.getUser = function(userName, userPassword) {
-  return new Promise(function(resolve, reject) {
-    db.query(getUserQuery, [userName, userPassword], function(err, rows) {
-      result = -1;
-      if (err) throw err;
-      if (rows.length > 0 && rows[0].user_type == "admin") result = 1;
-      else if (rows.length > 0 && rows[0].user_type == "employee") result = 0;
-      else result = -1;
-
-      resolve(result);
-    });
-});
-}
 
 exports.getRoleFamilies = function (callback) {
     db.query(
@@ -47,6 +33,24 @@ exports.getRoleFamilies = function (callback) {
     );
 }
 
+exports.getUser = function (userName, userPassword){   
+    console.log(userPassword)
+    return new Promise(function(resolve, reject) {
+    var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";
+    db.query(
+        queryValidateUserExists, [userName, userPassword], 
+        function (err, rows)
+        {
+          result = -1;
+          if (err) throw err;
+          if (rows.length > 0 && rows[0].user_type == "admin") result = 1;
+          else if (rows.length > 0 && rows[0].user_type == "employee") result = 0;
+          else result = -1;
+    
+          resolve(result);
+        });
+    });
+}
 
 exports.addRole = function (roleObject){
     return new Promise(function(resolve, reject){
