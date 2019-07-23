@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { DataService } from "./data.service";
+import { DataService } from "../../data.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: "app-main",
+  templateUrl: "./main.component.html",
+  styleUrls: ["./main.component.css"]
 })
-export class AppComponent implements OnInit {
+export class MainComponent {
   title = "Career Lattice";
   roleID = -1;
   roleName = "";
@@ -15,20 +15,11 @@ export class AppComponent implements OnInit {
   roleLink = "";
 
   bandID = -1;
-  bandName = "";
-
-  isLoggedIn: boolean;
 
   data: DataService;
 
   constructor(dataService: DataService, private modalService: NgbModal) {
     this.data = dataService;
-  }
-
-  ngOnInit() {
-    this.data.loginDetails.subscribe(x => {
-      this.isLoggedIn = x["loggedIn"];
-    });
   }
 
   openModal(content, id, name, summary, link) {
@@ -42,7 +33,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  openCompModal(competencyModal, band_id, band_name) {
+  openCompModal(competencyModal, band_id) {
     this.bandID = band_id;
     this.modalService.open(competencyModal, {
       size: "lg",
