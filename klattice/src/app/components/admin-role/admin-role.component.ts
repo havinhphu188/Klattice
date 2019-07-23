@@ -14,11 +14,14 @@ export class AdminRoleComponent implements OnInit {
   submitted = false;
 
   family_id: null;
+  summary_link_pattern = "^https://kainossoftwareltd.sharepoint.com/:b:/r/people/Shared%20Documents/Job%20Descriptions/";
 
   constructor(dataService: DataService) {
     this.data = dataService;
   }
   
+
+
   formShow = false;
   data: DataService;
 
@@ -29,6 +32,16 @@ export class AdminRoleComponent implements OnInit {
       this.formShow = true;
     else
       this.formShow = false;
+  }
+
+  cancelForm() {
+    this.formShow = false;
+    this.family_id = null;
+    this.newRole = new Role();
+  }
+
+  clearCapability() {
+    this.newRole.capability_id = null;
   }
 
   ngOnInit() {

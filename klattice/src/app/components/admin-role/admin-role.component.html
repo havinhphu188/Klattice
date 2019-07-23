@@ -1,29 +1,29 @@
 <h1>Role</h1>
 
 <button type="button" class="btn btn-primary" 
-(click)="openForm()">
-    Add Role</button>
+(click)="openForm()">Add Role</button>
 
 <div [hidden]="!formShow">
     <form (ngSubmit)="addRole(addForm)" #addForm="ngForm">
-        <select [(ngModel)]="family_id" name="family_id">
-                <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
-       
+        <select [(ngModel)]="family_id" name="family_id" required (change)="clearCapability()">
+            <option value=""></option>
+            <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
         </select>
-             {{newRole.family_id}}
-        <select [(ngModel)]="newRole.capability_id" name="capability_id" >
+        <select [(ngModel)]="newRole.capability_id" name="capability_id" required>
+            <option value="" ng-selected="family_id"></option>
             <option *ngFor="let capability of data.capabilities | async | filterCapabilityByFamilyid: family_id" value="{{capability.capability_id}}">{{capability.capability_name}}</option>
         </select>
-        <input type="text" [(ngModel)]="newRole.role_name" name="role_name">
-        <textarea [(ngModel)]="newRole.role_summary" name="role_summary"></textarea>
-        <textarea [(ngModel)]="newRole.role_sum_link" name="role_sum_link"></textarea>
+        <input type="text" [(ngModel)]="newRole.role_name" name="role_name" required>
+        <textarea [(ngModel)]="newRole.role_summary" name="role_summary" required></textarea>
+        <textarea [(ngModel)]="newRole.role_sum_link" name="role_sum_link" required pattern="https://kainossoftwareltd.sharepoint.com/:b:/r/people/Shared%20Documents/Job%20Descriptions/.+"></textarea>
 
-        <select [(ngModel)]="newRole.band_id" name="band_id">
-                <option *ngFor="let band of data.bands | async" value="{{band.band_id}}">{{band.band_name}}</option>
+        <select [(ngModel)]="newRole.band_id" name="band_id" required>
+            <option value=""></option>
+            <option *ngFor="let band of data.bands | async" value="{{band.band_id}}">{{band.band_name}}</option>
         </select>
 
         <button type="submit" value="Submit">Submit</button>
-        <input type="button" value="Cancel">
+        <button type="button" value="Cancel" (click)="cancelForm()">Cancel</button>
     </form>
 </div>
 
