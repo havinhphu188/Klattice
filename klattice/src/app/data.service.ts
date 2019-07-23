@@ -9,6 +9,7 @@ import { BandCompetency } from './classes/band-competency';
 import { Title } from './classes/title';
 import { BandTitle } from './classes/band-title';
 import { Family } from './classes/family';
+import { RoleFamily } from './classes/role-family';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class DataService {
   bandCompetencies = this.http.get<BandCompetency[]>('api/band-competency').toPromise();
   bandTitles = this.http.get<BandTitle[]>('api/band-titles').toPromise();
   families = this.http.get<Family[]>('api/families').toPromise();
+  roleFamilies = this.http.get<RoleFamily[]>('api/role-families').toPromise();
 
 
   addRole(newRole: Role): any {

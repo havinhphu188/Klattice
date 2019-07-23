@@ -33,7 +33,7 @@
             <span>
                 Family
             </span>
-            <select [(ngModel)]="filter_family_id" name="filter_family_id">
+            <select [(ngModel)]="filter_family_id" name="filter_family_id" (change)="clearFilterCapability()">
                 <option value=""></option>
                 <option *ngFor="let family of data.families | async" value="{{family.family_id}}">{{family.family_name}}</option>
             </select>
@@ -42,7 +42,7 @@
             <span>
                 Capability
             </span>
-            <select [(ngModel)]="filter_capability_id" name="filter_capability_id" >
+            <select [(ngModel)]="filter_capability_id" name="filter_capability_id">
                 <option value=""></option>
                 <option *ngFor="let capability of data.capabilities | async | filterCapabilityByFamilyid: filter_family_id" value="{{capability.capability_id}}">{{capability.capability_name}}</option>
             </select>
@@ -64,7 +64,8 @@
             </select>
         </th>
     </thead>
-    <tr *ngFor="let role of data.roles | async | filterAdminRole: filter_family_id: filter_capability_id: filter_band_id: filter_role_name">
+    <tbody *ngFor="let roleFamily of data.roleFamilies | async | filterRoleFamily: filter_family_id">
+    <tr *ngFor="let role of data.roles | async | filterAdminRole: roleFamily.role_id: filter_capability_id: filter_band_id: filter_role_name">
         <td>
             <div *ngFor="let family of data.families | async">
                 <div *ngFor="let capability of data.capabilities | async">
@@ -91,8 +92,8 @@
                 </span>
             </span>
         </td>
-
     </tr>
+    </tbody>
 </table>
 
 
