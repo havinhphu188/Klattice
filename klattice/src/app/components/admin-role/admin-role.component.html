@@ -60,7 +60,7 @@
                 Band
             </span>
             <select [(ngModel)]="filter_band_id" name="filter_band_id">
-                <option value="All"></option>
+                <option value="">All</option>
                 <option *ngFor="let band of data.bands | async" value="{{band.band_id}}">{{band.band_name}}</option>
             </select>
         </th>
