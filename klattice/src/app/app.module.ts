@@ -13,11 +13,11 @@ import { FilterTitleByIdPipe } from "./filter-title-by-id.pipe";
 import { FilterBandCompetencyByIdPipe } from "./filter-band-competency-by-id.pipe";
 import { FilterCompetencyForDisplayPipe } from "./filter-competency-for-display.pipe";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { SortByPipe } from "./sort-by.pipe";
-import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HomeComponent } from "./components/home/home.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { CapabilityFilterPipe } from "./capability-filter.pipe";
+import { SortByPipe } from "./sort-by.pipe";
 import { MainComponent } from "./components/main/main.component";
 
 @NgModule({

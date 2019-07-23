@@ -7,17 +7,6 @@ const db = mysql.createConnection({
   database: "klattice"
 });
 
-var getUserQuery =
-  "SELECT user_name, user_password, user_type FROM user WHERE user_name = " +
-  "'" +
-  userName +
-  "'" +
-  " AND user_password = " +
-  "'" +
-  userPassword +
-  "'" +
-  ";";
-
 exports.getRoles = function(callback) {
   db.query(
     "SELECT role_id, role_name, role_summary, role_sum_link, capability_id, band_id FROM role;",
@@ -32,6 +21,16 @@ exports.getRoles = function(callback) {
 //-1 = failed, 0 = employee, 1 = admin
 exports.getUser = function(userName, userPassword) {
   return new Promise(function(resolve, reject) {
+    const getUserQuery =
+      "SELECT user_name, user_password, user_type FROM user WHERE user_name = " +
+      "'" +
+      userName +
+      "'" +
+      " AND user_password = " +
+      "'" +
+      userPassword +
+      "'" +
+      ";";
     db.query(getUserQuery, [userName, userPassword], function(err, rows) {
       result = -1;
       if (err) throw err;
