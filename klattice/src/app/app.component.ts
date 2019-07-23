@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
     this.data.loginDetails.subscribe(x => {
       this.isLoggedIn = x["loggedIn"];
     });
-
   }
 
   openModal(content, id, name, summary, link) {

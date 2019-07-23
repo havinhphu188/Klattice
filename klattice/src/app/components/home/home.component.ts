@@ -59,8 +59,7 @@ export class HomeComponent implements OnInit {
   DEFAULT_COLOUR = "#777";
 
   data: DataService;
-
-
+  
   ngOnInit() {
     this.sub = this.route.data.subscribe(x => {
       this.capabilityTitle = x["capabilityTitle"];
