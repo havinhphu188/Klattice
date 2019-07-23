@@ -17,7 +17,7 @@
         </select>
         <input type="text" [(ngModel)]="newRole.role_name" name="role_name" required>
         <textarea [(ngModel)]="newRole.role_summary" name="role_summary" required></textarea>
-        <textarea [(ngModel)]="newRole.role_sum_link" name="role_sum_link" required pattern="https://kainossoftwareltd.sharepoint.com/:b:/r/people/Shared%20Documents/Job%20Descriptions/.+"></textarea>
+        <textarea [(ngModel)]="newRole.role_sum_link" name="role_sum_link" required appSharepoint></textarea>
 
         <select [(ngModel)]="newRole.band_id" name="band_id" required>
             <option value=""></option>

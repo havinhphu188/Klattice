@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 import { Role } from './classes/role';
 import { Capability } from './classes/capability';
@@ -12,7 +12,7 @@ import { Family } from './classes/family';
 import { RoleFamily } from './classes/role-family';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DataService {
   constructor(private http: HttpClient) { }
@@ -25,6 +25,7 @@ export class DataService {
   bandTitles = this.http.get<BandTitle[]>('api/band-titles').toPromise();
   families = this.http.get<Family[]>('api/families').toPromise();
   roleFamilies = this.http.get<RoleFamily[]>('api/role-families').toPromise();
+  loginDetails = this.http.get<JSON>('api/user-details');
 
 
   addRole(newRole: Role): any {
