@@ -31,10 +31,7 @@
 //         loginComponent.onClickSubmit("employee", "empPass")
 //         expect(location.path).toBe('/home/employee');
         
-//         // app.getData((promise) => {
-//         //     assert.isArray(promise);
-//         //     expect(promise).to.have.lengthOf(3);
-//         // });
+
 //     });
 
 //     it('Chai Spy',()=>{
