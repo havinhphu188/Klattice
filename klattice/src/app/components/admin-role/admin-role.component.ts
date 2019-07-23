@@ -21,7 +21,7 @@ export class AdminRoleComponent implements OnInit {
   }
   
 
-
+  filter_capability_id = null;
   formShow = false;
   data: DataService;
 
@@ -42,6 +42,10 @@ export class AdminRoleComponent implements OnInit {
 
   clearCapability() {
     this.newRole.capability_id = null;
+  }
+
+  clearFilterCapability() {
+    this.filter_capability_id = null;
   }
 
   ngOnInit() {

@@ -15,6 +15,12 @@ app.get('/roles', function(req, res) {
     });
 });
 
+app.get('/role-families', function(req, res) {
+    updateRoleFamilies(function() {
+        res.send(roleFamiles);
+    })
+})
+
 app.get('/user-details', function(req, res){
     res.send('');
 });
@@ -91,6 +97,13 @@ function updateRoles(rolesfn){
     });
 }
 
+function updateRoleFamilies(rolefamaliesfn){
+    db.getRoleFamilies(function(rows){
+        roleFamiles = rows;
+        rolefamaliesfn();
+    });
+}
+
 async function authenticate(userName, password){
     var ans = -1
     password = saltedHash(password);
@@ -162,6 +175,7 @@ function updateBandTitles(bandTitlesfn){
 }
 
 roles = [];
+roleFamiles = [];
 competencies = [];
 bandCompetency = [];
 titles = [];

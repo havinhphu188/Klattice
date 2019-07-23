@@ -18,6 +18,17 @@ exports.getRoles = function (callback) {
     );
 }
 
+exports.getRoleFamilies = function (callback) {
+    db.query(
+        "SELECT role_id, family_id FROM role_family;",
+        function (err, rows) {
+            if (err, rows) {
+                callback(rows);
+            }
+        }
+    );
+}
+
 exports.getUser = function (userName, userPassword){   
     console.log(userPassword)
     return new Promise(function(resolve, reject) {

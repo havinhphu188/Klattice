@@ -28,6 +28,7 @@ import { FilterCompetencyForDisplayPipe } from './filter-competency-for-display.
 import { FilterCapabilityByFamilyidPipe } from './filter-capability-by-familyid.pipe';
 import { FilterAdminRolePipe } from './filter-admin-role.pipe';
 import { SharepointDirective } from './sharepoint.directive';
+import { FilterRoleFamilyPipe } from './filter-role-family.pipe';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SharepointDirective } from './sharepoint.directive';
     FilterCompetencyForDisplayPipe,
     FilterCapabilityByFamilyidPipe,
     FilterAdminRolePipe,
-    SharepointDirective
+    SharepointDirective,
+    FilterRoleFamilyPipe
   ],
   imports: [
     BrowserModule,
