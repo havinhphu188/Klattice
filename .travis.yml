@@ -16,8 +16,6 @@ cache:
   directories:
     - ./node_modules
 
-"test-headless": "ng test --watch=false --browsers=ChromeHeadless"
-
 install:
   - npm install
   - npm install angular
@@ -26,4 +24,4 @@ install:
 
 script:
   - echo "skipping tests"
-  - npm run test-headless
+  - ng test --watch=false --browsers=ChromeHeadless
