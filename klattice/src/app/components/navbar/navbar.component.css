@@ -24,7 +24,7 @@
 .mainHeader {
   z-index: 10;
   background-color: #003471;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   box-shadow: 0 1px 2px 1px hsla(0, 0%, 0%, 0.1);
