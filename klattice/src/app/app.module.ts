@@ -9,23 +9,23 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from "./components/login/login.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { RoleModalComponent } from "./components/role-modal/role-modal.component";
 import { SortByPipe } from "./sort-by.pipe";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { CapabilityFilterPipe } from "./capability-filter.pipe";
+import { MainComponent } from "./components/main/main.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RoleModalComponent,
     SortByPipe,
     NavbarComponent,
     HomeComponent,
     SidebarComponent,
-    CapabilityFilterPipe
+    CapabilityFilterPipe,
+    MainComponent
   ],
   imports: [
     BrowserModule,
