@@ -40,7 +40,6 @@ public class GiftCards extends BaseTest {
             driver.findElementByXPath(xpathCountAllFields).click();
             String xpathCountAllDivFields = "//div[@class=\"roleName\"]";
             int totalDivDisplayed = driver.findElementsByXPath(xpathCountAllDivFields).size();
-            int zero = 0;
             boolean isgreater = false;
             driver.findElementByXPath(xpathCountAllFields).click();
             if (totalDivDisplayed > 0) {
@@ -49,8 +48,18 @@ public class GiftCards extends BaseTest {
 
                 assertThat(isgreater, is(true));
             }
-
         }
+    }
+
+    @Test(groups = regression)
+    public void signOutIsClickable() {
+        String xpathSignOutBtn = "//button[contains(text(), ' Sign out ')]";
+        driver.findElementByXPath(xpathSignOutBtn).click();
+        String xpathLogin = "//h3[contains(text(), \"Login\")]";
+        assertThat(driver.findElementByXPath(xpathLogin), is(true));
+    }
+
+
 
 
 //    @Test (groups = regression)
@@ -93,5 +102,4 @@ public class GiftCards extends BaseTest {
 //        driver.findElementByXPath(xpathPrimeCheckBoxSelectableItem).click();
 //    }
 
-    }
 }

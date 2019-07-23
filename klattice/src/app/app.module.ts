@@ -19,6 +19,7 @@ import { ConsultingComponent } from './components/consulting/consulting.componen
 import { ExperiencedesignComponent } from './components/experiencedesign/experiencedesign.component';
 import { ManagementComponent } from './components/management/management.component';
 import { CentralserviceteamsComponent } from './components/centralserviceteams/centralserviceteams.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
