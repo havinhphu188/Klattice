@@ -1,6 +1,6 @@
-<h1>Role</h1>
-
-<button type="button" class="btn btn-primary" 
+<div class="container">
+  <h2 class="float-left">Add/Edit/Delete Role's</h2>
+  <button type="button" id="addbtn" class="btn  float-right"
 (click)="openForm()">Add Role</button>
 
 <div [hidden]="!formShow">
@@ -27,8 +27,9 @@
     </form>
 </div>
 
-<table class="table">
-    <thead>
+<table class="table table-borderless">
+
+    <thead id="tableHeadRole">
         <th>
             <span>
                 Family
@@ -59,11 +60,13 @@
                 Band
             </span>
             <select [(ngModel)]="filter_band_id" name="filter_band_id">
-                <option value=""></option>
+                <option value="All"></option>
                 <option *ngFor="let band of data.bands | async" value="{{band.band_id}}">{{band.band_name}}</option>
             </select>
         </th>
     </thead>
+    <tbody>
+
     <tr *ngFor="let role of data.roles | async | filterAdminRole: filter_family_id: filter_capability_id: filter_band_id: filter_role_name">
         <td>
             <div *ngFor="let family of data.families | async">
@@ -93,6 +96,8 @@
         </td>
 
     </tr>
+    </tbody>
 </table>
+</div>
 
 
