@@ -31,6 +31,26 @@ export class HomeComponent implements OnInit {
   bandID = -1;
   bandName: string;
 
+  EXECUTIVE_BAND = "Executive";
+  LEADERSHIP_COMMUNITY_BAND = "Leadership Community";
+  PRINCIPAL_BAND = "Principal";
+  MANAGER_BAND = "Manager";
+  CONSULTANT_BAND = "Consultant";
+  SENIOR_ASSOCIATE_BAND = "SeniorAssociate";
+  ASSOCIATE_BAND = "Associate";
+  TRAINEE_BAND = "Trainee";
+  APPRENTICE_BAND = "Apprentice";
+
+  EXECUTIVE_BAND_ID = 1;
+  LEADERSHIP_COMMUNITY_BAND_ID = 2;
+  PRINCIPAL_BAND_ID = 3;
+  MANAGER_BAND_ID = 4;
+  CONSULTANT_BAND_ID = 5;
+  SENIOR_ASSOCIATE_BAND_ID = 6;
+  ASSOCIATE_BAND_ID = 7;
+  TRAINEE_BAND_ID = 8;
+  APPRENTICE_BAND_ID = 9;
+
   data: DataService;
 
   ngOnInit() {
@@ -62,26 +82,40 @@ export class HomeComponent implements OnInit {
   }
 
   setBandColour(name) {
-    if (name === "Executive") return "#5C068C";
-    if (name === "Leadership Community") return "#5C068C";
-    if (name === "Principal") return "#5C068C";
-    if (name === "Manager") return "#00558C";
-    if (name === "Consultant") return "#00558C";
-    if (name === "SeniorAssociate") return "#00558C";
-    if (name === "Associate") return "#009639";
-    if (name === "Trainee") return "#009639";
-    if (name === "Apprentice") return "#009639";
+    switch (name) {
+      case this.EXECUTIVE_BAND:
+      case this.LEADERSHIP_COMMUNITY_BAND:
+      case this.PRINCIPAL_BAND:
+        return "#5C068C";
+      case this.MANAGER_BAND:
+      case this.CONSULTANT_BAND:
+      case this.SENIOR_ASSOCIATE_BAND:
+        return "#00558C";
+      case this.ASSOCIATE_BAND:
+      case this.TRAINEE_BAND:
+      case this.APPRENTICE_BAND:
+        return "#009639";
+      default:
+        return "#777";
+    }
   }
 
   setModalHeaderColour() {
-    if (this.bandID === 1) return "#5C068C";
-    if (this.bandID === 2) return "#5C068C";
-    if (this.bandID === 3) return "#5C068C";
-    if (this.bandID === 4) return "#00558C";
-    if (this.bandID === 5) return "#00558C";
-    if (this.bandID === 6) return "#00558C";
-    if (this.bandID === 7) return "#009639";
-    if (this.bandID === 8) return "#009639";
-    if (this.bandID === 9) return "#009639";
+    switch (this.bandID) {
+      case this.EXECUTIVE_BAND_ID:
+      case this.LEADERSHIP_COMMUNITY_BAND_ID:
+      case this.PRINCIPAL_BAND_ID:
+        return "#5C068C";
+      case this.MANAGER_BAND_ID:
+      case this.CONSULTANT_BAND_ID:
+      case this.SENIOR_ASSOCIATE_BAND_ID:
+        return "#00558C";
+      case this.ASSOCIATE_BAND_ID:
+      case this.TRAINEE_BAND_ID:
+      case this.APPRENTICE_BAND_ID:
+        return "#009639";
+      default:
+        return "#777";
+    }
   }
 }

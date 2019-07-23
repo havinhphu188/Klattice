@@ -9,3 +9,7 @@
 ::ng-deep .card-body {
   padding: 10px 15px 0px 15px;
 }
+
+.roleSummary {
+  padding-bottom: 2rem;
+}
