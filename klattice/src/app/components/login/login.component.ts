@@ -43,7 +43,6 @@ export class LoginComponent {
       value["isAdmin"] = isAdmin;
       value["loggedIn"] = true;
       value["username"] = username;
-      console.log(value);
     });
   }
 
@@ -63,11 +62,9 @@ export class LoginComponent {
 
         if (rsp == "a") {
           this.successfulLogin(true, username);
-          //this.router.navigate(["/home", username]);
           window.location.reload();
         } else if (rsp == "e") {
           this.successfulLogin(false, username);
-          //this.router.navigate(["/home", username]);
           window.location.reload();
         } else if (rsp == "f") {
           alert("Failed");

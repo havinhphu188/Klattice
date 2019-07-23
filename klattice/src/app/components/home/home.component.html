@@ -34,7 +34,8 @@
                         role.role_id,
                         role.role_name,
                         role.role_summary,
-                        role.role_sum_link
+                        role.role_sum_link,
+                        role.band_id
                       )
                     "
                   >
@@ -47,18 +48,20 @@
                   </div>
                 </div>
                 <div class="col-3">
-                  <div *ngFor="let band of data.bands | async">
+                  <div class="jobBand" *ngFor="let band of data.bands | async">
                     <span
-                      class="jobBand"
+                      class="jobBandText badge badge-primary"
+                      [style.background-color]="setBandColour(band.band_name)"
                       *ngIf="band.band_id === role.band_id"
-                      (click)="openCompModal(competencyModal, band.band_id)"
+                      (click)="
+                        openCompModal(
+                          competencyModal,
+                          band.band_id,
+                          band.band_name
+                        )
+                      "
                     >
-                      <button
-                        class="btn btn-link my-2 my-sm-0 compBtn"
-                        type="button"
-                      >
-                        {{ band.band_name }}
-                      </button>
+                      {{ band.band_name }}
                     </span>
                   </div>
                 </div>
@@ -73,15 +76,17 @@
 
 <!-- JOB SPEC MODAL -->
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{ roleName }}</h4>
+  <div class="modal-header" [style.background-color]="setModalHeaderColour()">
+    <h4 class="modal-title" id="modal-basic-title" style="color: #ffffff">
+      {{ roleName }}
+    </h4>
     <button
       type="button"
       class="close"
       aria-label="Close"
       (click)="modal.dismiss('Cross click')"
     >
-      <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true" style="color: #ffffff">&times;</span>
     </button>
   </div>
   <div class="modal-body">
@@ -107,14 +112,17 @@
 
 <!-- COMPETENCY MODAL -->
 <ng-template #competencyModal let-modal>
-  <div class="modal-header">
+  <div class="modal-header" [style.background-color]="setModalHeaderColour()">
+    <h4 class="modal-title" id="modal-basic-title" style="color: #ffffff">
+      {{ bandName }}
+    </h4>
     <button
       type="button"
       class="close"
       aria-label="Close"
       (click)="modal.dismiss('Cross click')"
     >
-      <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true" style="color: #ffffff">&times;</span>
     </button>
   </div>
   <div class="modal-body">

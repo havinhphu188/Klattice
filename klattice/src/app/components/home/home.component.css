@@ -1,0 +1,11 @@
+.jobBandText {
+  padding: 0.5rem;
+  color: #ffffff;
+  font-size: 12px;
+  text-align: center;
+  z-index: 12;
+}
+
+::ng-deep .card-body {
+  padding: 10px 15px 0px 15px;
+}

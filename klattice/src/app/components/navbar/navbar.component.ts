@@ -30,13 +30,10 @@ export class NavbarComponent implements OnInit {
   }
 
   signUserOut() {
-    this.http.post("/api/signout", "").subscribe(respponse => {
+    this.http.post("/api/signout", "").subscribe(res => {
       this.resetLogInDetails();
       window.location.reload();
     });
-
-    //this.router.navigate(["/home", username]);
-    //window.location.reload();
   }
 
   resetLogInDetails() {
@@ -44,7 +41,6 @@ export class NavbarComponent implements OnInit {
       value["isAdmin"] = false;
       value["loggedIn"] = false;
       value["username"] = null;
-      console.log(value);
     });
   }
 }
