@@ -21,7 +21,7 @@ install:
   - npm install angular
   - npm install express
   - npm install mysql
+  - npm install ng-common
 
 script:
-  - echo "skipping tests"
   - ng test --watch=false --browsers=ChromeHeadless
