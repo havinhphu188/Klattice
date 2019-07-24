@@ -93,25 +93,25 @@ app.post("/signout", function(req, res) {
   });
 });
 
-async function authenticate(userName, password, res){
-    var ans = await db.getUser(userName, password);
+async function authenticate(username, password, res){
+    var authStatus = await db.getUser(username, password);
 
-    switch(ans)
+    switch(authStatus)
     {
       case 'a':
         session.isAdmin = true;
         session.loggedIn = true;
-        session.username = userName;
+        session.username = username;
         break;
       case 'e':
         session.isAdmin = false;
         session.loggedIn = true;
-        session.username = userName;
+        session.username = username;
           break;
     }
 
     res.send({
-      status: ans,
+      status: authStatus,
       isAdmin: session.isAdmin,
       loggedIn: session.loggedIn,
       username: session.username

@@ -7,6 +7,5 @@ exports.saltedHash = function(password)
     newPassword+= salt;
     newPassword = hash.SHA224(newPassword);
 
-    var passStr = new String(newPassword);
-    return passStr; 
+    return new String(newPassword); 
 }

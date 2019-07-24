@@ -7,18 +7,23 @@ const db = mysql.createConnection({
   database: "klattice"
 });
 
-exports.getUser = function (userName, userPassword){   
+exports.getUser = function (username, userPassword){   
     return new Promise(function(resolve, reject) {
     var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";
     db.query(
-        queryValidateUserExists, [userName, userPassword], 
+        queryValidateUserExists, [username, userPassword], 
         function (err, rows)
         {
             result ='f';
-            if (err) throw err;
-            if(rows.length > 0 && rows[0].user_type == 'admin') result = 'a'; 
-            else if(rows.length > 0 && rows[0].user_type == 'employee') result = 'e'; 
-            
+            if (err) {
+              throw err;
+            }
+            if(rows.length > 0 && rows[0].user_type == 'admin') {
+              result = 'a'; 
+            }
+            else if(rows.length > 0 && rows[0].user_type == 'employee') {
+               result = 'e'; 
+            }
             resolve(result);
         }
     );
