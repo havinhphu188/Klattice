@@ -40,6 +40,8 @@ exports.getUser = function (username, userPassword){
     );
 });
 }
+const getUserQuery = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?";
+
 
 exports.getRoles = function(callback) {
   db.query(
