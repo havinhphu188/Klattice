@@ -40,8 +40,6 @@ exports.getUser = function (username, userPassword){
     );
 });
 }
-const getUserQuery = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?";
-
 
 exports.getRoles = function(callback) {
   db.query(
@@ -90,17 +88,6 @@ exports.getCapability = function(callback) {
 
 exports.getTitle = function(callback) {
   db.query("SELECT title_id, title_name FROM title;", function(err, rows) {
-    if ((err, rows)) {
-      callback(rows);
-    }
-  });
-};
-
-exports.getBandCompetency = function(callback) {
-  db.query("SELECT competency_id, band_id FROM band_competency;", function(
-    err,
-    rows
-  ) {
     if ((err, rows)) {
       callback(rows);
     }

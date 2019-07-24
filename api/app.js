@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require("./db");
-const hash = require("crypto").createHash;
 
-var loginStatus = "f"; //f = not signed ins
 var session = {
   username: "",
   loggedIn: false,
