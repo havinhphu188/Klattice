@@ -168,6 +168,12 @@
             </div>
           </div>
         </ul>
+        <h4>Responsibilities</h4>
+        <ul *ngFor="let responsibility of data.responsibilities | async">
+          <li *ngIf="responsibility.band_id === bandID" style="margin-top: -15px; margin-bottom: -15px">
+            {{responsibility.responsibility_description}}
+          </li>
+        </ul>
       </div>
     </form>
   </div>
