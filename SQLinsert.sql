@@ -2,6 +2,8 @@
 INSERT INTO user (user_name,user_password,user_type) VALUES('admin','9179d75362d5fbf1ca0ae78e907ee9c15dba8eecaac2b48ada516596', 'admin');
 INSERT INTO user (user_name,user_password,user_type) VALUES('employee','11b951f65858b2be3c065374fc928fcdfef05f6d0b8694d8acd2a746','employee');
 
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message) VALUES (1,'Matthew fox', 'Feeling foxy, might delete later :3.')
+;
 
 -- title
 INSERT INTO title (title_name)
@@ -132,19 +134,19 @@ VALUES ("Sales & Marketing"),
         ("Central Services Teams");
 
 -- capability
-INSERT INTO capability (capability_name, family_id)
-VALUES ("Business Development", 1),
-		("Account Management", 1),
-        ("Sales", 1),
-        ("Inside Sales Development", 1),
-        ("Pre Sales & Bid Management", 1),
-        ("Marketing", 1),        
-        ("Software Engineering", 2),
-        ("Data Engineering", 2),
-        ("Cyber Security", 2),
-        ("Architect", 2),
-        ("Ops", 2);
-
+INSERT INTO capability (capability_name, family_id,capability_lead_id)
+VALUES ("Business Development", 1,1),
+		("Account Management", 1,1),
+        ("Sales", 1,1),
+        ("Inside Sales Development", 1,1),
+        ("Pre Sales & Bid Management", 1,1),
+        ("Marketing", 1,1),        
+        ("Software Engineering", 2,1),
+        ("Data Engineering", 2,1),
+        ("Cyber Security", 2,1),
+        ("Architect", 2,1),
+        ("Ops", 2,1);
+        
 -- role
 INSERT INTO role (role_name, role_summary, role_sum_link, capability_id, band_id)
 VALUES ("Head of Business Unit", "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.", null, 1, 1),
@@ -213,3 +215,51 @@ VALUES ("Head of Business Unit", "Owns and leads a business area (e.g. a BU) or 
 ("Ops Engineer", "Delivers with limited supervision, trusted to make tactical decisions.", "https://kainossoftwareltd.sharepoint.com/:w:/r/people/Shared%20Documents/Job%20Descriptions/Ops/Senior%20Associate%20-%20Senior%20Ops%20Engineer.docx?d=w4f827b196eb24246a3b3e62e3452b4dd&csf=1&e=yQDOhd", 11, 6),
 ("Ops Engineer", "Established deliverer, works well in a team.", "https://kainossoftwareltd.sharepoint.com/:w:/r/people/Shared%20Documents/Job%20Descriptions/Ops/Associate%20-%20Ops%20Engineer.docx?d=w23925c8ff78e4c5194339c330de2ee23&csf=1&e=XhIAK1", 11, 7),
 ("Ops Engineer", "Graduate entry level, here to learn, but primarily to contribute to projects.", "https://kainossoftwareltd.sharepoint.com/:w:/r/people/Shared%20Documents/Job%20Descriptions/Ops/Trainee%20-%20Trainee%20Ops%20Engineer.docx?d=w0d08acc91803408c8e03119d43fff3d3&csf=1&e=EdVBaK", 11, 8);
+
+INSERT INTO responsibility (band_id, responsibility_description)
+	VALUES (1 , "Deliver training as part of MAP"),
+			(1, "Encourage collaboration across BUs"),
+			(1, "Identify and actively develop talent at all levels within your area of responsibility"),
+            
+            (3, "Be a Training Course Sponsor and deliver training in the Discover, Explore and Inspire schools"),
+            (3, "Identify and mentor high-potential, junior talent and expedite their personal development"),
+            (3, "Actively participate in thought leadership activities"),
+            (3, "Develop external networks and actively promote Kainos outside the company"),
+            (3, "Recommend and drive improvement initiatives that will aid the company’s growth"),
+            
+            (4, "Develop talent within your team, ensuring SMARTER stretch and project goals are clearly defined"),
+            (4, "Provide anytime performance feedback on Workday to each of your team members at least once a quarter"),
+            (4, "Identify training needs for team members and report to the BU talent manager"),
+            (4, "Participate, and encourage your people to participate, in recruitment activities"),
+            (4, "Actively seek to add talent to Kainos by making hiring and promotion recommendations"),
+            (4, "Participate in events/thought leadership initiatives to spread the Kainos name"),
+            (4, "Be prepared to deliver an element of training in the Discover/Explore training schools"),
+            (4, "Actively lead a pre-sales bid through commercial review"),
+            (4, "Assess and review the appraisals created by people that you manage"),
+            
+            (5, "Be an active career coach and to escalate to their line manager if stretch goals are not set for your coachees"),
+            (5, "Ensure that your coachee has received an appraisal and regular feedback and to escalate to HR if this is not the case"),
+            (5, "Visibly and regularly share knowledge"),
+            (5, "Actively identify and develop talent and highlight to your BU talent manager"),
+            (5, "Contribute to presales activities – completion of bids, presenting, tender qualification, bid management etc…."),
+            (5, "Provide constructive feedback and record it on Workday"),
+            
+            (6, "Make your line manager aware if you think someone may be considering leaving the company"),
+            (6, "Help with recruitment activities"),
+            
+            (7, "Mentor junior team members"),
+            (7, "Deliver your tasks within the timelines while adhering to the Kainos quality standards"),
+            (7, "Set professional self-development goals, including asking for training"),
+            (7, "Maintain a Kainos CV and store it in the correct location"),
+            
+            (8, "Represent Kainos at careers fairs or Kainos open evenings events if invited"),
+            (8, "Immediately tell your manager if your tasks are not going to be complete within the expected timeframe"),
+            (8, "Notify your line manager if there are dependencies that are impacting your work"),
+            (8, "Escalate to your line manager if you do not have appropriate project goals"),
+            (8, "Notify HR if you have not received your project review on time"),
+            
+            (9, "Carry out all professional administration (timesheets, keeping calendar and voicemail up-to-date)"),
+            (9, "Notify your manager if you are sick and cannot attend work"),
+            (9, "Be a representative at the Earn-As-You-Learn or Apprentice events if invited"),
+            (9, "Attend training courses when invited"),
+            (9, "Raise any concerns/issues/problems directly with your manager or your career coach");

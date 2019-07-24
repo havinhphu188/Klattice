@@ -30,6 +30,17 @@ exports.getUser = function (username, userPassword){
 });
 }
 
+exports.getCapabilityLead = function(callback){
+  db.query(
+    "SELECT capability_lead_id, lead_name, lead_message FROM capability_lead;",
+    function(err, rows) {
+      if ((err, rows)) {
+        callback(rows);
+      }
+    }
+  );
+}
+
 exports.getRoles = function(callback) {
   db.query(
     "SELECT role_id, role_name, role_summary, role_sum_link, capability_id, band_id FROM role;",

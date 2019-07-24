@@ -81,6 +81,12 @@ app.get("/band-titles", function(req, res) {
   });
 });
 
+app.get("/capability-lead", function(req,res){
+  updateCapabilityLeads(function(){
+    res.send(capabilityLeads);
+  })
+})
+
 app.post("/signout", function(req, res) {
   session.isAdmin = false;
   session.loggedIn = false;
@@ -124,6 +130,14 @@ function updateCapability(capabilityfn){
         capabilityfn();
     });
   }  
+
+function updateCapabilityLeads(capabilityLeadfn){
+    db.getCapabilityLead(function(rows){
+        capabilityLeads = rows;
+        capabilityfn();
+    });
+  }  
+
 function updateRoles(rolesfn) {
   db.getRoles(function(rows) {
     roles = rows;
@@ -182,3 +196,4 @@ capability = [];
 bands = [];
 families = [];
 bandTitles = [];
+capabilityLeads = [];
