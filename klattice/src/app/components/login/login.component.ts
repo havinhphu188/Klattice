@@ -60,7 +60,6 @@ export class LoginComponent {
       .post("/api/user-details", { params: params }, this.headers)
       .subscribe(response => {
         var rsp = JSON.stringify(response);
-        console.log(rsp);
         rsp = rsp.substring(11, 12);
         if (rsp == "a") {
           this.successfulLogin(true, username);
