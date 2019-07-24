@@ -9,6 +9,7 @@ import { BandCompetency } from "./classes/band-competency";
 import { Title } from "./classes/title";
 import { BandTitle } from "./classes/band-title";
 import { Family } from "./classes/family";
+import { Responsibility } from './classes/responsibility';
 
 @Injectable({
   providedIn: "root"
@@ -21,10 +22,9 @@ export class DataService {
   bands = this.http.get<Band[]>("api/bands").toPromise();
   competencies = this.http.get<Competency[]>("api/competency").toPromise();
   titles = this.http.get<Title[]>("api/title").toPromise();
-  bandCompetencies = this.http
-    .get<BandCompetency[]>("api/band-competency")
-    .toPromise();
+  bandCompetencies = this.http.get<BandCompetency[]>("api/band-competency").toPromise();
   bandTitles = this.http.get<BandTitle[]>("api/band-titles").toPromise();
   families = this.http.get<Family[]>("api/families").toPromise();
   loginDetails = this.http.get<JSON>("api/user-details");
+  responsibilities = this.http.get<Responsibility[]>("api/responsibilities").toPromise();
 }

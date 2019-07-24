@@ -51,6 +51,12 @@ app.get("/bands", function(req, res) {
   });
 });
 
+app.get("/responsibilities", function(req, res) {
+  updateResponsibilities(function() {
+    res.send(responsibilities);
+  });
+});
+
 app.get("/families", function(req, res) {
   updateFamilies(function() {
     res.send(families);
@@ -139,6 +145,13 @@ function updateBands(bandsfn) {
   });
 }
 
+function updateResponsibilities(responsiblityfn) {
+  db.getResponsibilities(function(rows) {
+    responsibilities = rows;
+    responsiblityfn();
+  });
+}
+
 function updateFamilies(familiesfn) {
   db.getFamilies(function(rows) {
     families = rows;
@@ -182,3 +195,4 @@ capability = [];
 bands = [];
 families = [];
 bandTitles = [];
+responsibilities = []

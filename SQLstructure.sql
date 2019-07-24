@@ -39,6 +39,15 @@ CREATE TABLE band (
     PRIMARY KEY(`band_id`)
 );
 
+CREATE TABLE responsibility (
+	responsibility_id INT UNSIGNED AUTO_INCREMENT,
+    band_id int unsigned not null,
+    responsibility_description varchar(150),
+    PRIMARY KEY(`responsibility_id`),
+    FOREIGN KEY(`band_id`)
+		REFERENCES band(`band_id`)
+);
+
 CREATE TABLE band_competency (
 	band_id int unsigned,
     competency_id int unsigned,

@@ -41,6 +41,17 @@ exports.getRoles = function(callback) {
   );
 };
 
+exports.getResponsibilities = function(callback) {
+  db.query(
+    "SELECT responsibility_id, band_id, responsibility_description FROM responsibility;",
+    function(err, rows) {
+      if ((err, rows)) {
+        callback(rows);
+      }
+    }
+  );
+};
+
 exports.getCapability = function(callback) {
   db.query(
     "SELECT capability_id, capability_name, family_id FROM capability;",
