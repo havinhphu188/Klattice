@@ -59,16 +59,6 @@ app.get("/bands", function(req, res) {
   });
 });
 
-app.post('/addRole', async function(req, res){
-    ans = await addRoleToDB(req.body);
-});
-
-app.get('/getcapability', function(req, res){
-    updateCapability(function(){
-        res.send(capability)
-    });
-});
-
 app.get("/responsibilities", function(req, res) {
   updateResponsibilities(function() {
     res.send(responsibilities);
