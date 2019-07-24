@@ -7,8 +7,28 @@ const db = mysql.createConnection({
   database: "klattice"
 });
 
-const getUserQuery =
-  "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?";
+exports.getUser = function (username, userPassword){   
+    return new Promise(function(resolve, reject) {
+    var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";
+    db.query(
+        queryValidateUserExists, [username, userPassword], 
+        function (err, rows)
+        {
+            result ='f';
+            if (err) {
+              throw err;
+            }
+            if(rows.length > 0 && rows[0].user_type == 'admin') {
+              result = 'a'; 
+            }
+            else if(rows.length > 0 && rows[0].user_type == 'employee') {
+               result = 'e'; 
+            }
+            resolve(result);
+        }
+    );
+});
+}
 
 exports.getRoles = function(callback) {
   db.query(
@@ -19,21 +39,6 @@ exports.getRoles = function(callback) {
       }
     }
   );
-};
-
-//-1 = failed, 0 = employee, 1 = admin
-exports.getUser = function(userName, userPassword) {
-  return new Promise(function(resolve, reject) {
-    db.query(getUserQuery, [userName, userPassword], function(err, rows) {
-      result = -1;
-      if (err) throw err;
-      if (rows.length > 0 && rows[0].user_type == "admin") result = 1;
-      else if (rows.length > 0 && rows[0].user_type == "employee") result = 0;
-      else result = -1;
-
-      resolve(result);
-    });
-  });
 };
 
 exports.getCapability = function(callback) {

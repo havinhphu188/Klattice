@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../data.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -9,6 +10,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
+
   constructor(
     dataService: DataService,
     private modalService: NgbModal,
@@ -57,7 +59,7 @@ export class HomeComponent implements OnInit {
   DEFAULT_COLOUR = "#777";
 
   data: DataService;
-
+  
   ngOnInit() {
     this.sub = this.route.data.subscribe(x => {
       this.capabilityTitle = x["capabilityTitle"];

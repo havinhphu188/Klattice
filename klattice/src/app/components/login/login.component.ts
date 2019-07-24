@@ -4,6 +4,8 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { DataService } from "src/app/data.service";
 
+import * as sHash from '../../../assets/saltedHashing.js';
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -13,7 +15,6 @@ export class LoginComponent {
   title = "Angular Login Form";
   angForm: FormGroup;
   headers: any;
-
   data: DataService;
 
   constructor(
@@ -48,8 +49,9 @@ export class LoginComponent {
 
   onClickSubmit(username, password) {
     let formData: FormData = new FormData();
-
+    password = sHash.saltedHash(password);
     let params = { username: username, password: password };
+
 
     this.headers = {
       "Content-Type": "application/json"
@@ -59,7 +61,6 @@ export class LoginComponent {
       .subscribe(response => {
         var rsp = JSON.stringify(response);
         rsp = rsp.substring(11, 12);
-
         if (rsp == "a") {
           this.successfulLogin(true, username);
           window.location.reload();
