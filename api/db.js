@@ -18,7 +18,7 @@ exports.getRoleFamilies = function (callback) {
     );
 }
 
-exports.getUser = function (userName, userPassword){   
+exports.getUser = function (username, userPassword){   
     return new Promise(function(resolve, reject) {
     var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";
     db.query(

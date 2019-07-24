@@ -47,8 +47,8 @@
                     </button>
                   </div>
                 </div>
-                <div class="col-3">
-                  <div class="jobBand" *ngFor="let band of data.bands | async">
+                <div class="col-3 jobBand">
+                  <div *ngFor="let band of data.bands | async">
                     <span
                       class="jobBandText badge badge-primary"
                       [style.background-color]="setBandColour(band.band_name)"

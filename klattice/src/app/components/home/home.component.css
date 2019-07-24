@@ -6,6 +6,10 @@
   z-index: 12;
 }
 
+.jobBand {
+  margin: auto;
+}
+
 ::ng-deep .card-body {
   padding: 10px 15px 0px 15px;
 }

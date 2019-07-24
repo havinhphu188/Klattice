@@ -49,7 +49,7 @@ const routes: Routes = [
     component: HomeComponent,
     data: { capabilityTitle: "Central Services Teams", familyID: "6" }
   },
-  { path: 'adminRole', component: AdminRoleComponent}
+  { path: 'admin-role', component: AdminRoleComponent}
 ];
 
 @NgModule({
