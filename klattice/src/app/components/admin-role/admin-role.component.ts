@@ -73,12 +73,13 @@ export class AdminRoleComponent implements OnInit {
       ariaLabelledBy: 'modal-basic-title'
     });
   }
+
   deleteRole(roleID){
     confirm('Are you sure?');
     if (confirm) {
       this.data.deleteRole(roleID);
     }
     window.location.reload();
-}
+  }
 
 }

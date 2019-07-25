@@ -41,11 +41,10 @@ export class DataService {
     let params = {'roleID': roleID};
     this.headers = {
       "Content-Type": "application/json"
-    };
+    }
     this.http.post('/api/delete-role', {params:params}, this.headers)
       .subscribe(response => {
-        console.log(response);
-
-      });
+        alert(response);
+      })
   }
 }

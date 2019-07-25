@@ -6,6 +6,10 @@
   background-color: #4caf50;
   color: white;
 }
+#delbtn{
+  background-color: #EB595E;
+  color: white;
+}
 select:required:invalid {
   color: gray;
 }

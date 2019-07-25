@@ -55,7 +55,6 @@ exports.addRole = function (roleObject){
 }
 
 exports.deleteRole = function (roleObject){
-    console.log(roleObject.params.roleID);
     return new Promise(function(resolve, reject){
         var queryDeleteRole = "DELETE FROM role WHERE role_id = ?";
         db.query(queryDeleteRole, roleObject.params.roleID, function(err, result, fields){
