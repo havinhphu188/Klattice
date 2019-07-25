@@ -18,6 +18,13 @@ option {
 #addForm{
   padding-top: 5%
 }
+table th:first-child{
+  border-radius:3px 0 0 3px;
+}
+
+table th:last-child{
+  border-radius:0 3px 3px 0;
+}
 
 /* ADD ROLE MODAL */
 .login-container{
