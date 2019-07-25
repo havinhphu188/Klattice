@@ -26,6 +26,9 @@
   font-size: 12px;
   line-height: 1.42857;
 }
+.material-icons.md-15 {
+  font-size: 15px;
+}
 select:required:invalid {
   color: gray;
 }
