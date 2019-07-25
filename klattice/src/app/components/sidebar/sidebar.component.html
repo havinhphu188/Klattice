@@ -20,7 +20,7 @@
           {{ family.family_name }}
         </a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="isAdmin" class="nav-item">
         <h4
           class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
         >

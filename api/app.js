@@ -55,6 +55,11 @@ app.get("/capability", function(req, res) {
   updateCapability(function() {
     res.send(capability);
   });
+    ans = await addRole(req.body);
+});
+
+app.put('/edit-role', async function(req,res){
+    ans = await editRole(req.body);
 });
 
 app.get("/bands", function(req, res) {
@@ -124,7 +129,7 @@ function updateRoleFamilies(rolefamiliesfn){
     });
 }
 
-async function addRoleToDB(roleObject){
+async function addRole(roleObject){
     var didRoleAdd = -1;
     didRoleAdd = await db.addRole(roleObject);
     return didRoleAdd;
@@ -152,7 +157,12 @@ async function authenticate(username, password, res){
       isAdmin: session.isAdmin,
       loggedIn: session.loggedIn,
       username: session.username
-    })
+    });
+}
+async function editRole(roleObject){
+    var didRoleEdit = -1;
+    didRoleEdit = await db.editRole(roleObject);
+    return didRoleEdit;
 }
 
 function updateCapability(capabilityfn){
