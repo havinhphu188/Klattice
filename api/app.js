@@ -16,6 +16,10 @@ app.listen(7999, function() {
   console.log("Express started");
 });
 
+app.put('/edit-role', async function(req,res){
+  ans = await editRole(req.body);
+});
+
 app.get("/roles", function(req, res) {
   updateRoles(function() {
     res.send(roles);
@@ -106,6 +110,12 @@ app.post("/signout", function(req, res) {
     username: session.username
   });
 });
+
+async function editRole(roleObject){
+  var didRoleEdit = -1;
+  didRoleEdit = await db.editRole(roleObject);
+  return didRoleEdit;
+}
 
 function updateRoleFamilies(rolefamiliesfn){
     db.getRoleFamilies(function(rows){

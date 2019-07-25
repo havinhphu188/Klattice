@@ -27,6 +27,7 @@ export class AdminRoleComponent implements OnInit {
   data: DataService;
 
   public newRole: Role;
+  public selectRole: Role;
 
   openForm() {
     if (this.formShow == false)
@@ -67,11 +68,32 @@ export class AdminRoleComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
+  modalState = 'edit';
+
   openAddRoleModal(addRole) {
     this.modalService.open(addRole, {
       size: "lg",
       ariaLabelledBy: "modal-basic-title"
     });
+    this.modalState = 'add';
+  }
+
+  openEditRoleModal(editRole, role) {
+    this.modalService.open(editRole, {
+      size: "lg",
+      ariaLabelledBy: "modal-basic-title"
+    });
+    this.selectRole = role;
+    this.modalState = 'edit';
+  }
+
+  openViewRoleModal(viewRole, role) {
+    this.modalService.open(viewRole, {
+      size: "lg",
+      ariaLabelledBy: "modal-basic-title"
+    });
+    this.selectRole = role;
+    this.modalState = 'view';
   }
 
 }

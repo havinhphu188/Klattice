@@ -35,4 +35,9 @@ export class DataService {
     this.roles = this.http.get<Role[]>('api/roles').toPromise();
     this.roleFamilies = this.http.get<RoleFamily[]>('api/role-families').toPromise();
   }
+
+  editRole(oldRole: Role): any {
+    this.http.put<Role>('api/edit-role', oldRole).subscribe(c => {console.log(c)});
+    this.roles = this.http.get<Role[]>('api/roles').toPromise();
+  }
 }

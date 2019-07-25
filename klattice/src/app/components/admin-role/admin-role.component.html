@@ -4,7 +4,7 @@
     type="button"
     id="addbtn"
     class="btn float-right"
-    (click)="openAddRoleModal(addRoleModal)"
+    (click)="openAddRoleModal(RoleModal)"
   >
     Add
   </button>
@@ -100,6 +100,7 @@
             : filter_band_id
             : filter_role_name
       "
+      (click)="openViewRoleModal(RoleModal, role)"
     >
       <td>
         <div *ngFor="let family of data.families | async">
@@ -137,10 +138,10 @@
 </table>
 
 <!-- ADD ROLE MODAL -->
-<ng-template #addRoleModal let-modal>
+<ng-template #RoleModal let-modal>
   <div class="modal-header" [style.background-color]="'#4caf50'">
     <h4 class="modal-title" id="modal-basic-title" style="color: #ffffff">
-      Add role
+      {{modalState}} role
     </h4>
     <button
       type="button"
@@ -153,11 +154,12 @@
   </div>
   <div class="modal-body">
     <div class="container login-container">
-      <form (ngSubmit)="addRole(addForm)" #addForm="ngForm" required>
+      <form #addForm="ngForm" required>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="family_id">Family</label>
             <select
+              *ngIf="modalState == 'add'"
               class="form-control"
               [(ngModel)]="family_id"
               name="family_id"
@@ -170,10 +172,27 @@
                 >{{ family.family_name }}</option
               >
             </select>
+            <span 
+                *ngIf="modalState == 'view'"
+                class="form-control">
+                <div *ngFor="let capability of data.capabilities | async">
+                  <div *ngFor="let family of data.families | async">
+                  <span
+                    *ngIf="
+                    selectRole.capability_id === capability.capability_id &&
+                      capability.family_id === family.family_id
+                    "
+                  >
+                    {{ family.family_name }}
+                  </span>
+                </div>
+                </div>
+            </span>
           </div>
           <div class="form-group col-md-6">
             <label for="capability_id">Capability</label>
             <select
+              *ngIf="modalState == 'add'"
               class="form-control"
               [(ngModel)]="newRole.capability_id"
               name="capability_id"
@@ -190,6 +209,15 @@
                 >{{ capability.capability_name }}</option
               >
             </select>
+            <span 
+                *ngIf="modalState == 'view'"
+                class="form-control">
+                <div *ngFor="let capability of data.capabilities | async">
+                  <span *ngIf="selectRole.capability_id == capability.capability_id">
+                    {{ capability.capability_name }}
+                  </span>
+                </div>
+            </span>
           </div>
         </div>
 
@@ -197,6 +225,7 @@
           <div class="form-group col-md-6">
             <label for="role_name">Role</label>
             <input
+              *ngIf="modalState == 'add'"
               type="text"
               class="form-control"
               placeholder="Enter role"
@@ -204,10 +233,17 @@
               name="role_name"
               required
             />
+            <p
+              *ngIf="modalState == 'view'"
+              class="form-control"
+            >
+              {{ selectRole.role_name }}
+            </p>
           </div>
           <div class="form-group col-md-6">
             <label for="band_id">Band</label>
             <select
+              *ngIf="modalState == 'add'"
               class="form-control"
               [(ngModel)]="newRole.band_id"
               name="band_id"
@@ -220,6 +256,16 @@
                 >{{ band.band_name }}</option
               >
             </select>
+            <span 
+                *ngIf="modalState == 'view'"
+                class="form-control">
+                <div *ngFor="let band of data.bands | async">
+                  <span *ngIf="selectRole.band_id == band.band_id">
+                    {{ band.band_name }}
+                  </span>
+                </div>
+            </span>
+            
           </div>
         </div>
 
@@ -227,12 +273,21 @@
           <div class="form-group col-md-12">
             <label for="role_summary">Role Summary</label>
             <textarea
+              *ngIf="modalState == 'add'"
               class="form-control"
               placeholder="Enter role summary"
               [(ngModel)]="newRole.role_summary"
               name="role_summary"
               required
             ></textarea>
+            <textarea
+              *ngIf="modalState == 'view'"
+              class="form-control"
+              value="{{selectRole.role_summary }}"
+              readonly
+            > 
+            
+            </textarea>
           </div>
         </div>
 
@@ -240,6 +295,7 @@
           <div class="form-group col-md-12">
             <label for="role_name">Sharepoint link</label>
             <input
+              *ngIf="modalState == 'add'"
               type="text"
               class="form-control"
               [(ngModel)]="newRole.role_sum_link"
@@ -248,12 +304,19 @@
               required
               appSharepoint
             />
+            <input
+            type="text"
+            *ngIf="modalState == 'view'"
+            class="form-control"
+            value="{{selectRole.role_sum_link}}"
+            readonly>
           </div>
         </div>
       </form>
     </div>
   </div>
   <div class="modal-footer">
+    <div *ngIf="modalState == 'add'">
     <button
       type="submit"
       class="btn btn-outline-dark subBtn"
@@ -270,5 +333,15 @@
     >
       Cancel
     </button>
+  </div>
+  <div *ngIf="modalState == 'view'">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="cancelForm()"
+      >
+      Close
+      </button>
+    </div> 
   </div>
 </ng-template>

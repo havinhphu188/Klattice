@@ -41,6 +41,20 @@ exports.getUser = function (username, userPassword){
 });
 }
 
+exports.editRole = function (role_id, role_name, role_summary, role_sum_link, capability_id, band_id){
+  return new Promise(function(resolve, reject){
+      var queryEditRole = "UPDATE role SET role_name = ?, role_summary = ?, role_sum_link = ?, capability_id = ?, band_id = ? WHERE role_id = ?;"
+      db.query(
+        queryEditRole, [role_name, role_summary, role_sum_link, capability_id, band_id, role_id], 
+        function (err, rows)
+        {
+            if (err) throw err;
+            resolve(result);
+        }
+    );
+    });
+}
+
 exports.getRoles = function(callback) {
   db.query(
     "SELECT role_id, role_name, role_summary, role_sum_link, capability_id, band_id FROM role;",
