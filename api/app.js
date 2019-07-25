@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require("./db");
-const hash = require("crypto").createHash;
 
-var loginStatus = "f"; //f = not signed ins
 var session = {
   username: "",
   loggedIn: false,
@@ -24,6 +22,12 @@ app.get("/roles", function(req, res) {
   });
 });
 
+app.get('/role-families', function(req, res) {
+  updateRoleFamilies(function() {
+      res.send(roleFamiles);
+  })
+});
+
 app.get("/user-details", function(req, res) {
   res.send({
     isAdmin: session.isAdmin,
@@ -38,6 +42,10 @@ app.post('/user-details', async function(req,res){
     
     await authenticate(username, password, res); 
 });
+
+app.post('/add-role', async function(req, res){
+  ans = await addRoleToDB(req.body);
+ });
 
 app.get("/capability", function(req, res) {
   updateCapability(function() {
@@ -99,6 +107,19 @@ app.post("/signout", function(req, res) {
   });
 });
 
+function updateRoleFamilies(rolefamiliesfn){
+    db.getRoleFamilies(function(rows){
+        roleFamiles = rows;
+        rolefamiliesfn();
+    });
+}
+
+async function addRoleToDB(roleObject){
+    var didRoleAdd = -1;
+    didRoleAdd = await db.addRole(roleObject);
+    return didRoleAdd;
+}
+
 async function authenticate(username, password, res){
     var authStatus = await db.getUser(username, password);
 
@@ -130,13 +151,13 @@ function updateCapability(capabilityfn){
         capabilityfn();
     });
   }  
+
 function updateRoles(rolesfn) {
   db.getRoles(function(rows) {
     roles = rows;
     rolesfn();
   });
 }
-
 
 function updateBands(bandsfn) {
   db.getBands(function(rows) {
@@ -188,6 +209,7 @@ function updateBandTitles(bandTitlesfn) {
 }
 
 roles = [];
+roleFamilies = [];
 competencies = [];
 bandCompetency = [];
 titles = [];
@@ -195,4 +217,4 @@ capability = [];
 bands = [];
 families = [];
 bandTitles = [];
-responsibilities = []
+responsibilities = [];

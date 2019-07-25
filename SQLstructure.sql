@@ -72,10 +72,6 @@ CREATE TABLE role (
 		REFERENCES band(`band_id`)
 );
 
-ALTER TABLE role
-ADD CONSTRAINT role_name_length
-CHECK (length(role_name) >= 4);
-
 CREATE Table user 
 (
     user_name VARCHAR(100),
@@ -88,4 +84,8 @@ AS
 SELECT distinct band.band_id, title.title_id FROM band JOIN band_competency ON band.band_id=band_competency.band_id 
 									JOIN competency ON band_competency.competency_id=competency.competency_id
                                     JOIN title ON competency.title_id= title.title_id;
-
+                                    
+CREATE VIEW role_family
+AS
+SELECT distinct role.role_id, family.family_id FROM role JOIN capability ON role.capability_id = capability.capability_id
+									JOIN family ON capability.family_id = family.family_id;
