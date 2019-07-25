@@ -11,6 +11,7 @@ export class SharepointDirective implements Validator {
   constructor() { }
 
   validate(control: AbstractControl): {[key:string]: any } | null {
+    if (control.value == null) return null;
     var sharepointLink = "https://kainossoftwareltd.sharepoint.com/:b:/r/people/Shared%20Documents/Job%20Descriptions/"
 
     return sharepointLink == control.value.slice(0, sharepointLink.length) ? null : {notSharePointLink: true};

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { DataService } from '../../data.service';
 import { Role } from 'src/app/classes/role';
+import { FormGroup } from "@angular/forms";
 import { FormsModule } from '@angular/forms'
-import { HttpClient} from '@angular/common/http';
-import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'AdminRoleComponent',
@@ -16,18 +16,15 @@ export class AdminRoleComponent implements OnInit {
   submitted = false;
 
   family_id: null;
-  summary_link_pattern = "^https://kainossoftwareltd.sharepoint.com/:b:/r/people/Shared%20Documents/Job%20Descriptions/";
+  angForm: FormGroup;
 
-  constructor(dataService: DataService,private http:HttpClient,
-    private router: Router) {
+  constructor(dataService: DataService, private modalService: NgbModal) {
     this.data = dataService;
   }
-  
 
-
+  filter_capability_id = null;
   formShow = false;
   data: DataService;
-  headers:any;
 
   public newRole: Role;
 
@@ -42,10 +39,15 @@ export class AdminRoleComponent implements OnInit {
     this.formShow = false;
     this.family_id = null;
     this.newRole = new Role();
+    this.modalService.dismissAll();
   }
 
   clearCapability() {
     this.newRole.capability_id = null;
+  }
+
+  clearFilterCapability() {
+    this.filter_capability_id = null;
   }
 
   ngOnInit() {
@@ -56,23 +58,25 @@ export class AdminRoleComponent implements OnInit {
     if (addForm.valid) {
       this.submitted = true;
       this.data.addRole(this.newRole);
+      this.formShow = false;
+      this.family_id = null;
+      this.newRole = new Role();
     } else {
       console.log('Form is invalid');
     }
+    this.modalService.dismissAll();
+  }
+
+  openAddRoleModal(addRole) {
+    this.modalService.open(addRole, {
+      size: 'lg',
+      ariaLabelledBy: 'modal-basic-title'
+    });
   }
   deleteRole(roleID){
-    confirm("are you sure");
-    if(confirm){
-      let params = {"roleID": roleID};
-      alert(roleID);
-      this.headers = {
-        "Content-Type": "application/json"
-        }
-      this.http.post('/api/delete-role', {params:params}, this.headers)
-        .subscribe(response=>{
-          alert(response);
-
-         })
+    confirm('Are you sure?');
+    if (confirm) {
+      this.data.deleteRole(roleID);
     }
     window.location.reload();
 }

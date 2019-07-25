@@ -7,9 +7,9 @@ const db = mysql.createConnection({
   database: "klattice"
 });
 
-exports.getRoles = function (callback) {
+exports.getRoleFamilies = function (callback) {
     db.query(
-        "SELECT role_id, role_name, role_summary, role_sum_link, capability_id, band_id FROM role;",
+        "SELECT role_id, family_id FROM role_family;",
         function (err, rows) {
             if (err, rows) {
                 callback(rows);
@@ -19,7 +19,6 @@ exports.getRoles = function (callback) {
 }
 
 exports.getUser = function (userName, userPassword){  
-  console.log("before query"); 
     return new Promise(function(resolve, reject) {
     var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";
     db.query(
@@ -65,6 +64,7 @@ exports.deleteRole = function (roleObject){
         });
     });
 }
+
 exports.getRoles = function(callback) {
   db.query(
     "SELECT role_id, role_name, role_summary, role_sum_link, capability_id, band_id FROM role;",
@@ -75,6 +75,29 @@ exports.getRoles = function(callback) {
     }
   );
 };
+
+exports.getResponsibilities = function(callback) {
+  db.query(
+    "SELECT responsibility_id, band_id, responsibility_description FROM responsibility;",
+    function(err, rows) {
+      if ((err, rows)) {
+        callback(rows);
+      }
+    }
+  );
+};
+
+exports.addRole = function (roleObject){
+    return new Promise(function(resolve, reject){
+        var queryAddRole = "INSERT INTO role (capability_id, role_name, role_summary, role_sum_link, band_id) VALUES (?,?,?,?,?)";
+        db.query(queryAddRole, [roleObject.capability_id, roleObject.role_name, roleObject.role_summary, roleObject.role_sum_link, roleObject.band_id], function (err, result, fields) {
+            // if any error while executing above query, throw error
+            if (err) throw err;
+            // if there is no error, you have the result
+            resolve(result);
+        });
+    });
+}
 
 exports.getCapability = function(callback) {
   db.query(
@@ -87,30 +110,8 @@ exports.getCapability = function(callback) {
   );
 };
 
-exports.getCompetency = function(callback) {
-  db.query(
-    "SELECT competency_id, title_id, description FROM competency;",
-    function(err, rows) {
-      if ((err, rows)) {
-        callback(rows);
-      }
-    }
-  );
-};
-
 exports.getTitle = function(callback) {
   db.query("SELECT title_id, title_name FROM title;", function(err, rows) {
-    if ((err, rows)) {
-      callback(rows);
-    }
-  });
-};
-
-exports.getBandCompetency = function(callback) {
-  db.query("SELECT competency_id, band_id FROM band_competency;", function(
-    err,
-    rows
-  ) {
     if ((err, rows)) {
       callback(rows);
     }
@@ -126,14 +127,6 @@ exports.getCompetency = function(callback) {
       }
     }
   );
-};
-
-exports.getTitle = function(callback) {
-  db.query("SELECT title_id, title_name FROM title;", function(err, rows) {
-    if ((err, rows)) {
-      callback(rows);
-    }
-  });
 };
 
 exports.getBandCompetency = function(callback) {

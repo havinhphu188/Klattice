@@ -36,19 +36,16 @@
                         role.role_summary,
                         role.role_sum_link,
                         role.band_id
-                      )
-                    "
-                  >
+                      )">
                     <button
                       class="btn btn-link my-2 my-sm-0 roleNameBtn"
-                      type="button"
-                    >
+                      type="button">
                       {{ role.role_name }}
                     </button>
                   </div>
                 </div>
-                <div class="col-3">
-                  <div class="jobBand" *ngFor="let band of data.bands | async">
+                <div class="col-3 jobBand">
+                  <div *ngFor="let band of data.bands | async">
                     <span
                       class="jobBandText badge badge-primary"
                       [style.background-color]="setBandColour(band.band_name)"
@@ -58,9 +55,7 @@
                           competencyModal,
                           band.band_id,
                           band.band_name
-                        )
-                      "
-                    >
+                        )">
                       {{ band.band_name }}
                     </span>
                   </div>
@@ -167,6 +162,12 @@
               </ul>
             </div>
           </div>
+        </ul>
+        <h4>Responsibilities</h4>
+        <ul *ngFor="let responsibility of data.responsibilities | async">
+          <li *ngIf="responsibility.band_id === bandID" style="margin-top: -15px; margin-bottom: -15px">
+            {{responsibility.responsibility_description}}
+          </li>
         </ul>
       </div>
     </form>

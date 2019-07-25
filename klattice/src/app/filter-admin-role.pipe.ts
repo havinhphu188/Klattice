@@ -6,14 +6,12 @@ import { Role } from './classes/role';
 })
 export class FilterAdminRolePipe implements PipeTransform {
 
-  transform(roles: Role[], familyID: number, capabilityID: number, bandID: number, roleName: string): any {
-    console.log(familyID);
-    console.log(capabilityID);
-    console.log(roles);
+  transform(roles: Role[], roleID: number, capabilityID: number, bandID: number, roleName: string): any {
     if (!roles) return [];
-    if (familyID){
-      //require connection between familyID and role to filter directly on front-end.
-      roles = roles;
+    if (roleID){
+      roles = roles.filter(r => {
+        return r.role_id == roleID
+      });
     }
     if (capabilityID){
       roles = roles.filter(r => {
