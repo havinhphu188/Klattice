@@ -231,61 +231,8 @@
                 >{{ band.band_name }}</option
               >
             </select>
-
-            <tr
-              *ngFor="
-                let role of data.roles
-                  | async
-                  | filterAdminRole
-                    : filter_family_id
-                    : filter_capability_id
-                    : filter_band_id
-                    : filter_role_name
-              "
-            >
-              <td>
-                <div *ngFor="let family of data.families | async">
-                  <div *ngFor="let capability of data.capabilities | async">
-                    <span
-                      *ngIf="
-                        role.capability_id === capability.capability_id &&
-                        capability.family_id === family.family_id
-                      "
-                    >
-                      {{ family.family_name }}
-                    </span>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <span *ngFor="let capability of data.capabilities | async">
-                  <span *ngIf="role.capability_id === capability.capability_id">
-                    {{ capability.capability_name }}
-                  </span>
-                </span>
-              </td>
-              <td>
-                {{ role.role_name }}
-              </td>
-              <td>
-                <span *ngFor="let band of data.bands | async">
-                  <span *ngIf="role.band_id === band.band_id">
-                    {{ band.band_name }}
-                  </span>
-                </span>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-dark"
-                  aria-label="Delete"
-                  (click)="deleteRole(role.role_id)"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </td>
-            </tr>
-
+            </div>
+          </div>
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="role_summary">Role Summary</label>
@@ -298,7 +245,6 @@
                 ></textarea>
               </div>
             </div>
-
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="role_name">Sharepoint link</label>
@@ -313,6 +259,7 @@
                 />
               </div>
             </div>
+            </form>
           </div>
         </div>
         <div class="modal-footer">
@@ -333,7 +280,4 @@
             Cancel
           </button>
         </div>
-      </form>
-    </div>
-  </div></ng-template
->
+    </ng-template>

@@ -18,11 +18,11 @@ exports.getRoleFamilies = function (callback) {
     );
 }
 
-exports.getUser = function (userName, userPassword){  
+exports.getUser = function (username, userPassword){  
     return new Promise(function(resolve, reject) {
     var queryValidateUserExists = "SELECT user_name, user_password, user_type FROM user WHERE user_name = ? AND user_password = ?;";
     db.query(
-        queryValidateUserExists, [userName, userPassword], 
+        queryValidateUserExists, [username, userPassword], 
         function (err, rows)
         {
             result ='f';
@@ -40,18 +40,6 @@ exports.getUser = function (userName, userPassword){
         }
     );
 });
-}
-
-exports.addRole = function (roleObject){
-    return new Promise(function(resolve, reject){
-        var queryAddRole = "INSERT INTO role (capability_id, role_name, role_summary, role_sum_link, band_id) VALUES (?,?,?,?,?)";
-        db.query(queryAddRole, [roleObject.capability_id, roleObject.role_name, roleObject.role_summary, roleObject.role_sum_link, roleObject.band_id], function (err, result, fields) {
-            // if any error while executing above query, throw error
-            if (err) throw err;
-            // if there is no error, you have the result
-            resolve(result);
-        });
-    });
 }
 
 exports.deleteRole = function (roleObject){
@@ -90,9 +78,7 @@ exports.addRole = function (roleObject){
     return new Promise(function(resolve, reject){
         var queryAddRole = "INSERT INTO role (capability_id, role_name, role_summary, role_sum_link, band_id) VALUES (?,?,?,?,?)";
         db.query(queryAddRole, [roleObject.capability_id, roleObject.role_name, roleObject.role_summary, roleObject.role_sum_link, roleObject.band_id], function (err, result, fields) {
-            // if any error while executing above query, throw error
             if (err) throw err;
-            // if there is no error, you have the result
             resolve(result);
         });
     });
