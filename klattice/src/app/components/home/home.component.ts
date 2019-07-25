@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../data.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -9,6 +10,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
+
   constructor(
     dataService: DataService,
     private modalService: NgbModal,
@@ -52,12 +54,12 @@ export class HomeComponent implements OnInit {
   APPRENTICE_BAND_ID = 9;
 
   PURPLE_KAINOS_BRAND_COLOUR = "#5C068C";
-  BLUE_KAINOS_BRAND_COLOUR = "#5C068C";
-  GREEN_KAINOS_BRAND_COLOUR = "#5C068C";
+  BLUE_KAINOS_BRAND_COLOUR = "#00558C";
+  GREEN_KAINOS_BRAND_COLOUR = "#009639";
   DEFAULT_COLOUR = "#777";
 
   data: DataService;
-
+  
   ngOnInit() {
     this.sub = this.route.data.subscribe(x => {
       this.capabilityTitle = x["capabilityTitle"];

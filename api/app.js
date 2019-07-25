@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require("./db");
-const hash = require("crypto").createHash;
 
-var loginStatus = "f"; //f = not signed ins
 var session = {
   username: "",
   loggedIn: false,
@@ -24,6 +22,12 @@ app.get("/roles", function(req, res) {
   });
 });
 
+app.get('/role-families', function(req, res) {
+  updateRoleFamilies(function() {
+      res.send(roleFamiles);
+  })
+});
+
 app.get("/user-details", function(req, res) {
   res.send({
     isAdmin: session.isAdmin,
@@ -32,35 +36,16 @@ app.get("/user-details", function(req, res) {
   });
 });
 
-app.post("/user-details", async function(req, res) {
-  var username = req.body.params.username;
-  var password = req.body.params.password;
-
-  ans = await authenticate(username, password);
-  switch (ans) {
-    case 1:
-      loginStatus = "a";
-      session.isAdmin = true;
-      session.loggedIn = true;
-      session.sessionId++;
-      session.username = username;
-
-      res.send({ status: "a" });
-      break;
-    case 0:
-      loginStatus = "e";
-      session.isAdmin = false;
-      session.loggedIn = true;
-      session.sessionId++;
-      session.username = username;
-      res.send({ status: "e" });
-      break;
-    case -1:
-      loginStatus = "f";
-      res.send({ status: "f" });
-      break;
-  }
+app.post('/user-details', async function(req,res){
+    var username = req.body.params.username;
+    var password = req.body.params.password;
+    
+    await authenticate(username, password, res); 
 });
+
+app.post('/add-role', async function(req, res){
+  ans = await addRoleToDB(req.body);
+ });
 
 app.get("/capability", function(req, res) {
   updateCapability(function() {
@@ -71,6 +56,12 @@ app.get("/capability", function(req, res) {
 app.get("/bands", function(req, res) {
   updateBands(function() {
     res.send(bands);
+  });
+});
+
+app.get("/responsibilities", function(req, res) {
+  updateResponsibilities(function() {
+    res.send(responsibilities);
   });
 });
 
@@ -116,6 +107,51 @@ app.post("/signout", function(req, res) {
   });
 });
 
+function updateRoleFamilies(rolefamiliesfn){
+    db.getRoleFamilies(function(rows){
+        roleFamiles = rows;
+        rolefamiliesfn();
+    });
+}
+
+async function addRoleToDB(roleObject){
+    var didRoleAdd = -1;
+    didRoleAdd = await db.addRole(roleObject);
+    return didRoleAdd;
+}
+
+async function authenticate(username, password, res){
+    var authStatus = await db.getUser(username, password);
+
+    switch(authStatus)
+    {
+      case 'a':
+        session.isAdmin = true;
+        session.loggedIn = true;
+        session.username = username;
+        break;
+      case 'e':
+        session.isAdmin = false;
+        session.loggedIn = true;
+        session.username = username;
+          break;
+    }
+
+    res.send({
+      status: authStatus,
+      isAdmin: session.isAdmin,
+      loggedIn: session.loggedIn,
+      username: session.username
+    })
+}
+
+function updateCapability(capabilityfn){
+    db.getCapability(function(rows){
+        capability = rows;
+        capabilityfn();
+    });
+  }  
+
 function updateRoles(rolesfn) {
   db.getRoles(function(rows) {
     roles = rows;
@@ -123,36 +159,17 @@ function updateRoles(rolesfn) {
   });
 }
 
-//salts, hashes, then checks DB returns true or false
-async function authenticate(userName, password) {
-  var ans = -1;
-  password = saltedHash(password);
-  ans = await db.getUser(userName, password);
-  return ans;
-}
-
-//applies salt and hash
-function saltedHash(password) {
-  alg = "sha1";
-  salt = "S@E1F53135E559C253assdk100101"; //random salt (taken from wikipedia)
-  password += salt;
-  password = hash(alg)
-    .update(password)
-    .digest("hex");
-  return password;
-}
-
-function updateCapability(capabilityfn) {
-  db.getCapability(function(rows) {
-    capability = rows;
-    capabilityfn();
-  });
-}
-
 function updateBands(bandsfn) {
   db.getBands(function(rows) {
     bands = rows;
     bandsfn();
+  });
+}
+
+function updateResponsibilities(responsiblityfn) {
+  db.getResponsibilities(function(rows) {
+    responsibilities = rows;
+    responsiblityfn();
   });
 }
 
@@ -192,6 +209,7 @@ function updateBandTitles(bandTitlesfn) {
 }
 
 roles = [];
+roleFamilies = [];
 competencies = [];
 bandCompetency = [];
 titles = [];
@@ -199,3 +217,4 @@ capability = [];
 bands = [];
 families = [];
 bandTitles = [];
+responsibilities = [];

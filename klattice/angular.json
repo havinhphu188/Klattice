@@ -26,7 +26,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/saltedHashing.js",
+              "node_modules/crypto-js/crypto-js.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -86,7 +89,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/saltedHashing.js",
+              "node_modules/crypto-js/crypto-js.js",
+              "node_modules/crypto-js/"
+            ]
           }
         },
         "lint": {
