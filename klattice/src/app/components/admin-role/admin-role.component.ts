@@ -69,9 +69,17 @@ export class AdminRoleComponent implements OnInit {
 
   openAddRoleModal(addRole) {
     this.modalService.open(addRole, {
-      size: "lg",
-      ariaLabelledBy: "modal-basic-title"
+      size: 'lg',
+      ariaLabelledBy: 'modal-basic-title'
     });
+  }
+
+  deleteRole(roleID){
+    confirm('Are you sure?');
+    if (confirm) {
+      this.data.deleteRole(roleID);
+    }
+    window.location.reload();
   }
 
 }

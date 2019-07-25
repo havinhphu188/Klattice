@@ -54,23 +54,22 @@ export class LoginComponent {
 
 
     this.headers = {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     };
     this.http
-      .post("/api/user-details", { params: params }, this.headers)
+      .post('/api/user-details', { params: params }, this.headers)
       .subscribe(response => {
-        var rsp = JSON.stringify(response);
+        let rsp = JSON.stringify(response);
+        console.log(rsp);
         rsp = rsp.substring(11, 12);
-        if (rsp == "a") {
+        if (rsp == 'a') {
           this.successfulLogin(true, username);
-          window.location.reload();
-        } else if (rsp == "e") {
+        } else if (rsp == 'e') {
           this.successfulLogin(false, username);
-          window.location.reload();
-        } else if (rsp == "f") {
-          alert("Failed");
-          window.location.reload();
+        } else if (rsp == 'f') {
+          alert('Failed');
         }
+        window.location.reload();
         this.signInStatus = rsp;
       });
   }

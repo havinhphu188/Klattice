@@ -54,6 +54,10 @@ Front-end - Angular
 npm install angular
 ```
 
+```
+npm install crypto
+```
+
 ## Running the project
 
 Run Angular 
