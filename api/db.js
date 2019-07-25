@@ -54,8 +54,10 @@ exports.getRoles = function(callback) {
 
 exports.getCapability = function(callback) {
   db.query(
-    "SELECT capability_id, capability_name, family_id FROM capability;",
+    "SELECT capability_id, capability_name, family_id, capability_lead_id FROM capability;",
     function(err, rows) {
+       
+      console.log(rows[0]);
       if ((err, rows)) {
         callback(rows);
       }

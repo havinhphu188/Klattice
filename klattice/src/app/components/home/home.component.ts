@@ -33,6 +33,10 @@ export class HomeComponent implements OnInit {
   bandID = -1;
   bandName: string;
 
+  capabilityLeadId = -1;
+  capabilityMessage = "NA";
+  capabilityLeadName = "Matthew Fox";
+
   EXECUTIVE_BAND = "Executive";
   LEADERSHIP_COMMUNITY_BAND = "Leadership Community";
   PRINCIPAL_BAND = "Principal";
@@ -79,6 +83,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+  
   openCompModal(competencyModal, band_id, name) {
     this.bandID = band_id;
     this.bandName = name;

@@ -19,6 +19,11 @@
     <ng-template ngbPanelContent>
       <table class="table table-borderless table-hover">
         <tbody>
+          <img src="../../../assets/capability_lead.jpg" alt="test" height="128" width="128">
+          <tr *ngFor="lead of data.capability_lead | async" class="leadRow">
+              <td
+                *ngIf="lead.capability_lead_id === capability.capability_lead_id"
+              >
           <tr *ngFor="let role of data.roles | async" class="roleRow">
             <td
               class="roleCap"
@@ -27,7 +32,7 @@
               <div class="row jobRow">
                 <div class="col-9">
                   <div
-                    class="roleName"
+                    class="role"
                     (click)="
                       openModal(
                         content,

@@ -9,6 +9,7 @@ import { BandCompetency } from "./classes/band-competency";
 import { Title } from "./classes/title";
 import { BandTitle } from "./classes/band-title";
 import { Family } from "./classes/family";
+import { CapabilityLead } from './classes/capability-lead';
 
 @Injectable({
   providedIn: "root"
@@ -26,5 +27,6 @@ export class DataService {
     .toPromise();
   bandTitles = this.http.get<BandTitle[]>("api/band-titles").toPromise();
   families = this.http.get<Family[]>("api/families").toPromise();
+  capabilityLeads = this.http.get<CapabilityLead[]>("api/capability-lead").toPromise();
   loginDetails = this.http.get<JSON>("api/user-details");
 }

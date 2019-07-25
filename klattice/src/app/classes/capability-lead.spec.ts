@@ -1,7 +1,7 @@
-import { Capability } from './capability';
+import { CapabilityLead } from './capability-lead';
 
-describe('Capability', () => {
+describe('CapabilityLead', () => {
   it('should create an instance', () => {
-    expect(new Capability()).toBeTruthy();
+    expect(new CapabilityLead()).toBeTruthy();
   });
 });
