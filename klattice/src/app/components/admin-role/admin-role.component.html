@@ -159,7 +159,7 @@
           <div class="form-group col-md-6">
             <label for="family_id">Family</label>
             <select
-              *ngIf="modalState == 'add'"
+              *ngIf="modalState == 'add' || modalState == 'edit'"
               class="form-control"
               [(ngModel)]="family_id"
               name="family_id"
@@ -192,7 +192,7 @@
           <div class="form-group col-md-6">
             <label for="capability_id">Capability</label>
             <select
-              *ngIf="modalState == 'add'"
+              *ngIf="modalState == 'add' || modalState == 'edit'"
               class="form-control"
               [(ngModel)]="newRole.capability_id"
               name="capability_id"
@@ -225,7 +225,7 @@
           <div class="form-group col-md-6">
             <label for="role_name">Role</label>
             <input
-              *ngIf="modalState == 'add'"
+              *ngIf="modalState == 'add' || modalState == 'edit'"
               type="text"
               class="form-control"
               placeholder="Enter role"
@@ -243,7 +243,7 @@
           <div class="form-group col-md-6">
             <label for="band_id">Band</label>
             <select
-              *ngIf="modalState == 'add'"
+              *ngIf="modalState == 'add' || modalState == 'edit'"
               class="form-control"
               [(ngModel)]="newRole.band_id"
               name="band_id"
@@ -273,7 +273,7 @@
           <div class="form-group col-md-12">
             <label for="role_summary">Role Summary</label>
             <textarea
-              *ngIf="modalState == 'add'"
+              *ngIf="modalState == 'add' || modalState == 'edit'"
               class="form-control"
               placeholder="Enter role summary"
               [(ngModel)]="newRole.role_summary"
@@ -295,7 +295,7 @@
           <div class="form-group col-md-12">
             <label for="role_name">Sharepoint link</label>
             <input
-              *ngIf="modalState == 'add'"
+              *ngIf="modalState == 'add' || modalState == 'edit'"
               type="text"
               class="form-control"
               [(ngModel)]="newRole.role_sum_link"
@@ -342,6 +342,23 @@
       >
       Close
       </button>
-    </div> 
+    </div>
+    <div *ngIf="modalState == 'edit'">
+      <button
+      type="submit"
+      class="btn btn-outline-dark subBtn"
+      value="Submit"
+      (click)="editRole(addForm)"
+    >
+      Submit
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      value="Cancel"
+      (click)="cancelForm()"
+    >
+    </button>
+  </div>
   </div>
 </ng-template>

@@ -68,6 +68,19 @@ export class AdminRoleComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
+  editRole(addForm): void {
+    if (addForm.valid) {
+      this.submitted = true;
+      this.data.editRole(this.newRole);
+      this.formShow = false;
+      this.family_id = null;
+      this.newRole = new Role();
+    } else {
+      console.log('Form is invalid');
+    }
+    this.modalService.dismissAll();
+  }
+
   modalState = 'edit';
 
   openAddRoleModal(addRole) {
@@ -83,7 +96,7 @@ export class AdminRoleComponent implements OnInit {
       size: "lg",
       ariaLabelledBy: "modal-basic-title"
     });
-    this.selectRole = role;
+    this.newRole = role;
     this.modalState = 'edit';
   }
 
