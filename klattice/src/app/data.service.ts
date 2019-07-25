@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Role } from './classes/role';
 import { Capability } from './classes/capability';
@@ -29,7 +29,6 @@ export class DataService {
   roleFamilies = this.http.get<RoleFamily[]>('api/role-families').toPromise();
   loginDetails = this.http.get<JSON>("api/user-details");
   responsibilities = this.http.get<Responsibility[]>("api/responsibilities").toPromise();
-  headers: any;
 
   addRole(newRole: Role): any {
     this.http.post<Role>('api/add-role', newRole).subscribe(c => {console.log(c)});
@@ -39,10 +38,7 @@ export class DataService {
 
   deleteRole(roleID){
     let params = {'roleID': roleID};
-    this.headers = {
-      "Content-Type": "application/json"
-    }
-    this.http.post('/api/delete-role', {params:params}, this.headers)
+    this.http.post('/api/delete-role', {params:params})
       .subscribe(response => {
         alert(response);
       })

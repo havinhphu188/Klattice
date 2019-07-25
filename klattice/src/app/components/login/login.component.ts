@@ -64,14 +64,12 @@ export class LoginComponent {
         rsp = rsp.substring(11, 12);
         if (rsp == 'a') {
           this.successfulLogin(true, username);
-          window.location.reload();
         } else if (rsp == 'e') {
           this.successfulLogin(false, username);
-          window.location.reload();
         } else if (rsp == 'f') {
           alert('Failed');
-          window.location.reload();
         }
+        window.location.reload();
         this.signInStatus = rsp;
       });
   }

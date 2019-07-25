@@ -43,11 +43,11 @@ app.post('/user-details', async function(req,res){
 });
 
 app.post('/add-role', async function(req, res){
-   await addRoleToDB(req.body);
+   await db.addRole(req.body);
 });
 
 app.post('/delete-role', async function(req, res){
-    await deleteRole(req.body);
+    await db.deleteRole(req.body);
 });
 
 app.get('/capability', function(req, res){
@@ -139,14 +139,6 @@ async function authenticate(username, password, res){
       loggedIn: session.loggedIn,
       username: session.username
     })
-}
-
-async function addRoleToDB(roleObject){
-    return await db.addRole(roleObject);
-}
-
-async function deleteRole(roleObject){
-    return await db.deleteRole(roleObject);
 }
 
 function updateCapability(capabilityfn){
