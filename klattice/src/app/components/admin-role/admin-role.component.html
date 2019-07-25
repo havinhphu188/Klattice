@@ -26,8 +26,9 @@
         <option
           *ngFor="let family of data.families | async"
           value="{{ family.family_id }}"
-          >{{ family.family_name }}</option
         >
+          {{ family.family_name }}
+        </option>
       </select>
     </th>
     <th>
@@ -75,8 +76,9 @@
         <option
           *ngFor="let band of data.bands | async"
           value="{{ band.band_id }}"
-          >{{ band.band_name }}</option
         >
+          {{ band.band_name }}
+        </option>
       </select>
     </th>
   </thead>
