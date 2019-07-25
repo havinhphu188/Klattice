@@ -21,13 +21,13 @@
     "@angular/router": "~8.1.0",
     "@ng-bootstrap/ng-bootstrap": "^5.0.0",
     "angular": "^1.7.8",
+    "chai": "*",
+    "chai-spies": "*",
     "crypto-js": "^3.1.9-1",
     "http": "0.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1",
-    "chai": "*",
-    "chai-spies": "*"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.801.1",
