@@ -23,14 +23,4 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
-
-  // test to check logging in as employee
-  it('login with admin details', () => {
-    //username: employee  --  pass: empPass
-  });
-
-  // test to check logging in as admin
-
-  // 
 });
