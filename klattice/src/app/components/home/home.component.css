@@ -3,7 +3,7 @@
   color: #ffffff;
   font-size: 12px;
   text-align: center;
-  z-index: 12;
+  z-index: -1;
 }
 
 .jobBand {

@@ -37,20 +37,23 @@ app.get("/user-details", function(req, res) {
 });
 
 app.post('/user-details', async function(req,res){
-    var username = req.body.params.username;
-    var password = req.body.params.password;
-    
-    await authenticate(username, password, res); 
+  var username = req.body.params.username;
+  var password = req.body.params.password;
+  await authenticate(username, password, res); 
 });
 
 app.post('/add-role', async function(req, res){
-  ans = await addRoleToDB(req.body);
- });
+   await db.addRole(req.body);
+});
 
-app.get("/capability", function(req, res) {
-  updateCapability(function() {
-    res.send(capability);
-  });
+app.post('/delete-role', async function(req, res){
+    await db.deleteRole(req.body);
+});
+
+app.get('/capability', function(req, res){
+    updateCapability(function(){
+        res.send(capability)
+    });
 });
 
 app.get("/bands", function(req, res) {
@@ -114,15 +117,8 @@ function updateRoleFamilies(rolefamiliesfn){
     });
 }
 
-async function addRoleToDB(roleObject){
-    var didRoleAdd = -1;
-    didRoleAdd = await db.addRole(roleObject);
-    return didRoleAdd;
-}
-
 async function authenticate(username, password, res){
     var authStatus = await db.getUser(username, password);
-
     switch(authStatus)
     {
       case 'a':
