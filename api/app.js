@@ -107,10 +107,10 @@ app.post("/signout", function(req, res) {
   });
 });
 
-function updateRoleFamilies(rolefamaliesfn){
+function updateRoleFamilies(rolefamiliesfn){
     db.getRoleFamilies(function(rows){
         roleFamiles = rows;
-        rolefamaliesfn();
+        rolefamiliesfn();
     });
 }
 
@@ -209,7 +209,7 @@ function updateBandTitles(bandTitlesfn) {
 }
 
 roles = [];
-roleFamiles = [];
+roleFamilies = [];
 competencies = [];
 bandCompetency = [];
 titles = [];
