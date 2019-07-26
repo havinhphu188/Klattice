@@ -85,8 +85,8 @@ export class AdminRoleComponent implements OnInit {
 
   openAddRoleModal(addRole) {
     this.modalService.open(addRole, {
-      size: "lg",
-      ariaLabelledBy: "modal-basic-title"
+      size: 'lg',
+      ariaLabelledBy: 'modal-basic-title'
     });
     this.modalState = 'add';
   }
@@ -107,6 +107,14 @@ export class AdminRoleComponent implements OnInit {
     });
     this.selectRole = role;
     this.modalState = 'view';
+  }
+
+  deleteRole(roleID){
+    confirm('Are you sure?');
+    if (confirm) {
+      this.data.deleteRole(roleID);
+    }
+    window.location.reload();
   }
 
 }

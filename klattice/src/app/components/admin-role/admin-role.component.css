@@ -6,6 +6,39 @@
   background-color: #4caf50;
   color: white;
 }
+#addbtn:hover{
+  background-color: #449c46;
+  color: white;
+}
+#delbtn{
+  background-color: #EB595E;
+  color: white;
+  margin-left: 5px;
+}
+#delbtn:hover{
+  background-color: rgb(211, 78, 82);
+}
+#editbtn{
+  background-color: #fff;
+  color: #777;
+  border: solid 1px #777;
+}
+#editbtn:hover{
+  background-color: #777;
+  color: white;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+.material-icons.md-15 {
+  font-size: 15px;
+}
 select:required:invalid {
   color: gray;
 }

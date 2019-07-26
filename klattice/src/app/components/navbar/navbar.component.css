@@ -9,7 +9,7 @@
 }
 
 .logo {
-  z-index: 20;
+  z-index: 10;
 }
 
 #CLtitle {
@@ -22,7 +22,7 @@
 }
 
 .mainHeader {
-  z-index: 10;
+  z-index: 100;
   background-color: #003471;
   position: sticky;
   top: 0;
@@ -36,7 +36,7 @@
 }
 
 .profileInfo {
-  z-index: 20;
+  z-index: 10;
   text-decoration: none;
 }
 

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Role } from './classes/role';
 import { Capability } from './classes/capability';
@@ -39,5 +39,13 @@ export class DataService {
   editRole(oldRole: Role): any {
     this.http.put<Role>('api/edit-role', oldRole).subscribe(c => {console.log(c)});
     this.roles = this.http.get<Role[]>('api/roles').toPromise();
+  }
+  
+  deleteRole(roleID){
+    let params = {'roleID': roleID};
+    this.http.post('/api/delete-role', {params:params})
+      .subscribe(response => {
+        alert(response);
+      })
   }
 }
