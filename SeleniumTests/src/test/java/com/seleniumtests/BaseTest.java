@@ -1,6 +1,6 @@
 package com.seleniumtests;
 
-import com.sampleweb.listeners.TestListener;
+import com.seleniumtests.listeners.TestListener;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;

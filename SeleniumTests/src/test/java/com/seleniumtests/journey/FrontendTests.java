@@ -1,7 +1,6 @@
 package com.seleniumtests.journey;
 
 import com.seleniumtests.BaseTest;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
