@@ -116,7 +116,7 @@ app.post("/signout", function(req, res) {
 
 async function editRole(roleObject){
   var didRoleEdit = -1;
-  didRoleEdit = await db.editRole(roleObject);
+  didRoleEdit = await db.editRole(roleObject.role_id, roleObject.role_name, roleObject.role_summary, roleObject.role_sum_link, roleObject.capability_id, roleObject.band_id);
   return didRoleEdit;
 }
 
@@ -150,11 +150,11 @@ async function authenticate(username, password, res){
       username: session.username
     });
 }
-async function editRole(roleObject){
-    var didRoleEdit = -1;
-    didRoleEdit = await db.editRole(roleObject);
-    return didRoleEdit;
-}
+// async function editRole(roleObject){
+//     var didRoleEdit = -1;
+//     didRoleEdit = await db.editRole(roleObject);
+//     return didRoleEdit;
+// }
 
 function updateCapability(capabilityfn){
     db.getCapability(function(rows){

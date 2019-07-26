@@ -32,13 +32,12 @@ export class DataService {
 
   addRole(newRole: Role): any {
     this.http.post<Role>('api/add-role', newRole).subscribe(c => {console.log(c)});
-    this.roles = this.http.get<Role[]>('api/roles').toPromise();
-    this.roleFamilies = this.http.get<RoleFamily[]>('api/role-families').toPromise();
+    this.refreshRole();
   }
 
   editRole(oldRole: Role): any {
     this.http.put<Role>('api/edit-role', oldRole).subscribe(c => {console.log(c)});
-    this.roles = this.http.get<Role[]>('api/roles').toPromise();
+    this.refreshRole();
   }
   
   deleteRole(roleID){
@@ -47,5 +46,11 @@ export class DataService {
       .subscribe(response => {
         alert(response);
       })
+    this.refreshRole();
+  }
+
+  refreshRole (){
+    this.roles = this.http.get<Role[]>('api/roles').toPromise();
+    this.roleFamilies = this.http.get<RoleFamily[]>('api/role-families').toPromise();
   }
 }

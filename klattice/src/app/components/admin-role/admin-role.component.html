@@ -139,7 +139,7 @@
           type="button"
           id="editbtn"
           class="btn btn-sm btn-circle"
-          (click)="openEditRoleModal(role.role_id, role)"
+          (click)="openEditRoleModal(RoleModal, role)"
         >
           <i class="material-icons md-15">edit</i>
         </button>
@@ -275,24 +275,41 @@
                 >{{ band.band_name }}</option
               >
             </select>
+            <div *ngIf="modalState == 'view'"
+              class="form-control">
+              <span *ngFor="let band of data.bands | async">
+                <p *ngIf="band.band_id == selectRole.band_id">
+                  {{ band.band_name}}
+                </p>
+              </span>
+            </div>
             </div>
           </div>
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="role_summary">Role Summary</label>
                 <textarea
+                  *ngIf="modalState == 'add' || modalState == 'edit'"
                   class="form-control"
                   placeholder="Enter role summary"
                   [(ngModel)]="newRole.role_summary"
                   name="role_summary"
                   required
                 ></textarea>
+                <textarea
+                  *ngIf="modalState == 'view'"
+                  class="form-control"
+                  value="{{ selectRole.role_summary }}"
+                  readonly>
+
+                </textarea>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="role_name">Sharepoint link</label>
                 <input
+                  *ngIf="modalState == 'add' || modalState == 'edit'"
                   type="text"
                   class="form-control"
                   [(ngModel)]="newRole.role_sum_link"
@@ -301,12 +318,20 @@
                   required
                   appSharepoint
                 />
+                <input
+                  type="text"
+                  class="form-control"
+                  *ngIf="modalState == 'view'"
+                  value="{{ newRole.role_sum_link }}"
+                  readonly
+                />
               </div>
             </div>
             </form>
           </div>
         </div>
         <div class="modal-footer">
+          <div *ngIf="modalState == 'add'">
           <button
             type="submit"
             class="btn btn-outline-dark subBtn"
@@ -323,5 +348,34 @@
           >
             Cancel
           </button>
+        </div>
+        <div *ngIf="modalState == 'edit'">
+            <button
+              type="submit"
+              class="btn btn-outline-dark subBtn"
+              value="Submit"
+              (click)="editRole(addForm)"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              value="Cancel"
+              (click)="cancelForm()"
+            >
+              Cancel
+            </button>
+          </div>
+          <div *ngIf="modalState == 'view'">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                value="Cancel"
+                (click)="cancelForm()"
+              >
+                Close
+              </button>
+            </div>
         </div>
     </ng-template>

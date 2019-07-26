@@ -40,6 +40,7 @@ export class AdminRoleComponent implements OnInit {
     this.formShow = false;
     this.family_id = null;
     this.newRole = new Role();
+    this.data.refreshRole();
     this.modalService.dismissAll();
   }
 
@@ -77,11 +78,13 @@ export class AdminRoleComponent implements OnInit {
       this.newRole = new Role();
     } else {
       console.log('Form is invalid');
+      this.data.refreshRole();
     }
     this.modalService.dismissAll();
   }
 
   modalState = 'edit';
+  editSet = false;
 
   openAddRoleModal(addRole) {
     this.modalService.open(addRole, {
@@ -96,17 +99,23 @@ export class AdminRoleComponent implements OnInit {
       size: "lg",
       ariaLabelledBy: "modal-basic-title"
     });
+    this.selectRole=role;
     this.newRole = role;
     this.modalState = 'edit';
+    this.editSet = true;
   }
 
   openViewRoleModal(viewRole, role) {
-    this.modalService.open(viewRole, {
-      size: "lg",
-      ariaLabelledBy: "modal-basic-title"
-    });
-    this.selectRole = role;
-    this.modalState = 'view';
+    if (this.editSet == false){
+      this.modalService.open(viewRole, {
+        size: "lg",
+        ariaLabelledBy: "modal-basic-title"
+      });
+      this.selectRole = role;
+      this.modalState = 'view';
+    } else {
+      this.editSet = false;
+    }
   }
 
   deleteRole(roleID){
