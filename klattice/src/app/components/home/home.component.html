@@ -19,9 +19,9 @@
     <ng-template ngbPanelContent>
       <table class="table table-borderless table-hover">
         <tbody>
-            <td class = "leadRowNone" *ngIf="capability.capability_lead_id == null">
+            <td class = "leadRowNone"  *ngIf="capability.capability_lead_id == null">
                 <p id = "noLeadSummary">This capability does not have a lead.</p> </td>
-              <tr *ngFor="let lead of data.capabilityLeads | async" class="leads">
+              <tr *ngFor="let lead of data.capabilityLeads | async" class="leads" id="border">
               <td
                 class = "leadRow"
                 *ngIf="lead.capability_lead_id == capability.capability_lead_id"
