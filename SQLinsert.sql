@@ -145,10 +145,10 @@ VALUES ("Business Development", 1,1),
         ("Inside Sales Development", 1,null),
         ("Pre Sales & Bid Management", 1,null),
         ("Marketing", 1,null),        
-        ("Software Engineering", 2,2),
+        ("Software Engineering", 2,null),
         ("Data Engineering", 2,null),
         ("Cyber Security", 2,null),
-        ("Architect", 2,4),
+        ("Architect", 2,null),
         ("Ops", 2,null);
         
 -- role

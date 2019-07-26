@@ -26,7 +26,7 @@
                 class = "leadRow"
                 *ngIf="lead.capability_lead_id == capability.capability_lead_id"
               >
-              <img src="{{lead.image_source}}" alt= "e" height="224" width="256"  class = "leadSummary">
+              <img src="{{lead.image_source}}"  height="90" width="90"  id="capPhoto" class = "rounded-circle">
                 <p id = "leadName" class = "leadSummary">{{lead.lead_name}} </p>
                 <p id = "leadMessage" class = "leadSummary">{{lead.lead_message}}</p>
               </td>
