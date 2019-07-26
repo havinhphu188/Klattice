@@ -19,6 +19,18 @@
     <ng-template ngbPanelContent>
       <table class="table table-borderless table-hover">
         <tbody>
+            <td class = "leadRowNone"  *ngIf="capability.capability_lead_id == null">
+                <p id = "noLeadSummary">This capability does not have a lead.</p> </td>
+              <tr *ngFor="let lead of data.capabilityLeads | async" class="leads" id="border">
+              <td
+                class = "leadRow"
+                *ngIf="lead.capability_lead_id == capability.capability_lead_id"
+              >
+              <img src="{{lead.image_source}}"  height="90" width="90"  id="capPhoto" class = "rounded-circle">
+                <p id = "leadName" class = "leadSummary">{{lead.lead_name}} </p>
+                <p id = "leadMessage" class = "leadSummary">{{lead.lead_message}}</p>
+              </td>
+          </tr>
           <tr *ngFor="let role of data.roles | async" class="roleRow">
             <td
               class="roleCap"
@@ -28,7 +40,7 @@
               <div class="row jobRow">
                 <div class="col-9">
                   <div
-                    class="roleName"
+                    class="role"
                     (click)="
                       openModal(
                         content,
@@ -69,7 +81,6 @@
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
-
 <!-- JOB SPEC MODAL -->
 <ng-template #content let-modal>
   <div class="modal-header" [style.background-color]="setModalHeaderColour()">

@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
   DEFAULT_COLOUR_BORDER = 'solid 2px #777';
 
   data: DataService;
-  
+
   ngOnInit() {
     this.sub = this.route.data.subscribe(x => {
       this.capabilityTitle = x["capabilityTitle"];
@@ -83,6 +83,8 @@ export class HomeComponent implements OnInit {
       ariaLabelledBy: "modal-basic-title"
     });
   }
+
+
 
   openCompModal(competencyModal, band_id, name) {
     this.bandID = band_id;

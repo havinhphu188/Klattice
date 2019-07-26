@@ -42,6 +42,17 @@ exports.getUser = function (username, userPassword){
 });
 }
 
+exports.getCapabilityLead = function(callback){
+  db.query(
+    "SELECT capability_lead_id, lead_name, lead_message, image_source FROM capability_lead;",
+    function(err, rows) {
+      if ((err, rows)) {
+        callback(rows);
+      }
+    }
+  );
+  }
+
 exports.editRole = function (role_id, role_name, role_summary, role_sum_link, capability_id, band_id){
     return new Promise(function(resolve, reject){
       var queryEditRole = 'UPDATE role SET `role_name` = ?, `role_summary` = ?, `role_sum_link` = ?, `capability_id` = ?, `band_id` = ? WHERE role_id = ?;'
@@ -100,7 +111,7 @@ exports.addRole = function (roleObject){
 
 exports.getCapability = function(callback) {
   db.query(
-    "SELECT capability_id, capability_name, family_id FROM capability;",
+    "SELECT capability_id, capability_name, family_id, capability_lead_id FROM capability;",
     function(err, rows) {
       if ((err, rows)) {
         callback(rows);

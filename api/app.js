@@ -9,7 +9,6 @@ var session = {
   sessionId: 0
 };
 
-//Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
 app.listen(7999, function() {
@@ -102,6 +101,12 @@ app.get("/band-titles", function(req, res) {
   });
 });
 
+app.get("/capability-lead", function(req,res){
+  updateCapabilityLeads(function(){
+    res.send(capabilityLeads);
+  })
+});
+
 app.post("/signout", function(req, res) {
   session.isAdmin = false;
   session.loggedIn = false;
@@ -152,6 +157,12 @@ function updateCapability(capabilityfn){
     });
   }  
 
+function updateCapabilityLeads(capabilityLeadfn){
+    db.getCapabilityLead(function(rows){
+        capabilityLeads = rows;
+        capabilityLeadfn();
+    });
+  }  
 function updateRoles(rolesfn) {
   db.getRoles(function(rows) {
     roles = rows;
@@ -217,4 +228,5 @@ capability = [];
 bands = [];
 families = [];
 bandTitles = [];
+capabilityLeads = [];
 responsibilities = [];

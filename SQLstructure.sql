@@ -23,13 +23,24 @@ CREATE TABLE competency (
 		REFERENCES title(`title_id`)
 );
 
+CREATE TABLE capability_lead (
+    capability_lead_id INT unsigned AUTO_INCREMENT,
+    lead_name varchar(50),
+    lead_message varchar(500),
+    image_source varchar(200),
+    PRIMARY KEY (`capability_lead_id`)
+);
+
 CREATE TABLE capability (
 	capability_id INT unsigned auto_increment,
     capability_name varchar(60),
     family_id INT unsigned,
+    capability_lead_id INT UNSIGNED,
     PRIMARY KEY(`capability_id`),
 	FOREIGN KEY (`family_id`)
-		REFERENCES family(`family_id`)
+		REFERENCES family(`family_id`),
+    FOREIGN KEY (`capability_lead_id`)
+        REFERENCES capability_lead(`capability_lead_id`)
 );
 
 CREATE TABLE band (
