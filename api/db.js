@@ -79,8 +79,6 @@ exports.getResponsibilities = function(callback) {
   db.query(
     "SELECT responsibility_id, band_id, responsibility_description FROM responsibility;",
     function(err, rows) {
-       
-      console.log(rows[0]);
       if ((err, rows)) {
         callback(rows);
       }

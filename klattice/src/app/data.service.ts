@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
-
 import { Role } from './classes/role';
 import { Capability } from './classes/capability';
 import { Band } from './classes/band';
