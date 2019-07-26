@@ -26,7 +26,7 @@ CREATE TABLE competency (
 CREATE TABLE capability_lead (
     capability_lead_id INT unsigned AUTO_INCREMENT,
     lead_name varchar(50),
-    lead_message varchar(200),
+    lead_message varchar(500),
     PRIMARY KEY (`capability_lead_id`)
 );
 

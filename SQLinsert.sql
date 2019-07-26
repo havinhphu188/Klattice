@@ -2,8 +2,10 @@
 INSERT INTO user (user_name,user_password,user_type) VALUES('admin','9179d75362d5fbf1ca0ae78e907ee9c15dba8eecaac2b48ada516596', 'admin');
 INSERT INTO user (user_name,user_password,user_type) VALUES('employee','11b951f65858b2be3c065374fc928fcdfef05f6d0b8694d8acd2a746','employee');
 
-INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message) VALUES (1,'Matthew fox', 'Feeling foxy, might delete later :3.')
-;
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message) VALUES (1,'Matthew fox', 'With more than 10 ten years at Kainos and another 10 years working throughout the world in companies such as Google and Microsoft, Matthew has an array  of skills which make him the capabilty lead for business.
+');
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message) VALUES (2,'Rory Sproules', 'Rory  has worked at kainos for 25  years.  
+');
 
 -- title
 INSERT INTO title (title_name)
@@ -136,16 +138,16 @@ VALUES ("Sales & Marketing"),
 -- capability
 INSERT INTO capability (capability_name, family_id,capability_lead_id)
 VALUES ("Business Development", 1,1),
-		("Account Management", 1,1),
-        ("Sales", 1,1),
-        ("Inside Sales Development", 1,1),
-        ("Pre Sales & Bid Management", 1,1),
-        ("Marketing", 1,1),        
-        ("Software Engineering", 2,1),
-        ("Data Engineering", 2,1),
-        ("Cyber Security", 2,1),
-        ("Architect", 2,1),
-        ("Ops", 2,1);
+		("Account Management", 1,null),
+        ("Sales", 1,null),
+        ("Inside Sales Development", 1,null),
+        ("Pre Sales & Bid Management", 1,null),
+        ("Marketing", 1,null),        
+        ("Software Engineering", 2,2),
+        ("Data Engineering", 2,null),
+        ("Cyber Security", 2,null),
+        ("Architect", 2,null),
+        ("Ops", 2,null);
         
 -- role
 INSERT INTO role (role_name, role_summary, role_sum_link, capability_id, band_id)
