@@ -16,9 +16,9 @@ app.listen(7999, function() {
   console.log("Express started");
 });
 
-app.put('/edit-role', async function(req,res){
-  ans = await editRole(req.body);
-});
+app.put('/edit-role', async function(req,res){  
+  await db.editRole(req.body.role_id, req.body.role_name, req.body.role_summary, req.body.role_sum_link, req.body.capability_id, req.body.band_id);
+});;
 
 app.get("/roles", function(req, res) {
   updateRoles(function() {
@@ -114,12 +114,6 @@ app.post("/signout", function(req, res) {
   });
 });
 
-async function editRole(roleObject){
-  var didRoleEdit = -1;
-  didRoleEdit = await db.editRole(roleObject.role_id, roleObject.role_name, roleObject.role_summary, roleObject.role_sum_link, roleObject.capability_id, roleObject.band_id);
-  return didRoleEdit;
-}
-
 function updateRoleFamilies(rolefamiliesfn){
     db.getRoleFamilies(function(rows){
         roleFamiles = rows;
@@ -150,11 +144,6 @@ async function authenticate(username, password, res){
       username: session.username
     });
 }
-// async function editRole(roleObject){
-//     var didRoleEdit = -1;
-//     didRoleEdit = await db.editRole(roleObject);
-//     return didRoleEdit;
-// }
 
 function updateCapability(capabilityfn){
     db.getCapability(function(rows){
