@@ -1,6 +1,6 @@
-package com.sampleweb.framework;
+package com.pagesandframework.framework;
 
-import com.sampleweb.pages.Page;
+import com.pagesandframework.pages.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 

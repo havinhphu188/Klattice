@@ -2,7 +2,7 @@
 Placeholder for the listener
  */
 
-package com.sampleweb.listeners;
+package com.seleniumtests.listeners;
 
 import org.testng.ITestListener;
 import org.testng.TestListenerAdapter;

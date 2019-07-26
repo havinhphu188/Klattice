@@ -1,4 +1,4 @@
-package com.sampleweb;
+package com.seleniumtests;
 
 import com.sampleweb.listeners.TestListener;
 import org.openqa.selenium.WebElement;

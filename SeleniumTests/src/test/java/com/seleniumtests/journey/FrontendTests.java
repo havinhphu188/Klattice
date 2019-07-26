@@ -1,6 +1,6 @@
-package com.sampleweb.journey;
+package com.seleniumtests.journey;
 
-import com.sampleweb.BaseTest;
+import com.seleniumtests.BaseTest;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.testng.annotations.Test;
 
