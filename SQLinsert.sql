@@ -4,12 +4,10 @@ INSERT INTO user (user_name,user_password,user_type) VALUES('employee','11b951f6
 
 INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (1,'John Smith', 'With more than 10 ten years at Kainos and another 10 years working throughout the world in companies such as Google and Microsoft, Matthew has an array  of skills which make him the capabilty lead for business.
 ', "../../../assets/capability_lead_1.jpg");
-INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (2,'Rory Gallagher', 'Rory  has worked at kainos for 25  years.  
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (2,'Rory Gallagher', 'Rory started a Kainos in 2013 and has grown to be one of the most talented  software  engineers within the company.  
 ', "../../../assets/capability_lead_2.jpg");
-INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (3,'Sarah Glen', 'Sarah  has worked at kainos for 25  years.  
-', "../../../assets/capability_lead_3.jpg");
-INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (4,'Glen Autumn', 'Glen  has worked at kainos for 25  years.  
-', "../../../assets/capability_lead_4.jpg");
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (4,'Glen Autumn', 'Glen has served as a technical architecton many Kainos projects, he started his career at  Kainos 5 years ago leading the Evolve project.  
+', "../../../assets/capability_lead_4.jpeg");
 
 -- title
 INSERT INTO title (title_name)
@@ -148,7 +146,7 @@ VALUES ("Business Development", 1,1),
         ("Pre Sales & Bid Management", 1,null),
         ("Marketing", 1,null),        
         ("Software Engineering", 2,2),
-        ("Data Engineering", 2,3),
+        ("Data Engineering", 2,null),
         ("Cyber Security", 2,null),
         ("Architect", 2,4),
         ("Ops", 2,null);
