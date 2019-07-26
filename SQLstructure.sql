@@ -27,6 +27,7 @@ CREATE TABLE capability_lead (
     capability_lead_id INT unsigned AUTO_INCREMENT,
     lead_name varchar(50),
     lead_message varchar(500),
+    image_source varchar(200),
     PRIMARY KEY (`capability_lead_id`)
 );
 
