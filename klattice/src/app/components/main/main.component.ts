@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { DataService } from "../../data.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
@@ -8,6 +8,10 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ["./main.component.css"]
 })
 export class MainComponent {
+
+  @Input()
+  isAdmin: boolean;
+
   title = "Career Lattice";
   roleID = -1;
   roleName = "";

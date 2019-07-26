@@ -34,6 +34,7 @@
           <tr *ngFor="let role of data.roles | async" class="roleRow">
             <td
               class="roleCap"
+              [style.border-left]="setLeftBorderColour(role.band_id)"
               *ngIf="role.capability_id === capability.capability_id"
             >
               <div class="row jobRow">

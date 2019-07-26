@@ -58,6 +58,11 @@ export class HomeComponent implements OnInit {
   GREEN_KAINOS_BRAND_COLOUR = "#009639";
   DEFAULT_COLOUR = "#777";
 
+  PURPLE_KAINOS_BRAND_COLOUR_BORDER = 'solid 2px #5C068C';
+  BLUE_KAINOS_BRAND_COLOUR_BORDER = 'solid 2px #00558C';
+  GREEN_KAINOS_BRAND_COLOUR_BORDER = 'solid 2px #009639';
+  DEFAULT_COLOUR_BORDER = 'solid 2px #777';
+
   data: DataService;
 
   ngOnInit() {
@@ -127,4 +132,24 @@ export class HomeComponent implements OnInit {
         return this.DEFAULT_COLOUR;
     }
   }
+
+  setLeftBorderColour(id) {
+    switch(id) {
+      case this.EXECUTIVE_BAND_ID:
+          case this.LEADERSHIP_COMMUNITY_BAND_ID:
+          case this.PRINCIPAL_BAND_ID:
+              return this.PURPLE_KAINOS_BRAND_COLOUR_BORDER;
+          case this.MANAGER_BAND_ID:
+          case this.CONSULTANT_BAND_ID:
+          case this.SENIOR_ASSOCIATE_BAND_ID:
+              return this.BLUE_KAINOS_BRAND_COLOUR_BORDER;
+          case this.ASSOCIATE_BAND_ID:
+          case this.TRAINEE_BAND_ID:
+          case this.APPRENTICE_BAND_ID:
+              return this.GREEN_KAINOS_BRAND_COLOUR_BORDER;
+          default:
+              return this.DEFAULT_COLOUR_BORDER;
+    }
+  }
+
 }

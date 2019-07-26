@@ -36,13 +36,13 @@
 
 .login-form-2 .btnSubmit{
     font-weight: 600;
-    color: #003471;
-    background-color: #fff;
+    color: #fff;
+    background-color: #35983F;
 }
 
 .login-form-2 .btnSubmit:hover{
     color: #ffffff;
-    background-color: #35983F;
+    background-color: rgb(51, 141, 60);
 }
 
 .login-form-2 .ForgetPwd{

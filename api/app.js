@@ -15,6 +15,10 @@ app.listen(7999, function() {
   console.log("Express started");
 });
 
+app.put('/edit-role', async function(req,res){  
+  await db.editRole(req.body.role_id, req.body.role_name, req.body.role_summary, req.body.role_sum_link, req.body.capability_id, req.body.band_id);
+});
+
 app.get("/roles", function(req, res) {
   updateRoles(function() {
     res.send(roles);
@@ -143,7 +147,7 @@ async function authenticate(username, password, res){
       isAdmin: session.isAdmin,
       loggedIn: session.loggedIn,
       username: session.username
-    })
+    });
 }
 
 function updateCapability(capabilityfn){
