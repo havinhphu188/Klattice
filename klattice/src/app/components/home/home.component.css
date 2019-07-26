@@ -16,6 +16,7 @@
 
 #leadName {
   padding-bottom: 0.1rem;
+  text-align: center;
 }
 
 #capabilityLeadTitle{
@@ -27,8 +28,18 @@
 }
 .leadSummary{
   padding-left: 0.9rem;
+  font-size: 12px;
 }
 
 #noLeadSummary {
-  font-style: italic; 
+  font-style: italic;
+}
+
+#capPhoto{
+  float: right;
+}
+#border{
+  display: block;
+  border-bottom:1pt solid black;
+
 }
