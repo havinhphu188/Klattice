@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DataService } from '../../data.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -7,15 +7,15 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
+
+  @Input()
+  isAdmin: boolean;
 
   data: DataService;
 
   constructor(dataService: DataService, private modalService: NgbModal) {
     this.data = dataService;
-  }
-
-  ngOnInit() {
   }
 
 }

@@ -13,9 +13,19 @@
 #delbtn{
   background-color: #EB595E;
   color: white;
+  margin-left: 5px;
 }
 #delbtn:hover{
   background-color: rgb(211, 78, 82);
+}
+#editbtn{
+  background-color: #fff;
+  color: #777;
+  border: solid 1px #777;
+}
+#editbtn:hover{
+  background-color: #777;
+  color: white;
 }
 .btn-circle {
   width: 30px;
@@ -40,6 +50,13 @@ option {
 }
 #addForm{
   padding-top: 5%
+}
+table th:first-child{
+  border-radius:3px 0 0 3px;
+}
+
+table th:last-child{
+  border-radius:0 3px 3px 0;
 }
 
 /* ADD ROLE MODAL */

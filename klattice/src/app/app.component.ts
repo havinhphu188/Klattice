@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   bandName = "";
 
   isLoggedIn: boolean;
+  isAdmin: boolean;
 
   data: DataService;
 
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.data.loginDetails.subscribe(x => {
       this.isLoggedIn = x["loggedIn"];
+      this.isAdmin = x["isAdmin"];
     });
   }
 
