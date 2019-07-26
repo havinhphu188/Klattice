@@ -2,10 +2,14 @@
 INSERT INTO user (user_name,user_password,user_type) VALUES('admin','9179d75362d5fbf1ca0ae78e907ee9c15dba8eecaac2b48ada516596', 'admin');
 INSERT INTO user (user_name,user_password,user_type) VALUES('employee','11b951f65858b2be3c065374fc928fcdfef05f6d0b8694d8acd2a746','employee');
 
-INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message) VALUES (1,'Matthew fox', 'With more than 10 ten years at Kainos and another 10 years working throughout the world in companies such as Google and Microsoft, Matthew has an array  of skills which make him the capabilty lead for business.
-');
-INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message) VALUES (2,'Rory Sproules', 'Rory  has worked at kainos for 25  years.  
-');
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (1,'John Smith', 'With more than 10 ten years at Kainos and another 10 years working throughout the world in companies such as Google and Microsoft, Matthew has an array  of skills which make him the capabilty lead for business.
+', "../../../assets/capability_lead_1.jpg");
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (2,'Rory Gallagher', 'Rory  has worked at kainos for 25  years.  
+', "../../../assets/capability_lead_2.jpg");
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (3,'Sarah Glen', 'Sarah  has worked at kainos for 25  years.  
+', "../../../assets/capability_lead_3.jpg");
+INSERT INTO capability_lead (capability_lead_id,lead_name,lead_message,image_source) VALUES (4,'Glen Autumn', 'Glen  has worked at kainos for 25  years.  
+', "../../../assets/capability_lead_4.jpg");
 
 -- title
 INSERT INTO title (title_name)
@@ -144,9 +148,9 @@ VALUES ("Business Development", 1,1),
         ("Pre Sales & Bid Management", 1,null),
         ("Marketing", 1,null),        
         ("Software Engineering", 2,2),
-        ("Data Engineering", 2,null),
+        ("Data Engineering", 2,3),
         ("Cyber Security", 2,null),
-        ("Architect", 2,null),
+        ("Architect", 2,4),
         ("Ops", 2,null);
         
 -- role

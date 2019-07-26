@@ -32,7 +32,7 @@ exports.getUser = function (username, userPassword){
 
 exports.getCapabilityLead = function(callback){
   db.query(
-    "SELECT capability_lead_id, lead_name, lead_message FROM capability_lead;",
+    "SELECT capability_lead_id, lead_name, lead_message, image_source FROM capability_lead;",
     function(err, rows) {
       if ((err, rows)) {
         callback(rows);
