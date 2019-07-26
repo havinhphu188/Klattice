@@ -10,7 +10,7 @@ local.properties
 bin/
 
 ### IntelliJ
-.idea/
+### .idea/
 *.iml
 *.ipr
 *.iws
