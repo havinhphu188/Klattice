@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./components/home/home.component";
+import { AdminRoleComponent } from './components/admin-role/admin-role.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
     path: "Central Services Teams",
     component: HomeComponent,
     data: { capabilityTitle: "Central Services Teams", familyID: "6" }
+  },
+  {
+    path: "admin-role",
+    component: AdminRoleComponent,
+    data: { capabilityTitle: "Role" }
   }
 ];
 

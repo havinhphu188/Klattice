@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="GRID SAMPLE TEST" parallel="tests" thread-count="3">
+    <test name="GRID TEST WITH SERIAL EXECUTION WITH BROWSER FF">
+        <parameter name ="browserType" value="firefox"/>
+        <classes>
+            <class name ="com.seleniumtests.journey.FrontendTests"/>
+        </classes>
+    </test>
+</suite>

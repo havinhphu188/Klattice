@@ -1,0 +1,283 @@
+<div style="padding-bottom: 5%">
+  <h2 class="float-left">Modify Role</h2>
+  <button
+    type="button"
+    id="addbtn"
+    class="btn float-right"
+    (click)="openAddRoleModal(addRoleModal)"
+  >
+    Add
+  </button>
+</div>
+
+<table class="table table-borderless table-curved">
+  <thead id="tableHeadRole">
+    <th>
+      <span>
+        Family
+      </span>
+      <select
+        class="form-control form-control-sm"
+        [(ngModel)]="filter_family_id"
+        name="filter_family_id"
+        (change)="clearFilterCapability()"
+      >
+        <option value="">All</option>
+        <option
+          *ngFor="let family of data.families | async"
+          value="{{ family.family_id }}"
+        >
+          {{ family.family_name }}
+        </option>
+      </select>
+    </th>
+    <th>
+      <span>
+        Capability
+      </span>
+      <select
+        class="form-control form-control-sm"
+        [(ngModel)]="filter_capability_id"
+        name="filter_capability_id"
+      >
+        <option value="">All</option>
+        <option
+          *ngFor="
+            let capability of data.capabilities
+              | async
+              | filterCapabilityByFamilyid: filter_family_id
+          "
+          value="{{ capability.capability_id }}"
+        >
+          {{ capability.capability_name }}
+        </option>
+      </select>
+    </th>
+    <th>
+      <span>
+        Role
+        <br />
+      </span>
+      <input
+        class="form-control form-control-sm"
+        [(ngModel)]="filter_role_name"
+        placeholder="Filter"
+      />
+    </th>
+    <th>
+      <span>
+        Band
+      </span>
+      <select
+        class="form-control form-control-sm"
+        [(ngModel)]="filter_band_id"
+        name="filter_band_id"
+      >
+        <option value="">All</option>
+        <option
+          *ngFor="let band of data.bands | async"
+          value="{{ band.band_id }}"
+        >
+          {{ band.band_name }}
+        </option>
+      </select>
+    </th>
+    <th></th>
+  </thead>
+  <tbody
+    *ngFor="
+      let roleFamily of data.roleFamilies
+        | async
+        | filterRoleFamily: filter_family_id
+    "
+  >
+    <tr
+      *ngFor="
+        let role of data.roles
+          | async
+          | filterAdminRole
+            : roleFamily.role_id
+            : filter_capability_id
+            : filter_band_id
+            : filter_role_name
+      "
+    >
+      <td>
+        <div *ngFor="let family of data.families | async">
+          <div *ngFor="let capability of data.capabilities | async">
+            <span
+              *ngIf="
+                role.capability_id === capability.capability_id &&
+                capability.family_id === family.family_id
+              "
+            >
+              {{ family.family_name }}
+            </span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <span *ngFor="let capability of data.capabilities | async">
+          <span *ngIf="role.capability_id === capability.capability_id">
+            {{ capability.capability_name }}
+          </span>
+        </span>
+      </td>
+      <td>
+        {{ role.role_name }}
+      </td>
+      <td>
+        <span *ngFor="let band of data.bands | async">
+          <span *ngIf="role.band_id === band.band_id">
+            {{ band.band_name }}
+          </span>
+        </span>
+      </td>
+      <td>
+        <button
+          type="button"
+          id="delbtn"
+          class="btn btn-sm btn-circle"
+          (click)="deleteRole(role.role_id)"
+        >
+        <i class="material-icons md-15">delete</i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ADD ROLE MODAL -->
+<ng-template #addRoleModal let-modal>
+  <div class="modal-header" [style.background-color]="'#4caf50'">
+    <h4 class="modal-title" id="modal-basic-title" style="color: #ffffff">
+      Add role
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true" style="color: #ffffff">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container login-container">
+      <form (ngSubmit)="addRole(addForm)" #addForm="ngForm" required>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="family_id">Family</label>
+            <select
+              class="form-control"
+              [(ngModel)]="family_id"
+              name="family_id"
+              (change)="clearCapability()"
+            >
+              <option value="" selected="capability_id"></option>
+              <option
+                *ngFor="let family of data.families | async"
+                value="{{ family.family_id }}"
+                >{{ family.family_name }}</option
+              >
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="capability_id">Capability</label>
+            <select
+              class="form-control"
+              [(ngModel)]="newRole.capability_id"
+              name="capability_id"
+              required
+            >
+              <option value="" ng-selected="capability_id"></option>
+              <option
+                *ngFor="
+                  let capability of data.capabilities
+                    | async
+                    | filterCapabilityByFamilyid: family_id
+                "
+                value="{{ capability.capability_id }}"
+                >{{ capability.capability_name }}</option
+              >
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="role_name">Role</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter role"
+              [(ngModel)]="newRole.role_name"
+              name="role_name"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="band_id">Band</label>
+            <select
+              class="form-control"
+              [(ngModel)]="newRole.band_id"
+              name="band_id"
+              required
+            >
+              <option value=""></option>
+              <option
+                *ngFor="let band of data.bands | async"
+                value="{{ band.band_id }}"
+                >{{ band.band_name }}</option
+              >
+            </select>
+            </div>
+          </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="role_summary">Role Summary</label>
+                <textarea
+                  class="form-control"
+                  placeholder="Enter role summary"
+                  [(ngModel)]="newRole.role_summary"
+                  name="role_summary"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="role_name">Sharepoint link</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="newRole.role_sum_link"
+                  placeholder="Enter sharepoint link"
+                  name="role_sum_link"
+                  required
+                  appSharepoint
+                />
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-outline-dark subBtn"
+            value="Submit"
+            (click)="addRole(addForm)"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            value="Cancel"
+            (click)="cancelForm()"
+          >
+            Cancel
+          </button>
+        </div>
+    </ng-template>

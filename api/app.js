@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require("./db");
-const hash = require("crypto").createHash;
 
-var loginStatus = "f"; //f = not signed ins
 var session = {
   username: "",
   loggedIn: false,
@@ -23,6 +21,12 @@ app.get("/roles", function(req, res) {
   });
 });
 
+app.get('/role-families', function(req, res) {
+  updateRoleFamilies(function() {
+      res.send(roleFamiles);
+  })
+});
+
 app.get("/user-details", function(req, res) {
   res.send({
     isAdmin: session.isAdmin,
@@ -32,21 +36,34 @@ app.get("/user-details", function(req, res) {
 });
 
 app.post('/user-details', async function(req,res){
-    var username = req.body.params.username;
-    var password = req.body.params.password;
-    
-    await authenticate(username, password, res); 
+  var username = req.body.params.username;
+  var password = req.body.params.password;
+  await authenticate(username, password, res); 
 });
 
-app.get("/capability", function(req, res) {
-  updateCapability(function() {
-    res.send(capability);
-  });
+app.post('/add-role', async function(req, res){
+   await db.addRole(req.body);
+});
+
+app.post('/delete-role', async function(req, res){
+    await db.deleteRole(req.body);
+});
+
+app.get('/capability', function(req, res){
+    updateCapability(function(){
+        res.send(capability)
+    });
 });
 
 app.get("/bands", function(req, res) {
   updateBands(function() {
     res.send(bands);
+  });
+});
+
+app.get("/responsibilities", function(req, res) {
+  updateResponsibilities(function() {
+    res.send(responsibilities);
   });
 });
 
@@ -98,9 +115,15 @@ app.post("/signout", function(req, res) {
   });
 });
 
+function updateRoleFamilies(rolefamiliesfn){
+    db.getRoleFamilies(function(rows){
+        roleFamiles = rows;
+        rolefamiliesfn();
+    });
+}
+
 async function authenticate(username, password, res){
     var authStatus = await db.getUser(username, password);
-
     switch(authStatus)
     {
       case 'a':
@@ -136,7 +159,6 @@ function updateCapabilityLeads(capabilityLeadfn){
         capabilityLeadfn();
     });
   }  
-
 function updateRoles(rolesfn) {
   db.getRoles(function(rows) {
     roles = rows;
@@ -144,11 +166,17 @@ function updateRoles(rolesfn) {
   });
 }
 
-
 function updateBands(bandsfn) {
   db.getBands(function(rows) {
     bands = rows;
     bandsfn();
+  });
+}
+
+function updateResponsibilities(responsiblityfn) {
+  db.getResponsibilities(function(rows) {
+    responsibilities = rows;
+    responsiblityfn();
   });
 }
 
@@ -188,6 +216,7 @@ function updateBandTitles(bandTitlesfn) {
 }
 
 roles = [];
+roleFamilies = [];
 competencies = [];
 bandCompetency = [];
 titles = [];
@@ -196,3 +225,4 @@ bands = [];
 families = [];
 bandTitles = [];
 capabilityLeads = [];
+responsibilities = [];

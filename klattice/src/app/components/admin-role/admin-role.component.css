@@ -1,0 +1,103 @@
+#tableHeadRole{
+  background-color: #4caf50;
+  color: white;
+}
+#addbtn{
+  background-color: #4caf50;
+  color: white;
+}
+#addbtn:hover{
+  background-color: #449c46;
+  color: white;
+}
+#delbtn{
+  background-color: #EB595E;
+  color: white;
+}
+#delbtn:hover{
+  background-color: rgb(211, 78, 82);
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+.material-icons.md-15 {
+  font-size: 15px;
+}
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}
+#addForm{
+  padding-top: 5%
+}
+
+/* ADD ROLE MODAL */
+.login-container{
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+.login-form-2{
+  padding: 1.3%;
+  background: #003471;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loginForm {
+  padding-top: 4% !important; 
+}
+
+.wholeForm {
+  justify-content: center;
+}
+
+.login-form-2 h3{
+  text-align: center;
+  padding-bottom: 1rem;
+  color: #fff;
+}
+
+.login-container form{
+  padding: 0%;
+}
+.btnSubmit
+{
+  width: 50%;
+  border-radius: 0.2rem;
+  padding: 1.5%;
+  border: none;
+  cursor: pointer;
+}
+
+.login-form-2 .btnSubmit{
+  font-weight: 600;
+  color: #003471;
+  background-color: #fff;
+}
+
+.login-form-2 .btnSubmit:hover{
+  color: #ffffff;
+  background-color: #35983F;
+}
+
+.login-form-2 .ForgetPwd{
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.subBtn:hover {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
