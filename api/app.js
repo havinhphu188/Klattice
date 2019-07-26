@@ -18,7 +18,7 @@ app.listen(7999, function() {
 
 app.put('/edit-role', async function(req,res){  
   await db.editRole(req.body.role_id, req.body.role_name, req.body.role_summary, req.body.role_sum_link, req.body.capability_id, req.body.band_id);
-});;
+});
 
 app.get("/roles", function(req, res) {
   updateRoles(function() {
