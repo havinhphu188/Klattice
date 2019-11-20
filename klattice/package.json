@@ -20,7 +20,7 @@
     "@angular/platform-browser-dynamic": "~8.1.0",
     "@angular/router": "~8.1.0",
     "@ng-bootstrap/ng-bootstrap": "^5.0.0",
-    "angular": "^1.7.8",
+    "angular": "^1.7.9",
     "chai": "*",
     "chai-spies": "*",
     "crypto-js": "^3.1.9-1",
